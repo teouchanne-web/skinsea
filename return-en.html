@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Return Policy — skinsea</title>
+    <meta name="description" content="skinsea — return and refund policy." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
+      rel="stylesheet" />
+
+    <style>
+      :root {
+        --blue: #6faec2;
+        --blue-dark: #3f849c;
+        --blue-light: #eaf7fa;
+        --cream: #faf8f3;
+        --text: #24363b;
+        --muted: #7d8b8f;
+        --white: #ffffff;
+        --border: #e8eeee;
+        --shadow: 0 20px 50px rgba(44, 83, 94, 0.09);
+        --radius: 24px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--cream);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 40px));
+        margin: auto;
+      }
+
+      /* ================= TOP BAR ================= */
+
+      .topbar {
+        background: var(--text);
+        color: white;
+        text-align: center;
+        padding: 9px 15px;
+        font-size: 12px;
+        letter-spacing: 0.3px;
+      }
+
+      /* ================= HEADER ================= */
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(250, 248, 243, 0.88);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      }
+
+      .nav {
+        height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 24px;
+        font-weight: 500;
+        letter-spacing: -1px;
+      }
+
+      .logo-icon {
+        width: 28px;
+        height: 34px;
+        background: var(--blue);
+        border-radius: 70% 30% 70% 30%;
+        transform: rotate(35deg);
+        position: relative;
+      }
+
+      .logo-icon::after {
+        content: "";
+        width: 7px;
+        height: 7px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        position: absolute;
+        top: 7px;
+        left: 8px;
+      }
+
+      nav {
+        display: flex;
+        gap: 28px;
+        font-size: 16px;
+        color: #53656a;
+      }
+
+      nav a {
+        transition: 0.2s;
+      }
+
+      nav a:hover {
+        color: var(--blue-dark);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .icon-btn {
+        border: 0;
+        background: transparent;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: var(--text);
+        transition: 0.2s;
+      }
+
+      .icon-btn:hover {
+        background: white;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+      }
+
+      /* ================= PAGE HERO ================= */
+
+      .page-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 80px 0 55px;
+        text-align: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--blue-light);
+        color: var(--blue-dark);
+        border-radius: 50px;
+        padding: 8px 14px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .page-hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(42px, 6vw, 64px);
+        line-height: 1.05;
+        letter-spacing: -1.5px;
+        margin-bottom: 18px;
+      }
+
+      .page-hero h1 span {
+        color: var(--blue-dark);
+      }
+
+      .page-hero p {
+        color: var(--muted);
+        max-width: 650px;
+        margin: auto;
+        line-height: 1.8;
+        font-size: 15px;
+      }
+
+      .drop {
+        position: absolute;
+        border-radius: 70% 30% 70% 30%;
+        background: rgba(111, 174, 194, 0.11);
+        transform: rotate(35deg);
+        pointer-events: none;
+      }
+
+      .drop-1 {
+        width: 90px;
+        height: 110px;
+        right: 8%;
+        top: 55px;
+      }
+
+      .drop-2 {
+        width: 50px;
+        height: 62px;
+        left: 7%;
+        bottom: 20px;
+      }
+
+      /* ================= POLICY ================= */
+
+      .policy-section {
+        padding: 25px 0 100px;
+      }
+
+      .policy-layout {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 35px;
+        align-items: start;
+      }
+
+      .policy-nav {
+        position: sticky;
+        top: 105px;
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .policy-nav-title {
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 13px;
+        color: var(--text);
+      }
+
+      .policy-nav a {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.5;
+        padding: 8px 10px;
+        border-radius: 10px;
+        transition: 0.2s;
+      }
+
+      .policy-nav a:hover {
+        background: var(--blue-light);
+        color: var(--blue-dark);
+      }
+
+      .policy-card {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        padding: clamp(25px, 5vw, 48px);
+        box-shadow: var(--shadow);
+      }
+
+      .policy-intro {
+        background: var(--blue-light);
+        border-radius: 18px;
+        padding: 20px;
+        margin-bottom: 32px;
+        color: #456c77;
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .policy-block {
+        padding: 0 0 30px;
+        margin-bottom: 30px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .policy-block:last-child {
+        border-bottom: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .policy-block h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 27px;
+        margin-bottom: 13px;
+      }
+
+      .policy-block p {
+        color: #61777d;
+        font-size: 14px;
+        line-height: 1.9;
+        margin-bottom: 12px;
+      }
+
+      .policy-block ul {
+        margin: 8px 0 0 20px;
+        color: #61777d;
+        font-size: 14px;
+        line-height: 1.9;
+      }
+
+      .policy-block li {
+        padding-left: 4px;
+        margin-bottom: 3px;
+      }
+
+      .contact-box {
+        background: var(--cream);
+        border-radius: 18px;
+        padding: 20px;
+        margin-top: 16px;
+      }
+
+      .contact-box strong {
+        display: block;
+        margin-bottom: 7px;
+      }
+
+      .contact-box a {
+        color: var(--blue-dark);
+        font-weight: 600;
+      }
+
+      .last-updated {
+        color: var(--muted);
+        font-size: 11px;
+        margin-top: 30px;
+      }
+
+      /* ================= FOOTER ================= */
+
+      footer {
+        background: #17282d;
+        color: white;
+        padding: 60px 0 30px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 50px;
+        margin-bottom: 50px;
+      }
+
+      .footer-logo {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+
+      .footer-about {
+        color: #9aadb1;
+        font-size: 13px;
+        line-height: 1.8;
+        max-width: 300px;
+      }
+
+      .footer-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 17px;
+      }
+
+      .footer-links {
+        display: grid;
+        gap: 11px;
+        color: #9aadb1;
+        font-size: 12px;
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      .copyright {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 22px;
+        color: #71868b;
+        font-size: 11px;
+        text-align: center;
+      }
+
+      /* ================= MOBILE ================= */
+
+      @media (max-width: 900px) {
+        nav {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: grid;
+        }
+
+        .policy-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .policy-nav {
+          position: static;
+        }
+
+        .policy-nav-links {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 3px;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          width: min(100% - 28px, 1180px);
+        }
+
+        .nav {
+          height: 68px;
+        }
+
+        .logo {
+          font-size: 21px;
+        }
+
+        .page-hero {
+          padding: 60px 0 35px;
+        }
+
+        .page-hero h1 {
+          font-size: 43px;
+        }
+
+        .policy-section {
+          padding: 20px 0 70px;
+        }
+
+        .policy-card {
+          border-radius: 22px;
+          padding: 24px 20px;
+        }
+
+        .policy-nav-links {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+      }
+      .language-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        white-space: nowrap;
+      }
+      .language-switch a {
+        color: var(--muted);
+      }
+      .language-switch a.active {
+        color: var(--blue-dark);
+      }
+      .logo-text {
+        font-family: "Montserrat", sans-serif;
+        font-size: 24px;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        color: #24444d;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= TOP BAR ================= -->
+
+    <div class="topbar">✦ Free delivery on orders over 100 GEL ✦</div>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+      <div class="container nav">
+        <a href="index.html" class="logo" aria-label="skinsea მთავარი გვერდი">
+          <span class="logo-icon"></span>
+          <span class="logo-text">skinsea</span>
+        </a>
+
+        <nav>
+          <a href="index-en.html#products">Products</a>
+          <a href="index-en.html#categories">Categories</a>
+          <a href="index-en.html#brands">Brands</a>
+          <a href="index-en.html#story">About us</a>
+          <a href="contact-en.html">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <div class="language-switch" aria-label="Language">
+            <a href="return.html">KA</a><span>|</span
+            ><a href="return-en.html" class="active">ENG</a>
+          </div>
+          <a class="icon-btn" href="index-en.html" aria-label="Home">⌂</a>
+          <button
+            class="icon-btn mobile-menu-btn"
+            id="mobileMenuBtn"
+            aria-label="Menu">
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= PAGE HERO ================= -->
+
+    <section class="page-hero">
+      <span class="drop drop-1"></span>
+      <span class="drop drop-2"></span>
+
+      <div class="container">
+        <div class="eyebrow">↻ Returns & refunds</div>
+
+        <h1>Return <span>Policy</span></h1>
+
+        <p>
+          We want you to be happy with your Skinsea purchase. Below you’ll find
+          the terms that apply to product returns, refunds and cosmetic
+          products.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= POLICY ================= -->
+
+    <main class="policy-section">
+      <div class="container policy-layout">
+        <aside class="policy-nav">
+          <div class="policy-nav-title">Contents</div>
+
+          <div class="policy-nav-links">
+            <a href="#return">1. Product returns</a>
+            <a href="#cosmetics">2. Cosmetic products</a>
+            <a href="#defective">3. Damaged products</a>
+            <a href="#refund">4. Refunds</a>
+            <a href="#shipping">5. Return shipping costs</a>
+            <a href="#rights">6. Consumer rights</a>
+            <a href="#contact">7. Contact us</a>
+          </div>
+        </aside>
+
+        <article class="policy-card">
+          <div class="policy-intro">
+            <strong>In short:</strong>
+            An online purchase may be returned within 14 calendar days of
+            receiving the product, subject to the conditions provided by law.
+          </div>
+
+          <section class="policy-block" id="return">
+            <h2>1. Product returns</h2>
+
+            <p>
+              An online purchase may be returned within
+              <strong>14 calendar days</strong>
+              of receiving the product, subject to the conditions provided by
+              law.
+            </p>
+
+            <p>
+              To request a return, contact us by email and include your order
+              number and the name of the product you wish to return.
+            </p>
+
+            <ul>
+              <li>Order number;</li>
+              <li>Product name;</li>
+              <li>Reason for return — optional;</li>
+              <li>Contact information.</li>
+            </ul>
+          </section>
+
+          <section class="policy-block" id="cosmetics">
+            <h2>2. Returning cosmetic products</h2>
+
+            <p>
+              When returning creams, serums, masks, lotions and other cosmetic
+              products, the product must remain
+              <strong>sealed and unopened</strong> where opening it excludes the
+              right of return for health protection or hygiene reasons.
+            </p>
+
+            <p>
+              If the product’s protective packaging, seal or sealed wrapping has
+              been opened by the customer after delivery, it may be returned
+              only where an applicable legal basis for return exists.
+            </p>
+
+            <p>
+              The fact that a product is cosmetic does not automatically mean
+              returns are prohibited in every case. The condition of the
+              packaging and seal is important.
+            </p>
+          </section>
+
+          <section class="policy-block" id="defective">
+            <h2>3. Damaged or defective products</h2>
+
+            <p>
+              If the product you receive is damaged, defective, does not match
+              the product ordered, or you receive the wrong item, please contact
+              us as soon as you receive it.
+            </p>
+
+            <p>
+              To help resolve the issue quickly, we may ask for a photo or video
+              of the product and its packaging.
+            </p>
+
+            <p>
+              Your statutory rights regarding defective products or products
+              that do not conform to the contract remain in effect.
+            </p>
+          </section>
+
+          <section class="policy-block" id="refund">
+            <h2>4. Refunds</h2>
+
+            <p>
+              Where the legal conditions for a return are met, the customer will
+              be refunded the amount paid for the product and, where required by
+              law, the standard delivery cost.
+            </p>
+
+            <p>
+              Refunds will be made within the period required by law and, as a
+              rule, using the same payment method used for the original payment.
+            </p>
+          </section>
+
+          <section class="policy-block" id="shipping">
+            <h2>5. Return shipping costs</h2>
+
+            <p>
+              Where provided by law, the customer is responsible for the costs
+              of returning the product, except where the law provides otherwise.
+            </p>
+
+            <p>
+              For example, where the product received is defective, damaged or
+              does not conform to the order, the rules established by law
+              regarding return costs apply.
+            </p>
+          </section>
+
+          <section class="policy-block" id="rights">
+            <h2>6. Consumer rights</h2>
+
+            <p>
+              This Return Policy does not limit any rights granted to consumers
+              under Georgian law.
+            </p>
+
+            <p>
+              If any provision of this policy conflicts with applicable Georgian
+              consumer protection law, the rights and requirements provided by
+              law will prevail.
+            </p>
+          </section>
+
+          <section class="policy-block" id="contact">
+            <h2>7. Contact us</h2>
+
+            <p>For return requests or additional information, contact us:</p>
+
+            <div class="contact-box">
+              <strong>skinsea</strong>
+              <div>
+                📧
+                <a href="mailto:hello@skinsea.ge">hello@skinsea.ge</a>
+              </div>
+              <div style="margin-top: 8px"></div>
+              <div style="margin-top: 8px; color: var(--muted)">
+                Tbilisi, Georgia
+              </div>
+            </div>
+          </section>
+
+          <div class="last-updated">Last updated: September 9, 2026</div>
+        </article>
+      </div>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">skinsea</div>
+            <p class="footer-about">
+              An online skincare space for people who like beauty kept simple.
+            </p>
+          </div>
+
+          <div>
+            <div class="footer-title">Navigation</div>
+            <div class="footer-links">
+              <a href="index-en.html#products">Products</a>
+              <a href="index-en.html#categories">Categories</a>
+              <a href="index-en.html#brands">Brands</a>
+              <a href="index-en.html#story">About us</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="footer-title">Help</div>
+            <div class="footer-links">
+              <a href="index-en.html">Home</a>
+              <a href="delivery-en.html"> Delivery </a>
+              <a href="return-en.html">Returns</a>
+              <a href="faq-en.html">FAQ</a>
+              <a href="contact-en.html">Contact</a>
+              <a href="privacy-policy-en.html">Privacy Policy</a>
+              <a href="terms-en.html">Terms & Conditions</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="footer-title">Contact</div>
+            <div class="footer-links">
+              <a href="mailto:hello@skinsea.ge">hello@skinsea.ge</a>
+              <span>Tbilisi, Georgia</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="copyright">© 2026 skinsea. All rights reserved.</div>
+      </div>
+    </footer>
+
+    <script>
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const nav = document.querySelector("nav");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        if (nav.style.display === "flex") {
+          nav.style.display = "";
+          nav.style.position = "";
+          nav.style.top = "";
+          nav.style.left = "";
+          nav.style.right = "";
+          nav.style.background = "";
+          nav.style.padding = "";
+          nav.style.flexDirection = "";
+          nav.style.gap = "";
+          nav.style.borderBottom = "";
+        } else {
+          nav.style.display = "flex";
+          nav.style.position = "absolute";
+          nav.style.top = "68px";
+          nav.style.left = "0";
+          nav.style.right = "0";
+          nav.style.background = "white";
+          nav.style.padding = "20px";
+          nav.style.flexDirection = "column";
+          nav.style.gap = "18px";
+          nav.style.borderBottom = "1px solid var(--border)";
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,3974 @@
+<!doctype html>
+<html lang="ka">
+  <head>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Skinsea — კანის მოვლის ონლაინ მაღაზია საქართველოში</title>
+
+    <meta
+      name="description"
+      content="Skinsea — კანის მოვლის ონლაინ მაღაზია საქართველოში. აღმოაჩინე Vichy, La Roche-Posay, COSRX, SKIN1004, The Ordinary და სხვა ბრენდების პროდუქტები." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
+      rel="stylesheet" />
+
+    <style>
+      :root {
+        --blue: #6faec2;
+        --blue-dark: #3f849c;
+        --blue-light: #eaf7fa;
+        --cream: #faf8f3;
+        --cream-dark: #eeeedf;
+        --text: #24363b;
+        --muted: #7d8b8f;
+        --rose: #e9b9b2;
+        --white: #ffffff;
+        --border: #e8eeee;
+        --shadow: 0 20px 50px rgba(44, 83, 94, 0.09);
+        --radius: 24px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--cream);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 40px));
+        margin: auto;
+      }
+
+      /* ================= TOP BAR ================= */
+
+      .topbar {
+        background: var(--text);
+        color: white;
+        text-align: center;
+        padding: 9px 15px;
+        font-size: 12px;
+        letter-spacing: 0.3px;
+      }
+
+      /* ================= HEADER ================= */
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(250, 248, 243, 0.88);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      }
+
+      .nav {
+        height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
+
+      .logo-icon {
+        width: 28px;
+        height: 34px;
+        background: var(--blue);
+        border-radius: 70% 30% 70% 30%;
+        transform: rotate(35deg);
+        position: relative;
+      }
+
+      .logo-icon::after {
+        content: "";
+        width: 7px;
+        height: 7px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        position: absolute;
+        top: 7px;
+        left: 8px;
+      }
+      .logo-text {
+        font-family: "Montserrat", sans-serif;
+        font-size: 24px;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        color: #24444d;
+      }
+
+      nav {
+        display: flex;
+        gap: 28px;
+        font-size: 16px;
+        color: #53656a;
+      }
+
+      nav a {
+        transition: 0.2s;
+      }
+
+      nav a:hover {
+        color: var(--blue-dark);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .icon-btn {
+        border: 0;
+        background: transparent;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: var(--text);
+        position: relative;
+        transition: 0.2s;
+      }
+
+      .icon-btn:hover {
+        background: white;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: 1px;
+        right: 0;
+        background: var(--blue-dark);
+        color: white;
+        min-width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        font-size: 10px;
+        display: grid;
+        place-items: center;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+      }
+
+      /* ================= HERO ================= */
+
+      .hero {
+        position: relative;
+        padding: 80px 0 100px;
+        overflow: hidden;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 70px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--blue-light);
+        color: var(--blue-dark);
+        border-radius: 50px;
+        padding: 8px 14px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 22px;
+      }
+
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(48px, 6vw, 74px);
+        line-height: 1.02;
+        letter-spacing: -2px;
+        font-weight: 600;
+        margin-bottom: 25px;
+      }
+
+      .hero h1 span {
+        color: var(--blue-dark);
+      }
+
+      .hero-text {
+        color: var(--muted);
+        line-height: 1.8;
+        max-width: 480px;
+        font-size: 16px;
+        margin-bottom: 32px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        border: 0;
+        padding: 14px 22px;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: 0.25s;
+      }
+
+      .btn-primary {
+        background: var(--text);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--blue-dark);
+        transform: translateY(-2px);
+      }
+
+      .btn-light {
+        background: white;
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      .btn-light:hover {
+        border-color: var(--blue);
+      }
+
+      .hero-visual {
+        position: relative;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 560px;
+        object-fit: cover;
+        border-radius: 160px 160px 30px 30px;
+      }
+
+      /* HERO SLIDER */
+
+      .hero-slider {
+        position: relative;
+        width: 100%;
+        height: 560px;
+        border-radius: 160px 160px 30px 30px;
+        overflow: hidden;
+      }
+
+      .hero-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.7s ease;
+      }
+
+      .hero-slide.active {
+        opacity: 1;
+      }
+
+      .hero-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-slider-dots {
+        position: absolute;
+        bottom: 22px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 5;
+      }
+
+      .hero-slider-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.55);
+        border: 0;
+        padding: 0;
+        transition: 0.25s;
+      }
+
+      .hero-slider-dot.active {
+        background: white;
+        width: 22px;
+        border-radius: 5px;
+      }
+
+      .hero-slider-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 0;
+        background: rgba(255, 255, 255, 0.85);
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        z-index: 5;
+        transition: 0.2s;
+      }
+
+      .hero-slider-arrow:hover {
+        background: white;
+      }
+
+      .hero-slider-arrow.prev {
+        left: 22px;
+      }
+
+      .hero-slider-arrow.next {
+        right: 22px;
+      }
+
+      .floating-card {
+        position: absolute;
+        left: -35px;
+        bottom: 35px;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(12px);
+        padding: 18px 20px;
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        display: flex;
+        gap: 13px;
+        align-items: center;
+        min-width: 220px;
+      }
+
+      .floating-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        background: var(--blue-light);
+        display: grid;
+        place-items: center;
+      }
+
+      .floating-card small {
+        display: block;
+        color: var(--muted);
+        margin-bottom: 2px;
+        font-size: 11px;
+      }
+
+      .floating-card strong {
+        font-size: 13px;
+      }
+
+      /* ================= DROPS ================= */
+
+      .drop {
+        position: absolute;
+        border-radius: 70% 30% 70% 30%;
+        background: rgba(111, 174, 194, 0.11);
+        transform: rotate(35deg);
+        pointer-events: none;
+      }
+
+      .drop-1 {
+        width: 90px;
+        height: 110px;
+        right: 7%;
+        top: 80px;
+      }
+
+      .drop-2 {
+        width: 45px;
+        height: 58px;
+        left: 3%;
+        bottom: 50px;
+      }
+
+      .drop-3 {
+        width: 70px;
+        height: 85px;
+        right: 4%;
+        bottom: 20px;
+      }
+
+      /* ================= TRUST ================= */
+
+      .trust {
+        background: white;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .trust-item {
+        padding: 27px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        border-right: 1px solid var(--border);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .trust-item:last-child {
+        border-right: 0;
+      }
+
+      .trust-icon {
+        color: var(--blue-dark);
+        font-size: 20px;
+      }
+
+      /* ================= SECTION ================= */
+
+      section {
+        padding: 100px 0;
+        position: relative;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-bottom: 40px;
+        gap: 20px;
+      }
+
+      .section-head h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 42px;
+        line-height: 1.1;
+      }
+
+      .section-head p {
+        color: var(--muted);
+        max-width: 460px;
+        line-height: 1.7;
+        font-size: 14px;
+      }
+
+      /* ================= CATEGORIES ================= */
+
+      .categories {
+        background: white;
+      }
+
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+      }
+
+      .category-card {
+        height: 250px;
+        border-radius: var(--radius);
+        position: relative;
+        overflow: hidden;
+        background: var(--blue-light);
+        padding: 24px;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+
+      .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+      }
+
+      .category-card img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        inset: 0;
+        object-fit: cover;
+        opacity: 0.62;
+      }
+
+      .category-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(transparent 30%, rgba(20, 40, 45, 0.55));
+      }
+
+      .category-content {
+        position: absolute;
+        bottom: 20px;
+        left: 22px;
+        color: white;
+        z-index: 2;
+      }
+
+      .category-number {
+        font-size: 11px;
+        opacity: 0.8;
+        margin-bottom: 5px;
+      }
+
+      .category-content h3 {
+        font-size: 18px;
+      }
+
+      /* ================= PRODUCTS ================= */
+
+      .products {
+        background: var(--cream);
+      }
+
+      .filter-bar {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 35px;
+      }
+
+      .filter-btn {
+        border: 1px solid var(--border);
+        background: white;
+        padding: 9px 17px;
+        border-radius: 50px;
+        color: var(--muted);
+        font-size: 12px;
+        transition: 0.2s;
+      }
+
+      .filter-btn.active,
+      .filter-btn:hover {
+        background: var(--text);
+        color: white;
+        border-color: var(--text);
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+
+      .product-card {
+        background: white;
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        transition: 0.3s;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+      }
+
+      .product-image-wrap {
+        height: 330px;
+        position: relative;
+        background: #f2f7f7;
+        overflow: hidden;
+      }
+
+      .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s;
+      }
+
+      .product-card:hover .product-image {
+        transform: scale(1.04);
+      }
+
+      .badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: white;
+        padding: 7px 11px;
+        border-radius: 50px;
+        font-size: 10px;
+        font-weight: 700;
+        z-index: 2;
+      }
+
+      .wishlist-btn {
+        position: absolute;
+        top: 13px;
+        right: 13px;
+        width: 38px;
+        height: 38px;
+        border: 0;
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        z-index: 3;
+      }
+
+      .wishlist-btn.active {
+        color: #d77e82;
+      }
+
+      .product-info {
+        padding: 21px;
+      }
+
+      .product-brand {
+        color: var(--blue-dark);
+        text-transform: uppercase;
+        font-size: 10px;
+        letter-spacing: 1.4px;
+        font-weight: 700;
+        margin-bottom: 7px;
+      }
+
+      .product-name {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 7px;
+      }
+
+      .product-desc {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.5;
+        margin-bottom: 13px;
+      }
+
+      /* მარაგის რაოდენობა აღარ ჩანს */
+
+      .stock {
+        font-size: 11px;
+        color: #6c9b77;
+        margin-bottom: 13px;
+      }
+
+      .stock.unavailable {
+        color: #b86f72;
+      }
+
+      .add-btn:disabled,
+      .btn:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      .product-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .price {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .add-btn {
+        border: 0;
+        background: var(--blue-light);
+        color: var(--blue-dark);
+        border-radius: 50px;
+        padding: 10px 14px;
+        font-size: 12px;
+        font-weight: 700;
+        transition: 0.2s;
+      }
+
+      .add-btn:hover {
+        background: var(--blue);
+        color: white;
+      }
+
+      /* ================= BRANDS ================= */
+
+      .brands {
+        background: white;
+      }
+
+      .brand-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 15px;
+      }
+
+      .brand {
+        height: 110px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        color: #65757a;
+        font-weight: 600;
+        font-size: 14px;
+        background: #fff;
+        transition: 0.2s;
+      }
+
+      .brand:hover {
+        border-color: var(--blue);
+        color: var(--blue-dark);
+        transform: translateY(-3px);
+      }
+
+      /* ================= STORY ================= */
+
+      .story {
+        background: var(--blue-light);
+        overflow: hidden;
+      }
+
+      .story-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 80px;
+        align-items: center;
+      }
+
+      .story-image {
+        height: 520px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 40px;
+      }
+
+      .story h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 48px;
+        line-height: 1.1;
+        margin-bottom: 25px;
+      }
+
+      .story p {
+        color: #61777d;
+        line-height: 1.9;
+        font-size: 15px;
+        margin-bottom: 25px;
+      }
+
+      .story-points {
+        display: grid;
+        gap: 14px;
+      }
+
+      .story-point {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .check {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: white;
+        color: var(--blue-dark);
+        display: grid;
+        place-items: center;
+      }
+
+      /* ================= FOOTER ================= */
+
+      footer {
+        background: #17282d;
+        color: white;
+        padding: 60px 0 30px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 50px;
+        margin-bottom: 50px;
+      }
+
+      .footer-logo {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+
+      .footer-about {
+        color: #9aadb1;
+        font-size: 13px;
+        line-height: 1.8;
+        max-width: 300px;
+      }
+
+      .footer-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 17px;
+      }
+
+      .footer-links {
+        display: grid;
+        gap: 11px;
+        color: #9aadb1;
+        font-size: 12px;
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      .copyright {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 22px;
+        color: #71868b;
+        font-size: 11px;
+        text-align: center;
+      }
+      .footer-socials {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .footer-socials a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 9px 16px;
+
+        background: #2f7f7a;
+        color: white;
+
+        border: 1px solid #2f7f7a;
+        border-radius: 20px;
+
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+
+        transition: 0.3s ease;
+      }
+
+      .footer-socials a:hover {
+        background: #ffffff;
+        color: #2f7f7a;
+        transform: translateY(-2px);
+      }
+
+      /* ================= CART DRAWER ================= */
+
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 25, 30, 0.45);
+        backdrop-filter: blur(4px);
+        z-index: 2000;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s;
+      }
+
+      .overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .cart-drawer {
+        position: fixed;
+        right: -480px;
+        top: 0;
+        width: min(460px, 100%);
+        height: 100vh;
+        background: white;
+        z-index: 2100;
+        transition: 0.35s ease;
+        display: flex;
+        flex-direction: column;
+        box-shadow: -20px 0 60px rgba(0, 0, 0, 0.1);
+      }
+
+      .cart-drawer.active {
+        right: 0;
+      }
+
+      .drawer-head {
+        padding: 23px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .drawer-head h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 25px;
+      }
+
+      .close-btn {
+        width: 38px;
+        height: 38px;
+        border: 0;
+        background: var(--cream);
+        border-radius: 50%;
+      }
+
+      .cart-items {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+      }
+
+      .empty-cart {
+        height: 100%;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      .empty-cart-icon {
+        font-size: 45px;
+        margin-bottom: 10px;
+      }
+
+      .cart-item {
+        display: grid;
+        grid-template-columns: 72px 1fr auto;
+        gap: 13px;
+        padding: 13px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .cart-item-img {
+        width: 72px;
+        height: 80px;
+        border-radius: 13px;
+        object-fit: cover;
+      }
+
+      .cart-item-info h4 {
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+
+      .cart-item-info p {
+        color: var(--muted);
+        font-size: 11px;
+        margin-bottom: 9px;
+      }
+
+      .quantity {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .quantity button {
+        width: 25px;
+        height: 25px;
+        border: 1px solid var(--border);
+        background: white;
+        border-radius: 50%;
+      }
+
+      .quantity span {
+        font-size: 12px;
+        min-width: 12px;
+        text-align: center;
+      }
+
+      .cart-item-right {
+        text-align: right;
+      }
+
+      .cart-item-price {
+        font-weight: 700;
+        font-size: 13px;
+        margin-bottom: 10px;
+      }
+
+      .remove-item {
+        border: 0;
+        background: none;
+        color: #b6bfc1;
+        font-size: 11px;
+      }
+
+      .drawer-bottom {
+        border-top: 1px solid var(--border);
+        padding: 20px;
+      }
+
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 13px;
+      }
+
+      .summary-total {
+        font-size: 18px;
+        font-weight: 700;
+        padding-top: 8px;
+        border-top: 1px solid var(--border);
+        margin-top: 10px;
+      }
+
+      .checkout-btn {
+        width: 100%;
+        border: 0;
+        background: var(--text);
+        color: white;
+        padding: 15px;
+        border-radius: 50px;
+        margin-top: 16px;
+        font-weight: 700;
+      }
+
+      .checkout-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      /* ================= MODALS ================= */
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 3000;
+        background: rgba(10, 25, 30, 0.5);
+        backdrop-filter: blur(6px);
+        display: none;
+        place-items: center;
+        padding: 20px;
+      }
+
+      .modal.active {
+        display: grid;
+      }
+
+      .modal-box {
+        background: white;
+        width: min(700px, 100%);
+        max-height: 90vh;
+        overflow-y: auto;
+        border-radius: 28px;
+        padding: 30px;
+        position: relative;
+        animation: modalIn 0.25s ease;
+      }
+
+      @keyframes modalIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .modal-close {
+        position: absolute;
+        right: 18px;
+        top: 18px;
+        width: 38px;
+        height: 38px;
+        border: 0;
+        background: var(--cream);
+        border-radius: 50%;
+      }
+
+      .modal-title {
+        font-family: "Playfair Display", serif;
+        font-size: 30px;
+        margin-bottom: 8px;
+      }
+
+      .modal-subtitle {
+        color: var(--muted);
+        font-size: 13px;
+        margin-bottom: 25px;
+      }
+
+      /* PRODUCT MODAL */
+
+      .product-modal-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 28px;
+      }
+
+      .product-modal-img {
+        width: 100%;
+        height: 390px;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+
+      .modal-brand {
+        color: var(--blue-dark);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .modal-product-name {
+        font-family: "Playfair Display", serif;
+        font-size: 32px;
+        margin-bottom: 13px;
+      }
+
+      .modal-description {
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 13px;
+        margin-bottom: 20px;
+      }
+
+      .modal-price {
+        font-size: 23px;
+        font-weight: 700;
+        margin-bottom: 18px;
+      }
+
+      /* ================= LIGHTBOX ================= */
+
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 6000;
+        background: rgba(10, 25, 30, 0.88);
+        backdrop-filter: blur(8px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+      }
+
+      .lightbox.active {
+        display: flex;
+      }
+
+      .lightbox-image {
+        max-width: min(900px, 92vw);
+        max-height: 88vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 18px;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+        animation: lightboxIn 0.25s ease;
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        width: 46px;
+        height: 46px;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--text);
+        font-size: 20px;
+        display: grid;
+        place-items: center;
+        z-index: 2;
+      }
+
+      .lightbox-close:hover {
+        background: white;
+        transform: scale(1.05);
+      }
+
+      .product-modal-img {
+        cursor: zoom-in;
+      }
+
+      @keyframes lightboxIn {
+        from {
+          opacity: 0;
+          transform: scale(0.94);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .lightbox {
+          padding: 15px;
+        }
+
+        .lightbox-image {
+          max-width: 95vw;
+          max-height: 82vh;
+          border-radius: 14px;
+        }
+
+        .lightbox-close {
+          top: 15px;
+          right: 15px;
+          width: 42px;
+          height: 42px;
+        }
+      }
+
+      /* CHECKOUT */
+
+      .checkout-summary {
+        background: var(--cream);
+        border-radius: 18px;
+        padding: 18px;
+        margin-bottom: 25px;
+      }
+
+      .checkout-summary-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        font-size: 12px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .form-group {
+        display: grid;
+        gap: 7px;
+        margin-bottom: 15px;
+      }
+
+      .form-group.full {
+        grid-column: 1 / -1;
+      }
+
+      .form-group label {
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        border: 1px solid var(--border);
+        outline: none;
+        border-radius: 13px;
+        padding: 12px 13px;
+        background: white;
+        transition: 0.2s;
+      }
+
+      .form-group textarea {
+        min-height: 90px;
+        resize: vertical;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--blue);
+      }
+
+      .delivery-info {
+        background: var(--blue-light);
+        border-radius: 15px;
+        padding: 14px;
+        color: var(--blue-dark);
+        font-size: 11px;
+        line-height: 1.6;
+        margin-bottom: 18px;
+      }
+
+      /* SUCCESS */
+
+      .success-box {
+        text-align: center;
+        padding: 30px;
+      }
+
+      .success-icon {
+        width: 75px;
+        height: 75px;
+        background: #eaf7ee;
+        color: #5e9b6e;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 32px;
+        margin: 0 auto 20px;
+      }
+
+      .success-box h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+
+      .success-box p {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+        margin-bottom: 22px;
+      }
+
+      /* TOAST */
+
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 25px;
+        transform: translate(-50%, 80px);
+        background: var(--text);
+        color: white;
+        padding: 13px 20px;
+        border-radius: 50px;
+        font-size: 12px;
+        z-index: 5000;
+        opacity: 0;
+        transition: 0.3s;
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+
+      /* ================= MOBILE ================= */
+
+      @media (max-width: 900px) {
+        nav {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: grid;
+        }
+
+        .hero-grid,
+        .story-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding: 60px 0 70px;
+        }
+
+        .hero-image {
+          height: 430px;
+        }
+
+        .floating-card {
+          left: 15px;
+        }
+
+        .category-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .product-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .brand-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .story-grid {
+          gap: 40px;
+        }
+
+        .story-image {
+          height: 400px;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          width: min(100% - 28px, 1180px);
+        }
+
+        .nav {
+          height: 68px;
+        }
+
+        .logo {
+          font-size: 21px;
+        }
+
+        .nav-actions {
+          gap: 2px;
+        }
+
+        .hero h1 {
+          font-size: 48px;
+        }
+
+        .hero-image {
+          height: 380px;
+        }
+
+        .trust-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .trust-item {
+          border-right: 0;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .trust-item:last-child {
+          border-bottom: 0;
+        }
+
+        section {
+          padding: 70px 0;
+        }
+
+        .section-head {
+          display: block;
+        }
+
+        .section-head h2 {
+          font-size: 35px;
+          margin-bottom: 15px;
+        }
+
+        .category-grid,
+        .product-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .category-card {
+          height: 280px;
+        }
+
+        .product-image-wrap {
+          height: 360px;
+        }
+
+        .brand-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .story h2 {
+          font-size: 40px;
+        }
+
+        .newsletter h2 {
+          font-size: 35px;
+        }
+
+        .newsletter-form {
+          border-radius: 20px;
+          flex-direction: column;
+          background: transparent;
+          gap: 8px;
+        }
+
+        .newsletter-form input,
+        .newsletter-form button {
+          width: 100%;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .form-group.full {
+          grid-column: auto;
+        }
+
+        .product-modal-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .product-modal-img {
+          height: 300px;
+        }
+
+        .modal-box {
+          padding: 23px;
+        }
+      }
+
+      .product-slider {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .slider-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 34px;
+        height: 34px;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        cursor: pointer;
+        font-size: 24px;
+        z-index: 5;
+      }
+
+      .slider-prev {
+        left: 10px;
+      }
+
+      .slider-next {
+        right: 10px;
+      }
+
+      .slider-dots {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 6px;
+        z-index: 5;
+      }
+
+      .slider-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.55);
+      }
+
+      .slider-dot.active {
+        background: white;
+      }
+      .skinsea-brand-banner {
+        width: 100%;
+        max-width: 1400px;
+        margin: 60px auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+
+      .skinsea-brand-image {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 24px;
+      }
+
+      .skinsea-brand-text {
+        max-width: 720px;
+        margin: 28px auto 0;
+        text-align: center;
+      }
+
+      .skinsea-brand-text h2 {
+        font-size: 32px;
+        margin-bottom: 14px;
+      }
+
+      .skinsea-brand-text p {
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 14px;
+      }
+
+      .skinsea-brand-text span {
+        font-size: 14px;
+        letter-spacing: 2px;
+      }
+      .skinsea-slider {
+        position: relative;
+        width: 100%;
+        height: 440px;
+        overflow: hidden;
+        border-radius: 28px;
+      }
+
+      .skinsea-slide {
+        display: none;
+        width: 100%;
+        height: 440px;
+        object-fit: cover;
+        border-radius: 28px;
+      }
+
+      .skinsea-slide.active {
+        display: block;
+      }
+
+      .skinsea-prev,
+      .skinsea-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+
+        width: 42px;
+        height: 42px;
+
+        border: none;
+        border-radius: 50%;
+
+        background: rgba(255, 255, 255, 0.88);
+        color: #234a4a;
+
+        font-size: 28px;
+        line-height: 1;
+
+        cursor: pointer;
+        z-index: 20;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .skinsea-prev {
+        left: 14px;
+      }
+
+      .skinsea-next {
+        right: 14px;
+      }
+      .authenticity-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      .authenticity-text strong {
+        color: #234a4a;
+        font-weight: 600;
+      }
+
+      .authenticity-text span {
+        color: #7a8b8b;
+        font-size: 14px;
+        padding-left: 18px;
+        border-left: 1px solid #cbd8d6;
+      }
+      @media (max-width: 600px) {
+        .container {
+          width: calc(100% - 28px) !important;
+          max-width: 100% !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+
+        .hero {
+          padding: 45px 0 55px !important;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr !important;
+          width: 100% !important;
+          gap: 35px !important;
+          margin: 0 !important;
+        }
+
+        .hero-grid > * {
+          min-width: 0 !important;
+        }
+
+        .hero h1 {
+          font-size: 42px !important;
+          line-height: 1.08 !important;
+          letter-spacing: -1px !important;
+          overflow-wrap: break-word;
+        }
+
+        .hero-text {
+          width: 100% !important;
+          max-width: 100% !important;
+          font-size: 15px;
+        }
+
+        .hero-visual {
+          width: 100% !important;
+          min-width: 0 !important;
+        }
+
+        .hero-slider,
+        .hero-image {
+          width: 100% !important;
+          height: 380px !important;
+        }
+
+        .floating-card {
+          left: 15px !important;
+          right: 15px !important;
+          min-width: 0 !important;
+        }
+
+        .skinsea-brand-banner {
+          padding: 0 !important;
+        }
+
+        .skinsea-slider {
+          width: 100% !important;
+          height: auto !important;
+          min-height: 0 !important;
+        }
+
+        .skinsea-slide,
+        .skinsea-slide.active {
+          width: 100% !important;
+          height: auto !important;
+          max-height: none !important;
+          object-fit: contain !important;
+          object-position: center !important;
+        }
+      }
+      .language-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        white-space: nowrap;
+      }
+
+      .language-switch a {
+        color: var(--muted);
+      }
+
+      .language-switch a.active {
+        color: var(--blue-dark);
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- ================= TOP BAR ================= -->
+
+    <div class="topbar">✦ უფასო მიწოდება 100 ლარის ზევით შენაძენზე✦</div>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+      <div class="container nav">
+        <a href="#" class="logo">
+          <span class="logo-icon"></span>
+          <span class="logo-text">skinsea</span>
+        </a>
+
+        <nav>
+          <a href="#products">პროდუქტები</a>
+          <a href="#categories">კატეგორიები</a>
+          <a href="#brands">ბრენდები</a>
+          <a href="#story">ჩვენ შესახებ</a>
+
+          <a href="contact.html">კონტაქტი</a>
+        </nav>
+
+        <div class="nav-actions">
+          <div class="language-switch" aria-label="Language">
+            <a href="index.html" class="active">KA</a>
+            <span>|</span>
+            <a href="index-en.html">ENG</a>
+          </div>
+          <button class="icon-btn" id="searchBtn" aria-label="ძიება">🔍</button>
+
+          <button class="icon-btn" id="wishlistBtn" aria-label="რჩეულები">
+            ♡
+          </button>
+
+          <button class="icon-btn" id="cartBtn" aria-label="კალათა">
+            🛍
+
+            <span class="cart-count" id="cartCount"> 0 </span>
+          </button>
+
+          <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn">
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= SEARCH ================= -->
+
+    <div
+      id="searchPanel"
+      style="
+        display: none;
+        background: white;
+        padding: 15px;
+        border-bottom: 1px solid var(--border);
+      ">
+      <div class="container">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="მოძებნე პროდუქტი..."
+          style="
+            width: 100%;
+            padding: 14px 17px;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            outline: none;
+          " />
+      </div>
+    </div>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+      <span class="drop drop-1"></span>
+      <span class="drop drop-2"></span>
+      <span class="drop drop-3"></span>
+
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">✦ შენი კანის ახალი რიტუალი</div>
+
+          <h1>
+            იპოვე შენი<br />
+            <span>სილამაზის</span><br />
+            რიტუალი
+          </h1>
+
+          <p class="hero-text">
+            კანის მოვლის პროდუქტები, რომლებიც ყოველდღიურ რუტინას უფრო მარტივს,
+            სასიამოვნოს და ეფექტურს ხდის.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#products" class="btn btn-primary">
+              პროდუქტების ნახვა →
+            </a>
+
+            <a href="#story" class="btn btn-light"> გაიგე მეტი </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-slider">
+            <div class="hero-slide active">
+              <img src="images/vichy.png" alt="Vichy skincare" />
+            </div>
+
+            <div class="hero-slide">
+              <img src="images/hyalub5.png" alt="Hyalub5 skincare" />
+            </div>
+            <div class="hero-slide">
+              <img src="images/hero.jpg" alt="hero skincare" />
+            </div>
+            <div class="hero-slide">
+              <img src="images/hero1.jpg" alt="hero skincare" />
+            </div>
+            <div class="hero-slide">
+              <img src="images/hero3.png" alt="hero skincare" />
+            </div>
+
+            <button
+              class="hero-slider-arrow prev"
+              onclick="changeHeroSlide(-1)"
+              aria-label="წინა სლაიდი">
+              ←
+            </button>
+
+            <button
+              class="hero-slider-arrow next"
+              onclick="changeHeroSlide(1)"
+              aria-label="შემდეგი სლაიდი">
+              →
+            </button>
+
+            <div class="hero-slider-dots">
+              <button
+                class="hero-slider-dot active"
+                onclick="goToHeroSlide(0)"
+                aria-label="სლაიდი 1"></button>
+              <button
+                class="hero-slider-dot"
+                onclick="goToHeroSlide(1)"
+                aria-label="სლაიდი 2"></button>
+            </div>
+          </div>
+
+          <div class="floating-card">
+            <div class="floating-icon">✦</div>
+
+            <div>
+              <small> ჩვენი არჩევანი </small>
+
+              <strong> ყოველდღიური skincare რუტინა </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TRUST ================= -->
+
+    <div class="trust">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <span class="trust-icon">✓</span>
+          ხარისხიანი პროდუქტები
+        </div>
+
+        <div class="trust-item">
+          <span class="trust-icon">⌁</span>
+          სწრაფი მიწოდება
+        </div>
+
+        <div class="trust-item">
+          <span class="trust-icon">↻</span>
+          მარტივი დაბრუნება
+        </div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">✓</div>
+
+      <div class="authenticity-text">
+        <strong>ორიგინალური პროდუქცია</strong>
+        <span>სანდო მომწოდებლებისგან შერჩეული პროდუქცია</span>
+      </div>
+    </div>
+    <!-- ================= CATEGORIES ================= -->
+
+    <section class="categories" id="categories">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>იპოვე რაც გჭირდება</h2>
+          </div>
+        </div>
+
+        <div class="category-grid">
+          <div class="category-card" onclick="filterCategory('serum')">
+            <img src="images/storyy.jpg" alt="შრატები" />
+
+            <div class="category-overlay"></div>
+
+            <div class="category-content">
+              <div class="category-number">01</div>
+
+              <h3>შრატები</h3>
+            </div>
+          </div>
+
+          <div class="category-card" onclick="filterCategory('cream')">
+            <img src="images/cream.jpg" alt="კრემები" />
+
+            <div class="category-overlay"></div>
+
+            <div class="category-content">
+              <div class="category-number">02</div>
+
+              <h3>კრემები</h3>
+            </div>
+          </div>
+
+          <div class="category-card" onclick="filterCategory('cleanser')">
+            <img src="images/cleanser.png" alt="სახის დასაბანი" />
+
+            <div class="category-overlay"></div>
+
+            <div class="category-content">
+              <div class="category-number">03</div>
+
+              <h3>სახის დასაბანი</h3>
+            </div>
+          </div>
+
+          <div class="category-card" onclick="filterCategory('toners')">
+            <img src="images/toners.jpg" alt="SPF" />
+
+            <div class="category-overlay"></div>
+
+            <div class="category-content">
+              <div class="category-number">04</div>
+
+              <h3>ტონერები</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PRODUCTS ================= -->
+
+    <section class="products" id="products">
+      <span class="drop drop-3"></span>
+
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>რჩეული პროდუქტები</h2>
+          </div>
+
+          <p>
+            პოპულარული პროდუქტები შენი ყოველდღიური სახის მოვლის რუტინისთვის.
+          </p>
+        </div>
+
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">ყველა</button>
+
+          <button class="filter-btn" data-filter="serum">შრატები</button>
+
+          <button class="filter-btn" data-filter="cream">კრემები</button>
+
+          <button class="filter-btn" data-filter="cleanser">
+            სახის დასაბანი
+          </button>
+          <button class="filter-btn" data-filter="toners">ტონერები</button>
+
+          <button class="filter-btn" data-filter="sunscreen">SPF</button>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+    <section class="skinsea-brand-banner">
+      <div class="skinsea-slider">
+        <img
+          src="images/skinseabanner.png"
+          alt="Skinsea skincare banner"
+          class="skinsea-slide" />
+
+        <img
+          src="images/skinseabanner1.png"
+          alt="Skinsea skincare banner"
+          class="skinsea-slide" />
+
+        <button
+          class="skinsea-prev"
+          type="button"
+          onclick="changeSkinseaSlide(-1)">
+          ‹
+        </button>
+
+        <button
+          class="skinsea-next"
+          type="button"
+          onclick="changeSkinseaSlide(1)">
+          ›
+        </button>
+
+        <div class="skinsea-dots">
+          <span class="skinsea-dot active" onclick="goToSkinseaSlide(0)"></span>
+          <span class="skinsea-dot" onclick="goToSkinseaSlide(1)"></span>
+          <span class="skinsea-dot" onclick="goToSkinseaSlide(2)"></span>
+        </div>
+      </div>
+
+      <div class="skinsea-brand-text">
+        <h2>კანის მოვლა მარტივად</h2>
+
+        <p>
+          აღმოაჩინე შენს კანზე მორგებული პროდუქტები, გაიგე მეტი ინგრედიენტების
+          შესახებ და შექმენი მარტივი, ეფექტური რუტინა.
+        </p>
+
+        <span>ინგრედიენტები • რჩევები • კანის მოვლა</span>
+      </div>
+    </section>
+
+    <!-- ================= BRANDS ================= -->
+
+    <section class="brands" id="brands">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>ბრენდები</h2>
+          </div>
+
+          <p>შენი საყვარელი skincare ბრენდები ერთ სივრცეში.</p>
+        </div>
+
+        <div class="brand-grid">
+          <div class="brand">VICHY</div>
+
+          <div class="brand">La Roche-Posay</div>
+
+          <div class="brand">COSRX</div>
+
+          <div class="brand">SKIN1004</div>
+          <div class="brand">The Ordinary</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= STORY ================= -->
+
+    <section class="story" id="story">
+      <span class="drop drop-1"></span>
+
+      <div class="container story-grid">
+        <img
+          class="story-image"
+          src="images/story.jpg"
+          alt="Skincare products" />
+
+        <div>
+          <h2>
+            კანის მოვლა<br />
+            არ უნდა იყოს რთული.
+          </h2>
+
+          <p>
+            სქინსი შეიქმნა იმისთვის, რომ კარგი კანის მოვლის პროდუქტის პოვნა
+            მარტივი და სასიამოვნო ყოფილიყო.
+          </p>
+
+          <p>
+            ჩვენ ვარჩევთ პროდუქტებს სხვადასხვა ცნობილი ბრენდიდან და ვცდილობთ
+            ყოველდღიური მოვლა შენთვის უფრო მარტივი გავხადოთ.
+          </p>
+
+          <div class="story-points">
+            <div class="story-point">
+              <span class="check"> ✓ </span>
+
+              მარტივი არჩევანი
+            </div>
+
+            <div class="story-point">
+              <span class="check"> ✓ </span>
+
+              ცნობილი ბრენდები
+            </div>
+
+            <div class="story-point">
+              <span class="check"> ✓ </span>
+
+              სწრაფი მიწოდება
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">skinsea</div>
+
+            <p class="footer-about">
+              კანის მოვლის პროდუქტების ონლაინ სივრცე მათთვის, ვისაც სილამაზე
+              მარტივად უყვარს.
+            </p>
+
+            <div class="footer-socials">
+              <a
+                href="https://www.instagram.com/skinsea.skincare/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Skinsea Instagram">
+                Instagram
+              </a>
+
+              <a
+                href="https://www.facebook.com/profile.php?id=61594212786400"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Skinsea Facebook">
+                Facebook
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <div class="footer-title">ნავიგაცია</div>
+
+            <div class="footer-links">
+              <a href="#products"> პროდუქტები </a>
+
+              <a href="#categories"> კატეგორიები </a>
+
+              <a href="#brands"> ბრენდები </a>
+
+              <a href="#story"> ჩვენ შესახებ </a>
+            </div>
+          </div>
+
+          <div>
+            <div class="footer-title">დახმარება</div>
+
+            <div class="footer-links">
+              <a href="delivery.html"> მიწოდება </a>
+
+              <a href="return.html"> დაბრუნება </a>
+
+              <a href="faq.html"> ხშირად დასმული კითხვები </a>
+
+              <a href="contact.html"> კონტაქტი </a>
+              <a href="privacy-policy.html">კონფიდენციალურობის პოლიტიკა</a>
+              <a href="terms.html">წესები და პირობები</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="footer-title">კონტაქტი</div>
+
+            <div class="footer-links">
+              <a href="mailto:hello@skinsea.ge"> hello@skinsea.ge </a>
+
+              <span> თბილისი, საქართველო </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="copyright">© 2026 skinsea. ყველა უფლება დაცულია.</div>
+      </div>
+    </footer>
+
+    <!-- ================= OVERLAY ================= -->
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ================= CART ================= -->
+
+    <aside class="cart-drawer" id="cartDrawer">
+      <div class="drawer-head">
+        <h3>შენი კალათა</h3>
+
+        <button class="close-btn" id="closeCart">✕</button>
+      </div>
+
+      <div class="cart-items" id="cartItems"></div>
+
+      <div class="drawer-bottom">
+        <div class="summary-row">
+          <span> პროდუქტები </span>
+
+          <span id="cartSubtotal"> 0.00 ₾ </span>
+        </div>
+
+        <div class="summary-row">
+          <span> მიწოდება </span>
+
+          <span id="cartDelivery"> 6.50 ₾ </span>
+        </div>
+
+        <div class="summary-row summary-total">
+          <span> სულ </span>
+
+          <span id="cartTotal"> 0.00 ₾ </span>
+        </div>
+
+        <button class="checkout-btn" id="checkoutBtn" disabled>
+          შეკვეთის გაფორმება
+        </button>
+      </div>
+    </aside>
+
+    <!-- ================= PRODUCT MODAL ================= -->
+
+    <div class="modal" id="productModal">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('productModal')">
+          ✕
+        </button>
+
+        <div id="productModalContent"></div>
+      </div>
+    </div>
+    <!-- ================= LIGHTBOX ================= -->
+
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" id="lightboxClose" aria-label="დახურვა">
+        ✕
+      </button>
+
+      <img
+        class="lightbox-image"
+        id="lightboxImage"
+        src=""
+        alt="პროდუქტის ფოტო" />
+    </div>
+
+    <!-- ================= CHECKOUT MODAL ================= -->
+
+    <div class="modal" id="checkoutModal">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('checkoutModal')">
+          ✕
+        </button>
+
+        <h2 class="modal-title">შეკვეთის გაფორმება</h2>
+
+        <p class="modal-subtitle">
+          შეავსე მონაცემები და ჩვენ დაგიკავშირდებით შეკვეთის დასადასტურებლად.
+        </p>
+
+        <div class="checkout-summary" id="checkoutSummary"></div>
+
+        <form id="checkoutForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label> სახელი და გვარი * </label>
+
+              <input type="text" name="name" required />
+            </div>
+
+            <div class="form-group">
+              <label> ტელეფონი * </label>
+
+              <input
+                type="tel"
+                name="phone"
+                placeholder="5XX XX XX XX"
+                required />
+            </div>
+
+            <div class="form-group full">
+              <label> მისამართი * </label>
+
+              <input
+                type="text"
+                name="address"
+                placeholder="ქუჩა, ნომერი, ბინა"
+                required />
+            </div>
+
+            <div class="form-group">
+              <label> ქალაქი </label>
+
+              <select name="city">
+                <option value="თბილისი">თბილისი</option>
+
+                <option value="ბათუმი">ბათუმი</option>
+
+                <option value="ქუთაისი">ქუთაისი</option>
+
+                <option value="რუსთავი">რუსთავი</option>
+
+                <option value="სხვა">სხვა</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label> მიწოდება </label>
+
+              <select name="delivery" id="deliverySelect">
+                <option value="თბილისი">თბილისი — 6.50 ₾</option>
+
+                <option value="რეგიონი">რეგიონი — ფასი დასადასტურებელია</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label> გადახდის მეთოდი </label>
+
+              <select name="payment">
+                <option value="COD">კურიერთან გადახდა — Cash / Card</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label> დამატებითი კომენტარი </label>
+
+              <textarea
+                name="comment"
+                placeholder="მაგ. დარეკეთ მოსვლამდე..."></textarea>
+            </div>
+          </div>
+
+          <div class="delivery-info">
+            🚚 შეკვეთის გაგზავნამდე დაგიკავშირდებით ტელეფონზე მონაცემების
+            დასადასტურებლად.
+          </div>
+
+          <button class="checkout-btn" type="submit">
+            შეკვეთის გაგზავნა →
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ================= SUCCESS MODAL ================= -->
+
+    <div class="modal" id="successModal">
+      <div class="modal-box success-box">
+        <div class="success-icon">✓</div>
+
+        <h2>შეკვეთა მიღებულია! 🌊</h2>
+
+        <p>მადლობა, რომ აირჩიეთ Skinsea 💙</p>
+
+        <p>
+          თქვენი შეკვეთა წარმატებით მივიღეთ. შეკვეთის დასადასტურებლად მალე
+          დაგიკავშირდებით კურიერი მითითებულ ტელეფონის ნომერზე.
+        </p>
+
+        <p>
+          📦 შეკვეთის მიღების სავარაუდო დრო: <strong>1–3 სამუშაო დღე</strong>
+        </p>
+
+        <p>
+          შეკითხვების შემთხვევაში შეგიძლიათ დაგვიკავშირდეთ ელ ფოსტაზე:
+          hello@skinsea.ge ან Instagram/Facebook-ის საშუალებით.
+        </p>
+        <button class="btn btn-primary" onclick="closeModal('successModal')">
+          კარგი
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= TOAST ================= -->
+
+    <div class="toast" id="toast"></div>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+      /* =========================================
+                         HERO SLIDER
+                      ========================================= */
+
+      let currentHeroSlide = 0;
+      const heroSlides = document.querySelectorAll(".hero-slide");
+      const heroDots = document.querySelectorAll(".hero-slider-dot");
+
+      function showHeroSlide(index) {
+        if (!heroSlides.length) return;
+
+        currentHeroSlide = (index + heroSlides.length) % heroSlides.length;
+
+        heroSlides.forEach((slide, i) => {
+          slide.classList.toggle("active", i === currentHeroSlide);
+        });
+
+        heroDots.forEach((dot, i) => {
+          dot.classList.toggle("active", i === currentHeroSlide);
+        });
+      }
+
+      function changeHeroSlide(direction) {
+        showHeroSlide(currentHeroSlide + direction);
+      }
+
+      function goToHeroSlide(index) {
+        showHeroSlide(index);
+      }
+
+      setInterval(() => {
+        changeHeroSlide(1);
+      }, 5000);
+
+      /* =========================================
+                         PRODUCTS
+                      ========================================= */
+
+      const products = [
+        {
+          id: 1,
+          brand: "Vichy",
+          name: "Minéral 89",
+          category: "serum",
+          price: 49.9,
+          badge: "ბესტსელერი",
+
+          image: "images/vichy.png",
+          images: ["images/vichy.png", "images/vichy2.png"],
+
+          country: "საფრანგეთი",
+          volume: "50 მლ",
+
+          description:
+            "მსუბუქი ჰიდრატაციის სერუმი ყოველდღიური skincare რუტინისთვის.",
+          details:
+            "მსუბუქი დამატენიანებელი შრატი, რომელიც ინტენსიურად ატენიანებს კანს, ხელს უწყობს ტენიანობის შენარჩუნებას და კანს უფრო გლუვ და სავსე იერს აძლევს.",
+
+          skinType:
+            "ყველა ტიპის კანისთვის, მათ შორის მგრძნობიარე და დეჰიდრატირებული კანისთვის.",
+
+          benefits:
+            "ინტენსიური დატენიანება • კანის უფრო გლუვი და სავსე იერი • ტენიანობის ბარიერის მხარდაჭერა",
+
+          ingredients:
+            "ჰიალურონის მჟავა • პოლიგლუტამინის მჟავა • Vichy-ის ვულკანური მინერალური წყალი",
+
+          usage:
+            "წაისვით დილით და/ან საღამოს გაწმენდილ კანზე. შემდეგ გამოიყენეთ დამატენიანებელი კრემი, ხოლო დილით — SPF.",
+          available: true,
+          stock: 2,
+        },
+
+        {
+          id: 2,
+          brand: "La Roche-Posay",
+          name: "Cicaplast Baume B5",
+          category: "cream",
+          price: 39.9,
+          badge: "პოპულარული",
+
+          image: "images/cicaplast.png",
+          images: ["images/cicaplast.png", "images/cicaplast2.png"],
+
+          country: "საფრანგეთი",
+
+          description:
+            "აღმდგენი და დამამშვიდებელი ბალზამი მშრალი და გაღიზიანებული კანისთვის.",
+          details:
+            "აღმდგენი და დამამშვიდებელი ბალზამი, რომელიც ხელს უწყობს გაღიზიანებული, გამომშრალი და დასუსტებული კანის დაცვასა და კანის ბარიერის აღდგენას.",
+
+          skinType:
+            "მშრალი, მგრძნობიარე, გაღიზიანებული და კანის ბარიერის დაზიანებისკენ მიდრეკილი კანისთვის.",
+
+          benefits:
+            "ამშვიდებს გაღიზიანებულ კანს • ხელს უწყობს კანის ბარიერის აღდგენას • ამცირებს სიმშრალისა და დისკომფორტის შეგრძნებას • იცავს კანს",
+
+          ingredients:
+            "პანთენოლი 5% • მადეკასოსიდი • ტრიბიომა • თუთია და მანგანუმი",
+
+          usage:
+            "წაისვით სუფთა და მშრალ კანზე საჭიროების მიხედვით. შესაძლებელია გამოყენება სახესა და სხეულზე. მოერიდეთ თვალის ირგვლივ მიდამოს.",
+          available: true,
+          stock: 5,
+        },
+
+        {
+          id: 3,
+          brand: "COSRX",
+          name: "Skin Booster",
+          category: "serum",
+          price: 49.9,
+          badge: "",
+
+          image: "images/booster.png",
+          images: ["images/booster.png", "images/booster1.png"],
+
+          country: "სამხრეთ კორეა",
+          volume: "150 მლ",
+
+          description:
+            "მრავალფუნქციური პეპტიდების შრატი კანის დატენიანებისა და უფრო გლუვი, ჯანსაღი იერისთვის.",
+
+          details:
+            "მსუბუქი ტექსტურის შრატი 6 ტიპის პეპტიდით, რომელიც ხელს უწყობს კანის დატენიანებას, ელასტიურობისა და ტექსტურის გაუმჯობესებას და კანს უფრო გლუვ და მოვლილ იერს აძლევს.",
+
+          skinType:
+            "ყველა ტიპის კანისთვის, მათ შორის მშრალი, კომბინირებული და მგრძნობიარე კანისთვის.",
+
+          benefits:
+            "ინტენსიური დატენიანება • კანის ტექსტურის გაუმჯობესება • ელასტიურობის მხარდაჭერა • უფრო გლუვი და ჯანსაღი იერი",
+
+          ingredients:
+            "6 ტიპის პეპტიდი • ჰიალურონის მჟავა • NAG (N-აცეტილ გლუკოზამინი) • ამინომჟავები",
+
+          usage:
+            "წაისვით გაწმენდილ კანზე ტონერის შემდეგ, დილით და/ან საღამოს. ნაზად შეიზილეთ სრულ შეწოვამდე და შემდეგ გააგრძელეთ კანის მოვლის რუტინა.",
+
+          available: true,
+        },
+
+        {
+          id: 4,
+          brand: "La Roche-Posay",
+          name: "Vitamin C Serum",
+          category: "serum",
+          price: 69.9,
+          badge: "ახალი",
+
+          image: "images/laroche.png",
+          images: ["images/larochec.png", "images/larochec1.png"],
+
+          country: "საფრანგეთი",
+          volume: "30 მლ",
+
+          description:
+            "C ვიტამინის შრატი კანის ბზინვარების, უფრო თანაბარი ტონისა და გლუვი იერისთვის.",
+
+          details:
+            "ანტიოქსიდანტური შრატი C ვიტამინით, რომელიც ხელს უწყობს კანის ტონისა და ტექსტურის გაუმჯობესებას, კანს მატებს ბზინვარებას და ეხმარება წვრილი ხაზების ვიზუალურად შემცირებაში.",
+
+          skinType:
+            "ყველა ტიპის კანისთვის, განსაკუთრებით არათანაბარი ტონის, უსიცოცხლო იერისა და დაბერების პირველი ნიშნების მქონე კანისთვის.",
+
+          benefits:
+            "კანის ბზინვარება • უფრო თანაბარი ტონი • კანის ტექსტურის გაუმჯობესება • ანტიოქსიდანტური დაცვა • წვრილი ხაზების ვიზუალური შემცირება",
+
+          ingredients:
+            "C ვიტამინი • სალიცილის მჟავა • ნეიროსენსინი • La Roche-Posay-ის თერმული წყალი",
+
+          usage:
+            "წაისვით დილით გაწმენდილ სახესა და კისერზე, თვალის ირგვლივ ზონის თავიდან აცილებით. შემდეგ გამოიყენეთ დამატენიანებელი და აუცილებლად SPF.",
+
+          available: true,
+        },
+
+        {
+          id: 5,
+          brand: "SKIN1004",
+          name: "Centella Ampoule",
+          category: "serum",
+          price: 44.9,
+          badge: "",
+
+          image: "images/centella.png",
+          images: ["images/centella.png", "images/centella2.png"],
+
+          country: "კორეა",
+
+          description: "მსუბუქი ამპულა კანის დასამშვიდებლად.",
+          details: "ამშვიდებს და ატენიანებს კანს.",
+
+          skinType: "ყველა ტიპის კანისთვის.",
+
+          benefits: "ხელს უწყობს კანის დატენიანებას და კომფორტის აღდგენას",
+
+          ingredients: "Centella Asiatica-ს ექსტრაქტი",
+
+          usage:
+            "დაიტანეთ რამდენიმე წვეთი სუფთა კანზე და ნაზად გადაანაწილეთ სრულ შეწოვამდე",
+
+          available: true,
+          stock: 1,
+        },
+        {
+          id: 6,
+          brand: "Vichy",
+          name: "Normaderm Phytosolution",
+          category: "serum",
+          price: 54.9,
+          badge: "",
+
+          image: "vichygreen.png",
+          images: ["images/vichygreen.png", "images/vichygreen2.png"],
+
+          country: "საფრანგეთი",
+          volume: "50 მლ",
+
+          description:
+            "ორმაგი მოქმედების ყოველდღიური მოვლა პრობლემური კანისთვის, რომელიც ატენიანებს კანს და ხელს უწყობს ნაკლოვანებების შემცირებას.",
+
+          details:
+            "მსუბუქი ყოველდღიური მოვლის საშუალება, რომელიც შექმნილია ცხიმიანობისა და ნაკლოვანებებისკენ მიდრეკილი კანისთვის. ხელს უწყობს კანის დატენიანებას, ფორებისა და ნაკლოვანებების ვიზუალურად შემცირებას და კანის ტექსტურის გაუმჯობესებას.",
+
+          skinType:
+            "ცხიმიანი, კომბინირებული და ნაკლოვანებებისკენ მიდრეკილი კანისთვის.",
+
+          benefits:
+            "ამცირებს ნაკლოვანებების ხილვადობას • ხელს უწყობს ფორების ვიზუალურად შემცირებას • ატენიანებს კანს • აუმჯობესებს კანის ტექსტურას • ხელს უწყობს ცხიმიანი ბზინვარების კონტროლს",
+
+          ingredients:
+            "სალიცილის მჟავა • ჰიალურონის მჟავა • Vichy-ის ვულკანური მინერალური წყალი",
+
+          usage:
+            "წაისვით დილით და/ან საღამოს გაწმენდილ კანზე, თვალის ირგვლივ ზონის თავიდან აცილებით. დილით გამოიყენეთ SPF.",
+
+          available: true,
+          stock: 1,
+        },
+        {
+          id: 7,
+          brand: "The Ordinary",
+          name: "Glycolic Acid 7% Exfoliating Toner",
+          category: "toners",
+          price: 39.9,
+          badge: "",
+
+          image: "glycolic.png",
+          images: ["images/glycolic.png", "images/glycolic2.png"],
+
+          country: "კანადა",
+          volume: "240 მლ",
+
+          description:
+            "7% გლიკოლის მჟავის ექსფოლიაციური ტონერი კანის ტექსტურისა და ტონის გასაუმჯობესებლად.",
+
+          details:
+            "AHA მჟავაზე დაფუძნებული ექსფოლიაციური ტონერი, რომელიც ხელს უწყობს კანის ზედაპირიდან მკვდარი უჯრედების მოცილებას, ტექსტურის გაუმჯობესებას და კანს უფრო ნათელ და თანაბარ იერს აძლევს.",
+
+          skinType:
+            "ნორმალური, კომბინირებული და ცხიმიანი კანისთვის. მგრძნობიარე კანის შემთხვევაში საჭიროა განსაკუთრებული სიფრთხილე.",
+
+          benefits:
+            "კანის ტექსტურის გაუმჯობესება • უფრო ნათელი და თანაბარი იერი • ზედაპირული ექსფოლიაცია • კანის სიგლუვის გაუმჯობესება",
+
+          ingredients:
+            "გლიკოლის მჟავა 7% • ალოე ვერა • ამინომჟავები • ჟენშენის ექსტრაქტი",
+
+          usage:
+            "გამოიყენეთ საღამოს, გაწმენდილ და მშრალ კანზე. არ ჩამოიბანოთ. მოერიდეთ თვალის ირგვლივ ზონას. იმავე რუტინაში ნუ შეუთავსებთ სხვა ძლიერ ექსფოლიაციურ მჟავებს და დილით აუცილებლად გამოიყენეთ SPF.",
+
+          available: true,
+          stock: 1,
+        },
+        {
+          id: 8,
+          brand: "The Ordinary",
+          name: "Hyaluronic Acid 2% + B5",
+          category: "serum",
+          price: 34.9,
+          badge: "",
+
+          image: "ordinaryserum.png",
+          images: ["images/ordinaryserum.png", "images/ordinaryserum1.png"],
+
+          country: "კანადა",
+          volume: "30 მლ",
+
+          description:
+            "ჰიალურონის მჟავის დამატენიანებელი შრატი კანის ინტენსიური დატენიანებისა და უფრო გლუვი იერისთვის.",
+
+          details:
+            "მსუბუქი დამატენიანებელი შრატი 2% ჰიალურონის მჟავითა და ვიტამინ B5-ით, რომელიც ხელს უწყობს კანის დატენიანებას, ტენიანობის შენარჩუნებას და კანს უფრო გლუვ, სავსე და მოვლილ იერს აძლევს.",
+
+          skinType:
+            "ყველა ტიპის კანისთვის, მათ შორის მშრალი, დეჰიდრატირებული და მგრძნობიარე კანისთვის.",
+
+          benefits:
+            "ინტენსიური დატენიანება • ტენიანობის შენარჩუნება • კანის უფრო გლუვი და სავსე იერი • კანის ბარიერის მხარდაჭერა",
+
+          ingredients: "ჰიალურონის მჟავა 2% • პროვიტამინი B5 (პანთენოლი)",
+
+          usage:
+            "წაისვით რამდენიმე წვეთი დილით და/ან საღამოს გაწმენდილ კანზე, კრემის გამოყენებამდე. შემდეგ გააგრძელეთ კანის მოვლის რუტინა.",
+
+          available: true,
+          stock: 1,
+        },
+        {
+          id: 9,
+          brand: "Skin1004",
+          name: "Madagascar Centella Toning Toner",
+          category: "toners",
+          price: 49.9,
+          badge: "",
+
+          image: "centellatoner.png",
+          images: ["images/centellatoner.png", "images/centellatoner1.png"],
+
+          country: "სამხრეთ კორეა",
+          volume: "210 მლ",
+
+          description:
+            "ნაზი ექსფოლიაციური ტონერი Centella Asiatica-თი, რომელიც ხელს უწყობს კანის დამშვიდებას, დატენიანებას და უფრო გლუვი იერის მიღებას.",
+
+          details:
+            "მსუბუქი ყოველდღიური ტონერი, რომელიც აერთიანებს მადაგასკარის Centella Asiatica-ს ექსტრაქტსა და ნაზ ექსფოლიაციურ კომპონენტებს. ხელს უწყობს კანის ზედაპირის განახლებას, ტექსტურის გაუმჯობესებას და კანის დამშვიდებას.",
+
+          skinType:
+            "ყველა ტიპის კანისთვის, განსაკუთრებით არათანაბარი ტექსტურისა და მგრძნობელობისკენ მიდრეკილი კანისთვის.",
+
+          benefits:
+            "კანის დამშვიდება • ნაზი ექსფოლიაცია • ტექსტურის გაუმჯობესება • დატენიანება • უფრო გლუვი და მოვლილი იერი",
+
+          ingredients:
+            "Centella Asiatica-ს ექსტრაქტი • PHA (გლუკონოლაქტონი) • ნიაცინამიდი • ჰიალურონის მჟავა",
+
+          usage:
+            "გაწმენდის შემდეგ დაიტანეთ მცირე რაოდენობა ბამბის დისკით ან ხელისგულებით და ნაზად გადაანაწილეთ კანზე. შემდეგ გააგრძელეთ შრატითა და დამატენიანებელი კრემით. დღის განმავლობაში გამოიყენეთ SPF.",
+
+          available: true,
+          stock: 1,
+        },
+      ];
+
+      /* =========================================
+                         STATE
+                      ========================================= */
+
+      let cart = [];
+      let wishlist = [];
+
+      try {
+        cart = JSON.parse(localStorage.getItem("skinsea_cart") || "[]");
+
+        if (!Array.isArray(cart)) {
+          cart = [];
+        }
+      } catch (error) {
+        console.warn("Cart data reset:", error);
+        localStorage.removeItem("skinsea_cart");
+        cart = [];
+      }
+
+      try {
+        wishlist = JSON.parse(localStorage.getItem("skinsea_wishlist") || "[]");
+
+        if (!Array.isArray(wishlist)) {
+          wishlist = [];
+        }
+      } catch (error) {
+        console.warn("Wishlist data reset:", error);
+        localStorage.removeItem("skinsea_wishlist");
+        wishlist = [];
+      }
+
+      let currentFilter = "all";
+
+      /* =========================================
+                         DOM
+                      ========================================= */
+
+      const productGrid = document.getElementById("productGrid");
+
+      const cartCount = document.getElementById("cartCount");
+
+      const cartItems = document.getElementById("cartItems");
+
+      const cartSubtotal = document.getElementById("cartSubtotal");
+
+      const cartTotal = document.getElementById("cartTotal");
+
+      const checkoutBtn = document.getElementById("checkoutBtn");
+
+      const cartDrawer = document.getElementById("cartDrawer");
+
+      const overlay = document.getElementById("overlay");
+
+      const toast = document.getElementById("toast");
+
+      /* =========================================
+                         STORAGE
+                      ========================================= */
+
+      function saveCart() {
+        localStorage.setItem("skinsea_cart", JSON.stringify(cart));
+      }
+
+      function saveWishlist() {
+        localStorage.setItem("skinsea_wishlist", JSON.stringify(wishlist));
+      }
+
+      /* =========================================
+                         PRODUCT RENDER
+                      ========================================= */
+
+      function renderProducts() {
+        const searchTerm =
+          document.getElementById("searchInput")?.value.toLowerCase().trim() ||
+          "";
+
+        const filtered = products.filter((product) => {
+          const matchesFilter =
+            currentFilter === "all" || product.category === currentFilter;
+
+          const matchesSearch =
+            !searchTerm ||
+            product.name.toLowerCase().includes(searchTerm) ||
+            product.brand.toLowerCase().includes(searchTerm);
+
+          return matchesFilter && matchesSearch;
+        });
+
+        if (!filtered.length) {
+          productGrid.innerHTML = `
+                        <div
+                          style="
+                            grid-column:1/-1;
+                            text-align:center;
+                            padding:60px 20px;
+                            color:var(--muted);
+                          "
+                        >
+                          <div
+                            style="
+                              font-size:40px;
+                              margin-bottom:10px;
+                            "
+                          >
+                            ⌕
+                          </div>
+
+                          პროდუქტი ვერ მოიძებნა.
+                        </div>
+                      `;
+
+          return;
+        }
+
+        productGrid.innerHTML = filtered
+          .map((product) => {
+            const isFavorite = wishlist.includes(product.id);
+
+            const productImages =
+              product.images && product.images.length
+                ? product.images
+                : [product.image];
+
+            const hasSlider = productImages.length > 1;
+
+            const stockHtml = product.available
+              ? `<div class="stock">✓ ხელმისაწვდომია</div>`
+              : `<div class="stock unavailable">× არ არის ხელმისაწვდომი</div>`;
+
+            const addButtonHtml = product.available
+              ? `<button
+                              class="add-btn"
+                              onclick="addToCart(${product.id})"
+                            >
+                              + კალათაში
+                            </button>`
+              : `<button
+                              class="add-btn"
+                              disabled
+                              aria-disabled="true"
+                            >
+                              არ არის ხელმისაწვდომი
+                            </button>`;
+
+            return `
+                          <article class="product-card">
+
+                            <div
+                              class="product-image-wrap"
+                              onclick="openProduct(${product.id})"
+                              style="cursor:pointer"
+                            >
+
+                              ${
+                                product.badge
+                                  ? `<div class="badge">
+                                       ${product.badge}
+                                     </div>`
+                                  : ""
+                              }
+
+                              <button
+                                class="wishlist-btn ${isFavorite ? "active" : ""}"
+                                onclick="
+                                  event.stopPropagation();
+                                  toggleWishlist(${product.id})
+                                "
+                              >
+                                ${isFavorite ? "♥" : "♡"}
+                              </button>
+
+                              <div
+                                class="product-slider"
+                                data-product-id="${product.id}"
+                              >
+                                <img
+                                  class="product-image slider-image"
+                                  src="${productImages[0]}"
+                                  alt="${product.name}"
+                                  data-index="0"
+                                />
+
+                                ${
+                                  hasSlider
+                                    ? `
+                                      <button
+                                        class="slider-arrow slider-prev"
+                                        onclick="
+                                          event.stopPropagation();
+                                          changeProductImage(${product.id}, -1);
+                                        "
+                                        aria-label="წინა ფოტო"
+                                      >
+                                        ‹
+                                      </button>
+
+                                      <button
+                                        class="slider-arrow slider-next"
+                                        onclick="
+                                          event.stopPropagation();
+                                          changeProductImage(${product.id}, 1);
+                                        "
+                                        aria-label="შემდეგი ფოტო"
+                                      >
+                                        ›
+                                      </button>
+
+                                      <div class="slider-dots">
+                                        ${productImages
+                                          .map(
+                                            (_, index) => `
+                                              <span
+                                                class="slider-dot ${index === 0 ? "active" : ""}"
+                                              ></span>
+                                            `,
+                                          )
+                                          .join("")}
+                                      </div>
+                                    `
+                                    : ""
+                                }
+                              </div>
+
+                            </div>
+
+                            <div class="product-info">
+
+                              <div class="product-brand">
+                                ${product.brand}
+                              </div>
+
+                              <div class="product-name">
+                                ${product.name}
+                              </div>
+
+                              <div class="product-desc">
+                                ${product.description}
+                              </div>
+
+                              ${stockHtml}
+
+                              <div class="product-bottom">
+
+                                <div class="price">
+                                  ${product.price.toFixed(2)} ₾
+                                </div>
+
+                                ${addButtonHtml}
+
+                              </div>
+
+                            </div>
+
+                          </article>
+                        `;
+          })
+          .join("");
+      }
+
+      function changeProductImage(productId, direction) {
+        const product = products.find((p) => p.id === productId);
+
+        if (!product) return;
+
+        const images =
+          product.images && product.images.length
+            ? product.images
+            : [product.image];
+
+        const slider = document.querySelector(
+          `.product-slider[data-product-id="${productId}"]`,
+        );
+
+        if (!slider) return;
+
+        const image = slider.querySelector(".slider-image");
+        const dots = slider.querySelectorAll(".slider-dot");
+
+        if (!image) return;
+
+        let currentIndex = Number(image.dataset.index || 0);
+
+        currentIndex += direction;
+
+        if (currentIndex < 0) {
+          currentIndex = images.length - 1;
+        }
+
+        if (currentIndex >= images.length) {
+          currentIndex = 0;
+        }
+
+        image.src = images[currentIndex];
+        image.dataset.index = currentIndex;
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === currentIndex);
+        });
+      }
+
+      /* =========================================
+                     LIGHTBOX
+                  ========================================= */
+
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightboxImage");
+      const lightboxClose = document.getElementById("lightboxClose");
+
+      function openLightbox(image, alt) {
+        lightboxImage.src = image;
+        lightboxImage.alt = alt;
+        lightbox.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("active");
+        lightboxImage.src = "";
+        document.body.style.overflow = "";
+      }
+
+      lightboxClose.addEventListener("click", closeLightbox);
+
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && lightbox.classList.contains("active")) {
+          closeLightbox();
+        }
+      });
+
+      /* =========================================
+                         FILTER
+                      ========================================= */
+
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".filter-btn")
+            .forEach((b) => b.classList.remove("active"));
+
+          btn.classList.add("active");
+
+          currentFilter = btn.dataset.filter;
+
+          renderProducts();
+        });
+      });
+
+      function filterCategory(category) {
+        currentFilter = category;
+
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.filter === category);
+        });
+
+        renderProducts();
+
+        document.getElementById("products").scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+
+      /* =========================================
+   SEARCH
+========================================= */
+
+      document.getElementById("searchBtn").addEventListener("click", () => {
+        const panel = document.getElementById("searchPanel");
+
+        panel.style.display =
+          panel.style.display === "block" ? "none" : "block";
+
+        if (panel.style.display === "block") {
+          document.getElementById("searchInput").focus();
+        }
+      });
+
+      document.getElementById("searchInput").addEventListener("input", () => {
+        const searchTerm = document.getElementById("searchInput").value.trim();
+
+        currentFilter = "all";
+
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.filter === "all");
+        });
+
+        const hero = document.querySelector(".hero");
+        const trust = document.querySelector(".trust");
+        const categories = document.getElementById("categories");
+
+        if (searchTerm !== "") {
+          if (hero) hero.style.display = "none";
+          if (trust) trust.style.display = "none";
+          if (categories) categories.style.display = "none";
+        } else {
+          if (hero) hero.style.display = "";
+          if (trust) trust.style.display = "";
+          if (categories) categories.style.display = "";
+        }
+
+        renderProducts();
+
+        if (searchTerm !== "") {
+          document.getElementById("products").scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      });
+      /* =========================================
+                         CART
+                      ========================================= */
+
+      function addToCart(id) {
+        const product = products.find((p) => p.id === id);
+
+        if (!product) return;
+
+        if (!product.available || product.stock <= 0) {
+          showToast("ეს პროდუქტი ამჟამად არ არის ხელმისაწვდომი");
+          return;
+        }
+
+        const existing = cart.find((item) => item.id === id);
+
+        if (existing) {
+          if (existing.quantity >= product.stock) {
+            showToast(`მარაგში მხოლოდ ${product.stock} ცალია`);
+            return;
+          }
+
+          existing.quantity++;
+        } else {
+          cart.push({
+            id: id,
+            quantity: 1,
+          });
+        }
+
+        saveCart();
+        renderCart();
+        openCart();
+
+        showToast("პროდუქტი დაემატა კალათაში");
+
+        trackEvent("AddToCart", {
+          content_name: product.name,
+          value: product.price,
+          currency: "GEL",
+        });
+      }
+
+      function changeQuantity(id, amount) {
+        const item = cart.find((item) => item.id === id);
+        const product = products.find((p) => p.id === id);
+
+        if (!item || !product) return;
+
+        if (amount > 0 && item.quantity >= product.stock) {
+          showToast(`მარაგში მხოლოდ ${product.stock} ცალია`);
+          return;
+        }
+
+        item.quantity += amount;
+
+        if (item.quantity <= 0) {
+          cart = cart.filter((item) => item.id !== id);
+        }
+
+        saveCart();
+        renderCart();
+      }
+
+      function getCartSubtotal() {
+        return cart.reduce((total, item) => {
+          const product = products.find((p) => p.id === item.id);
+
+          if (!product) return total;
+
+          return total + product.price * item.quantity;
+        }, 0);
+      }
+
+      function renderCart() {
+        const cleanedCart = cart.filter((item) => {
+          const product = products.find((p) => p.id === item.id);
+          return product && product.available;
+        });
+
+        if (cleanedCart.length !== cart.length) {
+          cart = cleanedCart;
+          saveCart();
+          showToast("ზოგიერთი პროდუქტი აღარ არის ხელმისაწვდომი");
+        }
+
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+
+        cartCount.textContent = count;
+
+        if (!cart.length) {
+          cartItems.innerHTML = `
+
+                            <div class="empty-cart">
+
+                              <div>
+
+                                <div class="empty-cart-icon">
+                                  🛍
+                                </div>
+
+                                <strong>
+                                  კალათა ცარიელია
+                                </strong>
+
+                                <p style="margin-top:6px;">
+                                  დაამატე სასურველი პროდუქტი.
+                                </p>
+
+                              </div>
+
+                            </div>
+
+                          `;
+
+          cartSubtotal.textContent = "0.00 ₾";
+
+          cartTotal.textContent = "0.00 ₾";
+
+          checkoutBtn.disabled = true;
+
+          return;
+        }
+
+        cartItems.innerHTML = cart
+          .map((item) => {
+            const product = products.find((p) => p.id === item.id);
+
+            if (!product) return "";
+
+            const itemTotal = product.price * item.quantity;
+
+            return `
+
+                                <div class="cart-item">
+
+                                  <img
+  class="cart-item-img"
+  src="${product.image}"
+  alt="${product.name}"
+  onclick="openLightbox('${product.image}', '${product.name}')"
+/>
+
+
+                                  <div class="cart-item-info">
+
+                                    <h4>
+                                      ${product.name}
+                                    </h4>
+
+                                    <p>
+                                      ${product.brand}
+                                    </p>
+
+
+                                    <div class="quantity">
+
+                                      <button
+                                        onclick="
+                                          changeQuantity(
+                                            ${product.id},
+                                            -1
+                                          )
+                                        "
+                                      >
+                                        −
+                                      </button>
+
+
+                                      <span>
+                                        ${item.quantity}
+                                      </span>
+
+
+                                      <button
+                                        onclick="
+                                          changeQuantity(
+                                            ${product.id},
+                                            1
+                                          )
+                                        "
+                                      >
+                                        +
+                                      </button>
+
+                                    </div>
+
+                                  </div>
+
+
+                                  <div class="cart-item-right">
+
+                                    <div class="cart-item-price">
+                                      ${itemTotal.toFixed(2)} ₾
+                                    </div>
+
+
+                                    <button
+                                      class="remove-item"
+                                      onclick="
+                                        removeFromCart(
+                                          ${product.id}
+                                        )
+                                      "
+                                    >
+                                      წაშლა
+                                    </button>
+
+                                  </div>
+
+                                </div>
+
+                              `;
+          })
+          .join("");
+
+        const subtotal = getCartSubtotal();
+
+        const delivery = subtotal >= 100 ? 0 : 6.5;
+
+        const total = subtotal + delivery;
+
+        cartSubtotal.textContent = subtotal.toFixed(2) + " ₾";
+
+        document.getElementById("cartDelivery").textContent =
+          delivery === 0 ? "უფასო" : delivery.toFixed(2) + " ₾";
+
+        cartTotal.textContent = total.toFixed(2) + " ₾";
+
+        checkoutBtn.disabled = false;
+      }
+
+      /* =========================================
+                         CART DRAWER
+                      ========================================= */
+
+      function openCart() {
+        cartDrawer.classList.add("active");
+
+        overlay.classList.add("active");
+      }
+
+      function closeCart() {
+        cartDrawer.classList.remove("active");
+
+        overlay.classList.remove("active");
+      }
+
+      document.getElementById("cartBtn").addEventListener("click", openCart);
+
+      document.getElementById("closeCart").addEventListener("click", closeCart);
+
+      overlay.addEventListener("click", closeCart);
+
+      /* =========================================
+                         WISHLIST
+                      ========================================= */
+
+      function toggleWishlist(id) {
+        if (wishlist.includes(id)) {
+          wishlist = wishlist.filter((item) => item !== id);
+
+          showToast("რჩეულებიდან წაიშალა");
+        } else {
+          wishlist.push(id);
+
+          showToast("დაემატა რჩეულებში");
+        }
+
+        saveWishlist();
+        renderProducts();
+      }
+
+      document.getElementById("wishlistBtn").addEventListener("click", () => {
+        if (!wishlist.length) {
+          showToast("რჩეულები ჯერ ცარიელია");
+
+          return;
+        }
+
+        const firstFavorite = products.find((product) =>
+          wishlist.includes(product.id),
+        );
+
+        if (firstFavorite) {
+          openProduct(firstFavorite.id);
+        }
+      });
+
+      /* =========================================
+                         PRODUCT MODAL
+                      ========================================= */
+
+      function openProduct(id) {
+        const product = products.find((p) => p.id === id);
+
+        if (!product) return;
+        const modalImages =
+          product.images && product.images.length
+            ? product.images
+            : [product.image];
+
+        const currentCardImage = document.querySelector(
+          `.product-slider[data-product-id="${product.id}"] .slider-image`,
+        );
+
+        const modalImageSrc = currentCardImage?.src || modalImages[0];
+
+        const modalStockHtml = product.available
+          ? `<div class="stock">✓ ხელმისაწვდომია</div>`
+          : `<div class="stock unavailable">× არ არის ხელმისაწვდომი</div>`;
+
+        const modalButtonHtml = product.available
+          ? `<button
+                                class="btn btn-primary"
+                                onclick="
+                                  addToCart(${product.id});
+                                  closeModal('productModal')
+                                "
+                              >
+                                კალათაში დამატება →
+                              </button>`
+          : `<button
+                                class="btn btn-primary"
+                                disabled
+                                aria-disabled="true"
+                              >
+                                არ არის ხელმისაწვდომი
+                              </button>`;
+
+        document.getElementById("productModalContent").innerHTML = `
+
+                            <div class="product-modal-grid">
+
+
+                 <img
+        class="product-modal-img"
+        src="${modalImageSrc}"
+        alt="${product.name}"
+        onclick="openLightbox('${modalImageSrc}', '${product.name}')"
+      />
+
+
+                              <div>
+
+                                <div class="modal-brand">
+                                  ${product.brand}
+                                </div>
+
+
+                                <h2 class="modal-product-name">
+                                  ${product.name}
+                                </h2>
+
+
+                                <div class="product-detail-item">
+          <strong>🧴 ვისთვისაა</strong>
+          <p>${product.skinType || "ინფორმაცია მალე დაემატება"}</p>
+        </div>
+
+        <div class="product-detail-item">
+          <strong>💧 რას აკეთებს</strong>
+          <p>${product.benefits || "ინფორმაცია მალე დაემატება"}</p>
+        </div>
+
+        <div class="product-detail-item">
+          <strong>✨ ძირითადი ინგრედიენტები</strong>
+          <p>${product.ingredients || "ინფორმაცია მალე დაემატება"}</p>
+        </div>
+
+        <div class="product-detail-item">
+          <strong>🌿 გამოყენება</strong>
+          <p>${product.usage || "ინფორმაცია მალე დაემატება"}</p>
+        </div> 
+        <div class="product-detail-item">
+  <strong>${product.countryFlag || "🌍"} მწარმოებელი ქვეყანა </strong>
+  <p>${product.country || "ინფორმაცია მალე დაემატება"}</p>
+</div> 
+<div class="product-detail-item">
+  <strong>
+    მოცულობა: ${product.volume || "ინფორმაცია მალე დაემატება"}
+  </strong>
+</div>
+
+      </div>
+
+
+                                ${modalStockHtml}
+
+
+                                <div class="modal-price">
+                                  ${product.price.toFixed(2)} ₾
+                                </div>
+
+
+                                ${modalButtonHtml}
+
+                              </div>
+
+                            </div>
+
+                          `;
+
+        document.getElementById("productModal").classList.add("active");
+      }
+
+      /* =========================================
+                         CHECKOUT
+                      ========================================= */
+
+      checkoutBtn.addEventListener("click", openCheckout);
+
+      function openCheckout() {
+        if (!cart.length) return;
+
+        closeCart();
+
+        renderCheckoutSummary();
+
+        document.getElementById("checkoutModal").classList.add("active");
+      }
+
+      function renderCheckoutSummary() {
+        const subtotal = getCartSubtotal();
+
+        const delivery = subtotal >= 100 ? 0 : 6.5;
+
+        const total = subtotal + delivery;
+
+        const summary = document.getElementById("checkoutSummary");
+
+        summary.innerHTML = `
+
+                          ${cart
+                            .map((item) => {
+                              const product = products.find(
+                                (p) => p.id === item.id,
+                              );
+
+                              return `
+
+                                <div
+                                  class="checkout-summary-item"
+                                >
+
+                                  <span>
+                                    ${product.name}
+                                    × ${item.quantity}
+                                  </span>
+
+                                  <strong>
+                                    ${(product.price * item.quantity).toFixed(2)} ₾
+                                  </strong>
+
+                                </div>
+
+                              `;
+                            })
+                            .join("")}
+
+
+                          <div
+                            class="checkout-summary-item"
+                            style="
+                              border-top:1px solid var(--border);
+                              margin-top:8px;
+                              padding-top:12px;
+                            "
+                          >
+
+                            <span>
+                              მიწოდება
+                            </span>
+
+                            <strong>
+                              ${delivery === 0 ? "უფასო" : delivery.toFixed(2) + " ₾"}
+                            </strong>
+
+                          </div>
+
+
+                          <div
+                            class="checkout-summary-item"
+                            style="
+                              font-size:15px;
+                              font-weight:700;
+                            "
+                          >
+
+                            <span>
+                              სულ
+                            </span>
+
+                            <strong>
+                              ${total.toFixed(2)} ₾
+                            </strong>
+
+                          </div>
+
+                        `;
+      }
+
+      /* =========================================
+                         SUBMIT ORDER
+                      ========================================= */
+
+      document
+        .getElementById("checkoutForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          const formData = new FormData(this);
+
+          const subtotal = getCartSubtotal();
+          const delivery = subtotal >= 100 ? 0 : 6.5;
+          const total = subtotal + delivery;
+
+          const order = {
+            customer_name: formData.get("name"),
+            phone: formData.get("phone"),
+            address: formData.get("address"),
+
+            items: JSON.stringify(
+              cart.map((item) => {
+                const product = products.find((p) => p.id === item.id);
+
+                return {
+                  id: product.id,
+                  name: product.name,
+                  brand: product.brand,
+                  quantity: item.quantity,
+                  price: product.price,
+                };
+              }),
+            ),
+
+            total: total,
+          };
+
+          console.log("ORDER READY:", order);
+
+          // SAVE ORDER + UPDATE STOCK IN SUPABASE
+          const { data, error } = await supabaseClient.rpc("place_order", {
+            p_customer_name: order.customer_name,
+            p_phone: order.phone,
+            p_address: order.address,
+            p_items: JSON.parse(order.items),
+          });
+
+          if (error) {
+            console.error("SUPABASE ERROR:", error);
+            showToast("შეკვეთის შენახვა ვერ მოხერხდა ❌");
+            return;
+          }
+
+          console.log("ORDER SAVED:", data);
+
+          trackEvent("Purchase", {
+            value: total,
+            currency: "GEL",
+          });
+
+          cart = [];
+
+          saveCart();
+          renderCart();
+
+          closeModal("checkoutModal");
+
+          document.getElementById("successModal").classList.add("active");
+
+          this.reset();
+        });
+      /* =========================================
+                         MODALS
+                      ========================================= */
+
+      function closeModal(id) {
+        document.getElementById(id).classList.remove("active");
+      }
+
+      document.querySelectorAll(".modal").forEach((modal) => {
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) {
+            modal.classList.remove("active");
+          }
+        });
+      });
+
+      /* =========================================
+                         TOAST
+                      ========================================= */
+
+      function showToast(message) {
+        toast.textContent = message;
+
+        toast.classList.add("show");
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2200);
+      }
+
+      /* =========================================
+                         MOBILE MENU
+                      ========================================= */
+
+      document.getElementById("mobileMenuBtn").addEventListener("click", () => {
+        const nav = document.querySelector("nav");
+
+        if (nav.style.display === "flex") {
+          nav.style.display = "";
+        } else {
+          nav.style.display = "flex";
+
+          nav.style.position = "absolute";
+
+          nav.style.top = "68px";
+
+          nav.style.left = "0";
+
+          nav.style.right = "0";
+
+          nav.style.background = "white";
+
+          nav.style.padding = "20px";
+
+          nav.style.flexDirection = "column";
+
+          nav.style.gap = "18px";
+
+          nav.style.borderBottom = "1px solid var(--border)";
+        }
+      });
+
+      /* =========================================
+                         META PIXEL READY
+                      ========================================= */
+
+      function trackEvent(eventName, data = {}) {
+        console.log("META EVENT:", eventName, data);
+      }
+
+      /* =========================================
+                         INIT
+                      ========================================= */
+
+      const SUPABASE_URL = "https://kjyqqpybrswcfbyztxcv.supabase.co";
+
+      const SUPABASE_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqeXFxcHlicnN3Y2ZieXp0eGN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkwMzM5MjYsImV4cCI6MjEwNDYwOTkyNn0.wv71Gl7_91jCixob1DlscQow-nal11CMbU8gprViHco";
+
+      const supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY,
+      );
+      async function loadStock() {
+        const { data, error } = await supabaseClient
+          .from("Products")
+          .select("id, stock");
+
+        if (error) {
+          console.error("STOCK ERROR:", error);
+          return;
+        }
+
+        data.forEach((dbProduct) => {
+          const product = products.find((p) => p.id === dbProduct.id);
+
+          if (product) {
+            product.stock = dbProduct.stock;
+            product.available = dbProduct.stock > 0;
+          }
+        });
+
+        renderProducts();
+        renderCart();
+
+        console.log("STOCK LOADED:", data);
+      }
+
+      loadStock();
+      let skinseaSlideIndex = 0;
+
+      function showSkinseaSlide(index) {
+        const slides = document.querySelectorAll(".skinsea-slide");
+        const dots = document.querySelectorAll(".skinsea-dot");
+
+        if (index >= slides.length) {
+          skinseaSlideIndex = 0;
+        } else if (index < 0) {
+          skinseaSlideIndex = slides.length - 1;
+        } else {
+          skinseaSlideIndex = index;
+        }
+
+        slides.forEach((slide) => slide.classList.remove("active"));
+        dots.forEach((dot) => dot.classList.remove("active"));
+
+        slides[skinseaSlideIndex].classList.add("active");
+        dots[skinseaSlideIndex].classList.add("active");
+      }
+
+      function changeSkinseaSlide(direction) {
+        showSkinseaSlide(skinseaSlideIndex + direction);
+      }
+
+      function goToSkinseaSlide(index) {
+        showSkinseaSlide(index);
+      }
+
+      setInterval(() => {
+        changeSkinseaSlide(1);
+      }, 5000);
+    </script>
+  </body>
+</html>

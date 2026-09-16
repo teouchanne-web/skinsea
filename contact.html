@@ -1,0 +1,755 @@
+<!doctype html>
+
+<html lang="ka">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>კონტაქტი — skinsea</title>
+
+    <meta
+      name="description"
+      content="დაგვიკავშირდი — skinsea კანის მოვლის პროდუქტების ონლაინ მაღაზია." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
+      rel="stylesheet" />
+
+    <style>
+      :root {
+        --blue: #6faec2;
+        --blue-dark: #3f849c;
+        --blue-light: #eaf7fa;
+        --cream: #faf8f3;
+        --text: #24363b;
+        --muted: #7d8b8f;
+        --white: #ffffff;
+        --border: #e8eeee;
+        --shadow: 0 20px 50px rgba(44, 83, 94, 0.09);
+        --radius: 24px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--cream);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 40px));
+        margin: auto;
+      }
+
+      /* ================= TOP BAR ================= */
+
+      .topbar {
+        background: var(--text);
+        color: white;
+        text-align: center;
+        padding: 9px 15px;
+        font-size: 12px;
+        letter-spacing: 0.3px;
+      }
+
+      /* ================= HEADER ================= */
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(250, 248, 243, 0.88);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      }
+
+      .nav {
+        height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 24px;
+        font-weight: 500;
+        letter-spacing: -1px;
+      }
+
+      .logo-icon {
+        width: 28px;
+        height: 34px;
+        background: var(--blue);
+        border-radius: 70% 30% 70% 30%;
+        transform: rotate(35deg);
+        position: relative;
+      }
+
+      .logo-icon::after {
+        content: "";
+        width: 7px;
+        height: 7px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        position: absolute;
+        top: 7px;
+        left: 8px;
+      }
+
+      nav {
+        display: flex;
+        gap: 28px;
+        font-size: 16px;
+        color: #53656a;
+      }
+
+      nav a {
+        transition: 0.2s;
+      }
+
+      nav a:hover {
+        color: var(--blue-dark);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .icon-btn {
+        border: 0;
+        background: transparent;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: var(--text);
+        transition: 0.2s;
+      }
+
+      .icon-btn:hover {
+        background: white;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+      }
+
+      /* ================= PAGE HERO ================= */
+
+      .page-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 80px 0 55px;
+        text-align: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--blue-light);
+        color: var(--blue-dark);
+        border-radius: 50px;
+        padding: 8px 14px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .page-hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(42px, 6vw, 64px);
+        line-height: 1.05;
+        letter-spacing: -1.5px;
+        margin-bottom: 18px;
+      }
+
+      .page-hero h1 span {
+        color: var(--blue-dark);
+      }
+
+      .page-hero p {
+        color: var(--muted);
+        max-width: 650px;
+        margin: auto;
+        line-height: 1.8;
+        font-size: 15px;
+      }
+
+      .drop {
+        position: absolute;
+        border-radius: 70% 30% 70% 30%;
+        background: rgba(111, 174, 194, 0.11);
+        transform: rotate(35deg);
+        pointer-events: none;
+      }
+
+      .drop-1 {
+        width: 90px;
+        height: 110px;
+        right: 8%;
+        top: 55px;
+      }
+
+      .drop-2 {
+        width: 50px;
+        height: 62px;
+        left: 7%;
+        bottom: 20px;
+      }
+
+      /* ================= CONTACT ================= */
+
+      .contact-section {
+        padding: 20px 0 90px;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: 28px;
+        max-width: 1000px;
+        margin: auto;
+      }
+
+      .contact-info,
+      .contact-form {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      /* ================= CONTACT INFO ================= */
+
+      .contact-info {
+        padding: 38px 34px;
+      }
+
+      .contact-info h2,
+      .contact-form h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 30px;
+        margin-bottom: 12px;
+      }
+
+      .contact-info > p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.8;
+        margin-bottom: 30px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .contact-item:last-child {
+        border-bottom: 0;
+      }
+
+      .contact-icon {
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: var(--blue-light);
+        color: var(--blue-dark);
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+      }
+
+      .contact-item strong {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+
+      .contact-item span,
+      .contact-item a {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .contact-item a:hover {
+        color: var(--blue-dark);
+      }
+
+      /* ================= FORM ================= */
+
+      .contact-form {
+        padding: 38px 34px;
+      }
+
+      .contact-form > p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.8;
+        margin-bottom: 25px;
+      }
+
+      .form-group {
+        margin-bottom: 18px;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: 13px;
+        background: #fcfdfd;
+        color: var(--text);
+        padding: 13px 15px;
+        outline: none;
+        transition: 0.2s;
+      }
+
+      .form-group input {
+        height: 48px;
+      }
+
+      .form-group textarea {
+        min-height: 125px;
+        resize: vertical;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: var(--blue);
+        background: white;
+        box-shadow: 0 0 0 4px rgba(111, 174, 194, 0.08);
+      }
+
+      .submit-btn {
+        width: 100%;
+        border: 0;
+        border-radius: 50px;
+        padding: 14px 20px;
+        background: var(--blue);
+        color: white;
+        font-weight: 600;
+        transition: 0.25s;
+      }
+
+      .submit-btn:hover {
+        background: var(--blue-dark);
+        transform: translateY(-1px);
+      }
+
+      .contact-note {
+        margin-top: 18px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.6;
+      }
+
+      /* ================= FOOTER ================= */
+
+      footer {
+        background: #17282d;
+        color: white;
+        padding: 60px 0 30px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 50px;
+        margin-bottom: 50px;
+      }
+
+      .footer-logo {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+
+      .footer-about {
+        color: #9aadb1;
+        font-size: 13px;
+        line-height: 1.8;
+        max-width: 300px;
+      }
+
+      .footer-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 17px;
+      }
+
+      .footer-links {
+        display: grid;
+        gap: 11px;
+        color: #9aadb1;
+        font-size: 12px;
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      .copyright {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 22px;
+        color: #71868b;
+        font-size: 11px;
+        text-align: center;
+      }
+
+      /* ================= MOBILE ================= */
+
+      @media (max-width: 900px) {
+        nav {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: grid;
+        }
+
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          width: min(100% - 28px, 1180px);
+        }
+
+        .nav {
+          height: 68px;
+        }
+
+        .logo {
+          font-size: 21px;
+        }
+
+        .page-hero {
+          padding: 60px 0 35px;
+        }
+
+        .page-hero h1 {
+          font-size: 43px;
+        }
+
+        .contact-section {
+          padding: 20px 0 70px;
+        }
+
+        .contact-info,
+        .contact-form {
+          border-radius: 22px;
+          padding: 27px 20px;
+        }
+
+        .contact-info h2,
+        .contact-form h2 {
+          font-size: 27px;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+      }
+      .language-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        white-space: nowrap;
+      }
+
+      .language-switch a {
+        color: var(--muted);
+      }
+
+      .language-switch a.active {
+        color: var(--blue-dark);
+      }
+      .logo-text {
+        font-family: "Montserrat", sans-serif;
+        font-size: 24px;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        color: #24444d;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= TOP BAR ================= -->
+
+    <div class="topbar">✦ უფასო მიწოდება 100 ლარის ზევით შენაძენზე ✦</div>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+      <div class="container nav">
+        <a href="index.html" class="logo" aria-label="skinsea მთავარი გვერდი">
+          <span class="logo-icon"></span>
+          <span class="logo-text">skinsea</span>
+        </a>
+
+        <nav>
+          <a href="index.html#products">პროდუქტები</a>
+          <a href="index.html#categories">კატეგორიები</a>
+          <a href="index.html#brands">ბრენდები</a>
+          <a href="index.html#story">ჩვენ შესახებ</a>
+          <a href="contact.html">კონტაქტი</a>
+        </nav>
+
+        <div class="nav-actions">
+          <div class="language-switch" aria-label="Language">
+            <a href="contact.html" class="active">KA</a>
+            <span>|</span>
+            <a href="contact-en.html">ENG</a>
+          </div>
+          <a class="icon-btn" href="index.html" aria-label="მთავარი">⌂</a>
+
+          <button
+            class="icon-btn mobile-menu-btn"
+            id="mobileMenuBtn"
+            aria-label="მენიუ">
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= PAGE HERO ================= -->
+
+    <section class="page-hero">
+      <span class="drop drop-1"></span>
+      <span class="drop drop-2"></span>
+
+      <div class="container">
+        <div class="eyebrow">✦ ჩვენ აქ ვართ დასახმარებლად</div>
+
+        <h1>დაგვიკავშირდი <span>ჩვენ</span></h1>
+
+        <p>
+          გაქვს კითხვა პროდუქტზე, შეკვეთაზე ან მიწოდებაზე? მოგვწერე და ჩვენი
+          გუნდი სიამოვნებით დაგეხმარება.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+
+    <main class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- CONTACT INFO -->
+
+          <div class="contact-info">
+            <h2>მოგვწერე</h2>
+
+            <p>
+              ნებისმიერი შეკითხვის შემთხვევაში დაგვიკავშირდი. ჩვენთვის
+              მნიშვნელოვანია, რომ skinsea-სთან შენი გამოცდილება იყოს მარტივი და
+              სასიამოვნო.
+            </p>
+
+            <div class="contact-item">
+              <div class="contact-icon">✉</div>
+
+              <div>
+                <strong>ელფოსტა</strong>
+
+                <a href="mailto:hello@skinsea.ge"> hello@skinsea.ge </a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">⌂</div>
+
+              <div>
+                <strong>მისამართი</strong>
+
+                <span> თბილისი, საქართველო </span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">♡</div>
+
+              <div>
+                <strong>მომხმარებელთა მხარდაჭერა</strong>
+
+                <span>
+                  მოხარული ვართ დაგეხმაროთ პროდუქტის შერჩევასა და შეკვეთის
+                  საკითხებში.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONTACT FORM -->
+
+          <div class="contact-form">
+            <h2>მოგვწერე შეტყობინება</h2>
+
+            <p>
+              შეავსე ფორმა და დაგვიტოვე შენი შეკითხვა. დაგიკავშირდებით მითითებულ
+              საკონტაქტო ინფორმაციაზე.
+            </p>
+
+            <form action="https://formspree.io/f/xljdrony" method="POST">
+              <div class="form-group">
+                <label for="name">სახელი</label>
+
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="შეიყვანე შენი სახელი"
+                  required />
+              </div>
+
+              <div class="form-group">
+                <label for="email">ელფოსტა</label>
+
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="შეიყვანე ელფოსტა"
+                  required />
+              </div>
+
+              <div class="form-group">
+                <label for="message">შეტყობინება</label>
+
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="რით შეგვიძლია დაგეხმაროთ?"
+                  required></textarea>
+              </div>
+
+              <button type="submit" class="submit-btn">
+                შეტყობინების გაგზავნა
+              </button>
+            </form>
+
+            <div class="contact-note">
+              პასუხს მიიღებთ თქვენს საკონტაქტო ელფოსტაზე.
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">skinsea</div>
+
+            <p class="footer-about">
+              კანის მოვლის პროდუქტების ონლაინ სივრცე მათთვის, ვისაც სილამაზე
+              მარტივად უყვარს.
+            </p>
+          </div>
+
+          <div>
+            <div class="footer-title">ნავიგაცია</div>
+
+            <div class="footer-links">
+              <a href="index.html#products">პროდუქტები</a>
+
+              <a href="index.html#categories">კატეგორიები</a>
+              <a href="index.html#brands">ბრენდები</a>
+              <a href="index.html#story">ჩვენ შესახებ</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="footer-title">დახმარება</div>
+
+            <div class="footer-links">
+              <a href="index.html">მთავარი</a>
+              <a href="delivery.html"> მიწოდება </a>
+              <a href="return.html">დაბრუნება</a>
+              <a href="faq.html">ხშირად დასმული კითხვები</a>
+              <a href="contact.html">კონტაქტი</a>
+              <a href="privacy-policy.html">კონფიდენციალურობის პოლიტიკა</a>
+              <a href="terms.html">წესები და პირობები</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="footer-title">კონტაქტი</div>
+
+            <div class="footer-links">
+              <a href="mailto:hello@skinsea.ge"> hello@skinsea.ge </a>
+
+              <span>თბილისი, საქართველო</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="copyright">© 2026 skinsea. ყველა უფლება დაცულია.</div>
+      </div>
+    </footer>
+  </body>
+</html>
