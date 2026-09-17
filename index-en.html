@@ -2385,7 +2385,16 @@
                 name="phone"
                 placeholder="5XX XX XX XX"
                 required />
-            </div>
+            </div> 
+            <div class="form-group">
+  <label> Email * </label>
+
+  <input
+    type="email"
+    name="email"
+    placeholder="name@example.com"
+    required />
+</div>
 
             <div class="form-group full">
               <label> Address * </label>
@@ -2443,10 +2452,8 @@
           </div>
 
           <div class="delivery-info">
-            🚚 The courier will contact you using the phone number provided for
-            delivery.
-          </div>
-
+  🚚 You will receive your order confirmation and details by email.
+</div>
           <button class="checkout-btn" type="submit">Place order →</button>
         </form>
       </div>
@@ -2698,7 +2705,7 @@
           price: 54.9,
           badge: "",
 
-          image: "images/vichygreen.png",
+          image: "vichygreen.png",
           images: ["images/vichygreen.png", "images/vichygreen2.png"],
 
           country: "France",
@@ -2820,7 +2827,7 @@
             "Soothing • Gentle exfoliation • Improved-looking texture • Hydration • Smoother, cared-for appearance",
 
           ingredients:
-            "Centella Asiatica extract • PHA (გლუკონოლაქტონი) • ნიაცინამიდი • ჰიალურონის მჟავა",
+            "Centella Asiatica extract • PHA (Gluconolactone) • Niacinamide • Hyaluronic acid",
 
           usage:
             "After cleansing, apply a small amount with a cotton pad or your palms and gently distribute over the skin. Follow with serum and moisturizer. Use SPF during the day.",
@@ -3307,13 +3314,13 @@
         saveCart();
         renderCart();
       } 
-      function removeFromCart(id) {
+      
+function removeFromCart(id) {
   cart = cart.filter((item) => item.id !== id);
 
   saveCart();
   renderCart();
 }
-
       function getCartSubtotal() {
         return cart.reduce((total, item) => {
           const product = products.find((p) => p.id === item.id);
@@ -3770,7 +3777,8 @@
           const order = {
             customer_name: formData.get("name"),
             phone: formData.get("phone"),
-            address: formData.get("address"),
+            address: formData.get("address"), 
+            customer_email: formData.get("email"),
 
             items: JSON.stringify(
               cart.map((item) => {
@@ -3792,37 +3800,58 @@
           console.log("ORDER READY:", order);
 
           // SAVE ORDER + UPDATE STOCK IN SUPABASE
-          const { data, error } = await supabaseClient.rpc("place_order", {
-            p_customer_name: order.customer_name,
-            p_phone: order.phone,
-            p_address: order.address,
-            p_items: JSON.parse(order.items),
-          });
+const { data, error } = await supabaseClient.rpc("place_order", {
+  p_customer_name: order.customer_name,
+  p_phone: order.phone,
+  p_address: order.address,
+  p_email: order.customer_email,
+  p_items: JSON.parse(order.items),
+});
 
-          if (error) {
-            console.error("SUPABASE ERROR:", error);
-            showToast("Could not save your order ❌");
-            return;
-          }
+if (error) {
+  console.error("SUPABASE ERROR:", error);
+  showToast("Could not save your order ❌");
+  return;
+}
 
-          console.log("ORDER SAVED:", data);
+console.log("ORDER SAVED:", data);
 
-          trackEvent("Purchase", {
-            value: total,
-            currency: "GEL",
-          });
+// SEND ORDER CONFIRMATION EMAIL
+const { data: emailData, error: emailError } =
+  await supabaseClient.functions.invoke("send-order-email", {
+    body: { 
+      language: "en",
+      email: order.customer_email,
+      customer_name: order.customer_name,
+      items: JSON.parse(order.items),
+      subtotal: data.subtotal,
+      delivery: data.delivery,
+      total: data.total,
+    },
+  });
 
-          cart = [];
+if (emailError) {
+  console.error("EMAIL ERROR:", emailError);
+} else {
+  console.log("EMAIL SENT:", emailData);
+}
 
-          saveCart();
-          renderCart();
+trackEvent("Purchase", {
+  value: total,
+  currency: "GEL",
+});
 
-          closeModal("checkoutModal");
+cart = [];
 
-          document.getElementById("successModal").classList.add("active");
+saveCart();
+renderCart();
 
-          this.reset();
-        });
+closeModal("checkoutModal");
+
+document.getElementById("successModal").classList.add("active");
+
+this.reset();
+});
       /* =========================================
                          MODALS
                       ========================================= */
