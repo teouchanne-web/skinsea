@@ -2372,7 +2372,7 @@
         <h2 class="modal-title">შეკვეთის გაფორმება</h2>
 
         <p class="modal-subtitle">
-          შეავსე მონაცემები და ჩვენ დაგიკავშირდებით შეკვეთის დასადასტურებლად.
+          შეავსე მონაცემები და შეკვეთის დადასტურებას ელ-ფოსტაზე მიიღებ.
         </p>
 
         <div class="checkout-summary" id="checkoutSummary"></div>
@@ -2392,6 +2392,15 @@
                 type="tel"
                 name="phone"
                 placeholder="5XX XX XX XX"
+                required />
+            </div>
+            <div class="form-group">
+              <label> ელ-ფოსტა * </label>
+
+              <input
+                type="email"
+                name="email"
+                placeholder="name@example.com"
                 required />
             </div>
 
@@ -2449,8 +2458,7 @@
           </div>
 
           <div class="delivery-info">
-            🚚 შეკვეთის გაგზავნამდე დაგიკავშირდებით ტელეფონზე მონაცემების
-            დასადასტურებლად.
+            🚚 შეკვეთის დადასტურებას და დეტალებს ელ-ფოსტაზე მიიღებ.
           </div>
 
           <button class="checkout-btn" type="submit">
@@ -2708,7 +2716,7 @@
           price: 54.9,
           badge: "",
 
-          image: "images/vichygreen.png",
+          image: "vichygreen.png",
           images: ["images/vichygreen.png", "images/vichygreen2.png"],
 
           country: "საფრანგეთი",
@@ -3317,13 +3325,13 @@
 
         saveCart();
         renderCart();
-      } 
+      }
       function removeFromCart(id) {
-  cart = cart.filter((item) => item.id !== id);
+        cart = cart.filter((item) => item.id !== id);
 
-  saveCart();
-  renderCart();
-}
+        saveCart();
+        renderCart();
+      }
 
       function getCartSubtotal() {
         return cart.reduce((total, item) => {
@@ -3782,6 +3790,7 @@
             customer_name: formData.get("name"),
             phone: formData.get("phone"),
             address: formData.get("address"),
+            customer_email: formData.get("email"),
 
             items: JSON.stringify(
               cart.map((item) => {
@@ -3807,6 +3816,7 @@
             p_customer_name: order.customer_name,
             p_phone: order.phone,
             p_address: order.address,
+            p_email: order.customer_email,
             p_items: JSON.parse(order.items),
           });
 
@@ -3817,6 +3827,40 @@
           }
 
           console.log("ORDER SAVED:", data);
+          // SEND ORDER CONFIRMATION EMAIL
+          const { data: emailData, error: emailError } =
+            await supabaseClient.functions.invoke("send-order-email", {
+              body: {
+                email: order.customer_email,
+                customer_name: order.customer_name,
+                items: JSON.parse(order.items),
+                subtotal: data.subtotal,
+                delivery: data.delivery,
+                total: data.total,
+              },
+            });
+
+          if (emailError) {
+            console.error("EMAIL ERROR:", emailError);
+          } else {
+            console.log("EMAIL SENT:", emailData);
+          }
+
+          trackEvent("Purchase", {
+            value: total,
+            currency: "GEL",
+          });
+
+          cart = [];
+
+          saveCart();
+          renderCart();
+
+          closeModal("checkoutModal");
+
+          document.getElementById("successModal").classList.add("active");
+
+          this.reset();
 
           trackEvent("Purchase", {
             value: total,
