@@ -686,7 +686,7 @@
         margin-bottom: 13px;
       }
 
-      /* მარაგის რაოდენობა აღარ ჩანს */
+      /* Stock quantity is hidden */
 
       .stock {
         font-size: 11px;
@@ -1815,7 +1815,7 @@
 
     <!-- ================= TOP BAR ================= -->
 
-    <div class="topbar">✦ Free delivery on orders over 100 GEL ✦</div>
+    <div class="topbar"> ✦ Free delivery on orders over 100 GEL, estimated delivery time: 1–2 business days ✦</div>
 
     <!-- ================= HEADER ================= -->
 
@@ -1958,6 +1958,18 @@
                 class="hero-slider-dot"
                 onclick="goToHeroSlide(1)"
                 aria-label="Slide 2"></button>
+              <button
+                class="hero-slider-dot"
+                onclick="goToHeroSlide(2)"
+                aria-label="Slide 3"></button>
+              <button
+                class="hero-slider-dot"
+                onclick="goToHeroSlide(3)"
+                aria-label="Slide 4"></button>
+              <button
+                class="hero-slider-dot"
+                onclick="goToHeroSlide(4)"
+                aria-label="Slide 5"></button>
             </div>
           </div>
 
@@ -2317,7 +2329,7 @@
         <div class="summary-row">
           <span> Delivery </span>
 
-          <span id="cartDelivery"> 6.50 ₾ </span>
+         <span id="cartDelivery"> Based on zone </span>
         </div>
 
         <div class="summary-row summary-total">
@@ -2406,39 +2418,40 @@
                 required />
             </div>
 
-            <div class="form-group">
-              <label> City </label>
+           
 
-              <select name="city">
-                <option value="Tbilisi">Tbilisi</option>
-
-                <option value="Batumi">Batumi</option>
-
-                <option value="Kutaisi">Kutaisi</option>
-
-                <option value="Rustavi">Rustavi</option>
-
-                <option value="Other">Other</option>
-              </select>
-            </div>
-
+              
             <div class="form-group">
               <label> Delivery </label>
 
-              <select name="delivery" id="deliverySelect">
-                <option value="Tbilisi">Tbilisi — 6.50 ₾</option>
+              <select name="delivery_zone" id="deliverySelect" required>
+  <option value="" disabled selected>Select delivery zone</option>
+                <option value="tbilisi" data-price="5">
+  Tbilisi — 5 ₾
+</option>
 
-                <option value="რეგიონი">
-                  Region — delivery fee to be confirmed
-                </option>
-              </select>
-            </div>
+<option value="tkhinvala-kaklebi" data-price="6">
+  Tkhinvala / Kaklebi — 6 ₾
+</option>
 
+<option value="special-zone" data-price="7">
+  Tskneti / Lilo / Ponichala / Kojori and other areas — 7 ₾
+</option>
+
+<option value="rustavi" data-price="8">
+  Rustavi — 8 ₾
+</option>
+
+<option value="mtskheta" data-price="8">
+  Mtskheta — 8 ₾
+</option>
+</select>
+</div>
             <div class="form-group full">
               <label> Payment method </label>
 
               <select name="payment">
-                <option value="COD">Pay the courier — Cash / Card</option>
+              <option value="COD">Pay the courier — Bank transfer</option>
               </select>
             </div>
 
@@ -2470,15 +2483,15 @@
         <p>Thank you for choosing Skinsea 💙</p>
 
         <p>
-          We’ve successfully received your order. The courier will contact you
-          using the phone number you provided.
+          We’ve successfully received your order. An order confirmation has been sent
+  to the email address you provided. The courier will contact you using the
+  phone number you provided before delivery.
         </p>
 
-        <p>📦 Estimated delivery time: <strong>1–3 business days</strong></p>
+        <p>📦 Estimated delivery time: <strong>1–2 business days</strong></p>
 
         <p>
-          If you have any questions, contact us by email: hello@skinsea.ge or
-          via Instagram/Facebook.
+          If you have any questions, contact us via Instagram or Facebook.
         </p>
         <button class="btn btn-primary" onclick="closeModal('successModal')">
           OK
@@ -2705,7 +2718,7 @@
           price: 54.9,
           badge: "",
 
-          image: "vichygreen.png",
+          image: "images/vichygreen.png",
           images: ["images/vichygreen.png", "images/vichygreen2.png"],
 
           country: "France",
@@ -2761,8 +2774,7 @@
             "7% Glycolic acid • Aloe vera • Amino acids • Ginseng extract",
 
           usage:
-            "გამოიყენეთ საღამოს, გაწმენდილ და მშრალ კანზე. არ ჩამოიბანოთ. მოერიდეთ თვალის ირგვლივ ზონას. იმავე რუტინაში ნუ შეუთავსებთ Other ძლიერ ექსფოლიაციურ მჟავებს და დილით აუცილებლად გამოიყენეთ SPF.",
-
+"Use in the evening on clean, dry skin. Do not rinse. Avoid the eye area. Do not combine with other strong exfoliating acids in the same routine, and always use SPF in the morning.",
           available: true,
           stock: 1,
         },
@@ -3261,7 +3273,7 @@
         if (!product) return;
 
         if (!product.available || product.stock <= 0) {
-          showToast("ეს პროდუქტი ამჟამად Out of stock");
+          showToast("This product is currently out of stock");
           return;
         }
 
@@ -3340,7 +3352,7 @@ function removeFromCart(id) {
         if (cleanedCart.length !== cart.length) {
           cart = cleanedCart;
           saveCart();
-          showToast("ზოგიერთი პროდუქტი აღOut of stock");
+          showToast("Some products are out of stock");
         }
 
         const count = cart.reduce((total, item) => total + item.quantity, 0);
@@ -3475,20 +3487,18 @@ function removeFromCart(id) {
 
         const subtotal = getCartSubtotal();
 
-        const delivery = subtotal >= 100 ? 0 : 6.5;
+cartSubtotal.textContent = subtotal.toFixed(2) + " ₾";
 
-        const total = subtotal + delivery;
+document.getElementById("cartDelivery").textContent =
+  subtotal >= 100 ? "Free" : "Based on zone";
 
-        cartSubtotal.textContent = subtotal.toFixed(2) + " ₾";
+cartTotal.textContent =
+  subtotal >= 100
+    ? subtotal.toFixed(2) + " ₾"
+    : subtotal.toFixed(2) + " ₾ + delivery";
 
-        document.getElementById("cartDelivery").textContent =
-          delivery === 0 ? "Free" : delivery.toFixed(2) + " ₾";
-
-        cartTotal.textContent = total.toFixed(2) + " ₾";
-
-        checkoutBtn.disabled = false;
-      }
-
+checkoutBtn.disabled = false;
+        }
       /* =========================================
                          CART DRAWER
                       ========================================= */
@@ -3680,84 +3690,79 @@ function removeFromCart(id) {
       }
 
       function renderCheckoutSummary() {
-        const subtotal = getCartSubtotal();
+  const subtotal = getCartSubtotal();
 
-        const delivery = subtotal >= 100 ? 0 : 6.5;
+  const deliverySelect = document.getElementById("deliverySelect");
+  const selectedOption =
+    deliverySelect.options[deliverySelect.selectedIndex];
 
-        const total = subtotal + delivery;
+  const zonePrice = selectedOption?.dataset.price
+    ? Number(selectedOption.dataset.price)
+    : 0;
 
-        const summary = document.getElementById("checkoutSummary");
+  const delivery = subtotal >= 100 ? 0 : zonePrice;
+  const total = subtotal + delivery;
 
-        summary.innerHTML = `
+  const summary = document.getElementById("checkoutSummary");
 
-                          ${cart
-                            .map((item) => {
-                              const product = products.find(
-                                (p) => p.id === item.id,
-                              );
+  summary.innerHTML = `
 
-                              return `
+    ${cart
+      .map((item) => {
+        const product = products.find(
+          (p) => p.id === item.id,
+        );
 
-                                <div
-                                  class="checkout-summary-item"
-                                >
+        return `
+          <div class="checkout-summary-item">
+            <span>
+              ${product.name} × ${item.quantity}
+            </span>
 
-                                  <span>
-                                    ${product.name}
-                                    × ${item.quantity}
-                                  </span>
+            <strong>
+              ${(product.price * item.quantity).toFixed(2)} ₾
+            </strong>
+          </div>
+        `;
+      })
+      .join("")}
 
-                                  <strong>
-                                    ${(product.price * item.quantity).toFixed(2)} ₾
-                                  </strong>
+    <div
+      class="checkout-summary-item"
+      style="
+        border-top:1px solid var(--border);
+        margin-top:8px;
+        padding-top:12px;
+      "
+    >
+      <span>Delivery</span>
 
-                                </div>
+      <strong>
+        ${
+  !deliverySelect.value
+    ? "Based on zone"
+    : delivery === 0
+      ? "Free"
+      : delivery.toFixed(2) + " ₾"
+}
+      </strong>
+    </div>
 
-                              `;
-                            })
-                            .join("")}
+    <div
+      class="checkout-summary-item"
+      style="
+        font-size:15px;
+        font-weight:700;
+      "
+    >
+      <span>Total</span>
 
-
-                          <div
-                            class="checkout-summary-item"
-                            style="
-                              border-top:1px solid var(--border);
-                              margin-top:8px;
-                              padding-top:12px;
-                            "
-                          >
-
-                            <span>
-                              Delivery
-                            </span>
-
-                            <strong>
-                              ${delivery === 0 ? "Free" : delivery.toFixed(2) + " ₾"}
-                            </strong>
-
-                          </div>
-
-
-                          <div
-                            class="checkout-summary-item"
-                            style="
-                              font-size:15px;
-                              font-weight:700;
-                            "
-                          >
-
-                            <span>
-                              Total
-                            </span>
-
-                            <strong>
-                              ${total.toFixed(2)} ₾
-                            </strong>
-
-                          </div>
-
-                        `;
-      }
+      <strong>
+        ${total.toFixed(2)} ₾
+      </strong>
+    </div>
+  `;
+}
 
       /* =========================================
                          SUBMIT ORDER
@@ -3771,14 +3776,25 @@ function removeFromCart(id) {
           const formData = new FormData(this);
 
           const subtotal = getCartSubtotal();
-          const delivery = subtotal >= 100 ? 0 : 6.5;
-          const total = subtotal + delivery;
+
+const deliverySelect = document.getElementById("deliverySelect");
+const selectedOption =
+  deliverySelect.options[deliverySelect.selectedIndex];
+
+const zonePrice = selectedOption?.dataset.price
+  ? Number(selectedOption.dataset.price)
+  : 0;
+
+const delivery = subtotal >= 100 ? 0 : zonePrice;
+const total = subtotal + delivery;
 
           const order = {
             customer_name: formData.get("name"),
             phone: formData.get("phone"),
             address: formData.get("address"), 
             customer_email: formData.get("email"),
+            delivery_zone: formData.get("delivery_zone"),
+delivery_price: zonePrice,
 
             items: JSON.stringify(
               cart.map((item) => {
@@ -3806,6 +3822,7 @@ const { data, error } = await supabaseClient.rpc("place_order", {
   p_address: order.address,
   p_email: order.customer_email,
   p_items: JSON.parse(order.items),
+  p_delivery_zone: order.delivery_zone,
 });
 
 if (error) {
@@ -3851,7 +3868,10 @@ closeModal("checkoutModal");
 document.getElementById("successModal").classList.add("active");
 
 this.reset();
-});
+}); 
+document
+  .getElementById("deliverySelect")
+  .addEventListener("change", renderCheckoutSummary);
       /* =========================================
                          MODALS
                       ========================================= */
