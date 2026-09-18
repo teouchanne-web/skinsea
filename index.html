@@ -1816,7 +1816,10 @@
 
     <!-- ================= TOP BAR ================= -->
 
-    <div class="topbar">✦ უფასო მიწოდება 100 ლარის ზევით შენაძენზე✦</div>
+    <div class="topbar">
+      ✦ უფასო მიწოდება 100 ლარის ზევით შენაძენზე • შეკვეთის მიღების სავარაუდო
+      დრო: 1–2 სამუშაო დღე ✦
+    </div>
 
     <!-- ================= HEADER ================= -->
 
@@ -2321,7 +2324,7 @@
         <div class="summary-row">
           <span> მიწოდება </span>
 
-          <span id="cartDelivery"> 6.50 ₾ </span>
+          <span id="cartDelivery"> - </span>
         </div>
 
         <div class="summary-row summary-total">
@@ -2415,28 +2418,24 @@
             </div>
 
             <div class="form-group">
-              <label> ქალაქი </label>
+              <label> მიწოდების ზონა * </label>
 
-              <select name="city">
-                <option value="თბილისი">თბილისი</option>
+              <select name="delivery_zone" id="deliverySelect" required>
+                <option value="" disabled selected>აირჩიე ზონა</option>
 
-                <option value="ბათუმი">ბათუმი</option>
+                <option value="tbilisi" data-price="5">თბილისი — 5 ₾</option>
 
-                <option value="ქუთაისი">ქუთაისი</option>
+                <option value="tkhinvala_kaklebi" data-price="6">
+                  თხინვალა / კაკლები — 6 ₾
+                </option>
 
-                <option value="რუსთავი">რუსთავი</option>
+                <option value="special_zone" data-price="7">
+                  წყნეთი / ლილო / ფონიჭალა / კოჯორი და სხვა — 7 ₾
+                </option>
 
-                <option value="სხვა">სხვა</option>
-              </select>
-            </div>
+                <option value="rustavi" data-price="8">რუსთავი — 8 ₾</option>
 
-            <div class="form-group">
-              <label> მიწოდება </label>
-
-              <select name="delivery" id="deliverySelect">
-                <option value="თბილისი">თბილისი — 6.50 ₾</option>
-
-                <option value="რეგიონი">რეგიონი — ფასი დასადასტურებელია</option>
+                <option value="mtskheta" data-price="8">მცხეთა — 8 ₾</option>
               </select>
             </div>
 
@@ -2444,7 +2443,9 @@
               <label> გადახდის მეთოდი </label>
 
               <select name="payment">
-                <option value="COD">კურიერთან გადახდა — Cash / Card</option>
+                <option value="COD">
+                  კურიერთან გადახდა — საბანკო გადარიცხვით
+                </option>
               </select>
             </div>
 
@@ -2479,12 +2480,13 @@
         <p>მადლობა, რომ აირჩიეთ Skinsea 💙</p>
 
         <p>
-          თქვენი შეკვეთა წარმატებით მივიღეთ. შეკვეთის დასადასტურებლად მალე
-          დაგიკავშირდებით კურიერი მითითებულ ტელეფონის ნომერზე.
+          თქვენი შეკვეთა წარმატებით მივიღეთ. შეკვეთის დადასტურება გამოგიგზავნეთ
+          მითითებულ ელ-ფოსტაზე. მიწოდებამდე კურიერი დაგიკავშირდებათ მითითებულ
+          ტელეფონის ნომერზე.
         </p>
 
         <p>
-          📦 შეკვეთის მიღების სავარაუდო დრო: <strong>1–3 სამუშაო დღე</strong>
+          📦 შეკვეთის მიღების სავარაუდო დრო: <strong>1–2 სამუშაო დღე</strong>
         </p>
 
         <p>
@@ -2505,8 +2507,8 @@
 
     <script>
       /* =========================================
-                         HERO SLIDER
-                      ========================================= */
+                               HERO SLIDER
+                            ========================================= */
 
       let currentHeroSlide = 0;
       const heroSlides = document.querySelectorAll(".hero-slide");
@@ -2539,8 +2541,8 @@
       }, 5000);
 
       /* =========================================
-                         PRODUCTS
-                      ========================================= */
+                               PRODUCTS
+                            ========================================= */
 
       const products = [
         {
@@ -2716,7 +2718,7 @@
           price: 54.9,
           badge: "",
 
-          image: "vichygreen.png",
+          image: "images/vichygreen.png",
           images: ["images/vichygreen.png", "images/vichygreen2.png"],
 
           country: "საფრანგეთი",
@@ -2850,8 +2852,8 @@
       ];
 
       /* =========================================
-                         STATE
-                      ========================================= */
+                               STATE
+                            ========================================= */
 
       let cart = [];
       let wishlist = [];
@@ -2883,8 +2885,8 @@
       let currentFilter = "all";
 
       /* =========================================
-                         DOM
-                      ========================================= */
+                               DOM
+                            ========================================= */
 
       const productGrid = document.getElementById("productGrid");
 
@@ -2905,8 +2907,8 @@
       const toast = document.getElementById("toast");
 
       /* =========================================
-                         STORAGE
-                      ========================================= */
+                               STORAGE
+                            ========================================= */
 
       function saveCart() {
         localStorage.setItem("skinsea_cart", JSON.stringify(cart));
@@ -2917,8 +2919,8 @@
       }
 
       /* =========================================
-                         PRODUCT RENDER
-                      ========================================= */
+                               PRODUCT RENDER
+                            ========================================= */
 
       function renderProducts() {
         const searchTerm =
@@ -2939,26 +2941,26 @@
 
         if (!filtered.length) {
           productGrid.innerHTML = `
-                        <div
-                          style="
-                            grid-column:1/-1;
-                            text-align:center;
-                            padding:60px 20px;
-                            color:var(--muted);
-                          "
-                        >
-                          <div
-                            style="
-                              font-size:40px;
-                              margin-bottom:10px;
-                            "
-                          >
-                            ⌕
-                          </div>
+                              <div
+                                style="
+                                  grid-column:1/-1;
+                                  text-align:center;
+                                  padding:60px 20px;
+                                  color:var(--muted);
+                                "
+                              >
+                                <div
+                                  style="
+                                    font-size:40px;
+                                    margin-bottom:10px;
+                                  "
+                                >
+                                  ⌕
+                                </div>
 
-                          პროდუქტი ვერ მოიძებნა.
-                        </div>
-                      `;
+                                პროდუქტი ვერ მოიძებნა.
+                              </div>
+                            `;
 
           return;
         }
@@ -2980,130 +2982,130 @@
 
             const addButtonHtml = product.available
               ? `<button
-                              class="add-btn"
-                              onclick="addToCart(${product.id})"
-                            >
-                              + კალათაში
-                            </button>`
+                                    class="add-btn"
+                                    onclick="addToCart(${product.id})"
+                                  >
+                                    + კალათაში
+                                  </button>`
               : `<button
-                              class="add-btn"
-                              disabled
-                              aria-disabled="true"
-                            >
-                              არ არის ხელმისაწვდომი
-                            </button>`;
+                                    class="add-btn"
+                                    disabled
+                                    aria-disabled="true"
+                                  >
+                                    არ არის ხელმისაწვდომი
+                                  </button>`;
 
             return `
-                          <article class="product-card">
+                                <article class="product-card">
 
-                            <div
-                              class="product-image-wrap"
-                              onclick="openProduct(${product.id})"
-                              style="cursor:pointer"
-                            >
+                                  <div
+                                    class="product-image-wrap"
+                                    onclick="openProduct(${product.id})"
+                                    style="cursor:pointer"
+                                  >
 
-                              ${
-                                product.badge
-                                  ? `<div class="badge">
-                                       ${product.badge}
-                                     </div>`
-                                  : ""
-                              }
+                                    ${
+                                      product.badge
+                                        ? `<div class="badge">
+                                             ${product.badge}
+                                           </div>`
+                                        : ""
+                                    }
 
-                              <button
-                                class="wishlist-btn ${isFavorite ? "active" : ""}"
-                                onclick="
-                                  event.stopPropagation();
-                                  toggleWishlist(${product.id})
-                                "
-                              >
-                                ${isFavorite ? "♥" : "♡"}
-                              </button>
+                                    <button
+                                      class="wishlist-btn ${isFavorite ? "active" : ""}"
+                                      onclick="
+                                        event.stopPropagation();
+                                        toggleWishlist(${product.id})
+                                      "
+                                    >
+                                      ${isFavorite ? "♥" : "♡"}
+                                    </button>
 
-                              <div
-                                class="product-slider"
-                                data-product-id="${product.id}"
-                              >
-                                <img
-                                  class="product-image slider-image"
-                                  src="${productImages[0]}"
-                                  alt="${product.name}"
-                                  data-index="0"
-                                />
+                                    <div
+                                      class="product-slider"
+                                      data-product-id="${product.id}"
+                                    >
+                                      <img
+                                        class="product-image slider-image"
+                                        src="${productImages[0]}"
+                                        alt="${product.name}"
+                                        data-index="0"
+                                      />
 
-                                ${
-                                  hasSlider
-                                    ? `
-                                      <button
-                                        class="slider-arrow slider-prev"
-                                        onclick="
-                                          event.stopPropagation();
-                                          changeProductImage(${product.id}, -1);
-                                        "
-                                        aria-label="წინა ფოტო"
-                                      >
-                                        ‹
-                                      </button>
+                                      ${
+                                        hasSlider
+                                          ? `
+                                            <button
+                                              class="slider-arrow slider-prev"
+                                              onclick="
+                                                event.stopPropagation();
+                                                changeProductImage(${product.id}, -1);
+                                              "
+                                              aria-label="წინა ფოტო"
+                                            >
+                                              ‹
+                                            </button>
 
-                                      <button
-                                        class="slider-arrow slider-next"
-                                        onclick="
-                                          event.stopPropagation();
-                                          changeProductImage(${product.id}, 1);
-                                        "
-                                        aria-label="შემდეგი ფოტო"
-                                      >
-                                        ›
-                                      </button>
+                                            <button
+                                              class="slider-arrow slider-next"
+                                              onclick="
+                                                event.stopPropagation();
+                                                changeProductImage(${product.id}, 1);
+                                              "
+                                              aria-label="შემდეგი ფოტო"
+                                            >
+                                              ›
+                                            </button>
 
-                                      <div class="slider-dots">
-                                        ${productImages
-                                          .map(
-                                            (_, index) => `
-                                              <span
-                                                class="slider-dot ${index === 0 ? "active" : ""}"
-                                              ></span>
-                                            `,
-                                          )
-                                          .join("")}
+                                            <div class="slider-dots">
+                                              ${productImages
+                                                .map(
+                                                  (_, index) => `
+                                                    <span
+                                                      class="slider-dot ${index === 0 ? "active" : ""}"
+                                                    ></span>
+                                                  `,
+                                                )
+                                                .join("")}
+                                            </div>
+                                          `
+                                          : ""
+                                      }
+                                    </div>
+
+                                  </div>
+
+                                  <div class="product-info">
+
+                                    <div class="product-brand">
+                                      ${product.brand}
+                                    </div>
+
+                                    <div class="product-name">
+                                      ${product.name}
+                                    </div>
+
+                                    <div class="product-desc">
+                                      ${product.description}
+                                    </div>
+
+                                    ${stockHtml}
+
+                                    <div class="product-bottom">
+
+                                      <div class="price">
+                                        ${product.price.toFixed(2)} ₾
                                       </div>
-                                    `
-                                    : ""
-                                }
-                              </div>
 
-                            </div>
+                                      ${addButtonHtml}
 
-                            <div class="product-info">
+                                    </div>
 
-                              <div class="product-brand">
-                                ${product.brand}
-                              </div>
+                                  </div>
 
-                              <div class="product-name">
-                                ${product.name}
-                              </div>
-
-                              <div class="product-desc">
-                                ${product.description}
-                              </div>
-
-                              ${stockHtml}
-
-                              <div class="product-bottom">
-
-                                <div class="price">
-                                  ${product.price.toFixed(2)} ₾
-                                </div>
-
-                                ${addButtonHtml}
-
-                              </div>
-
-                            </div>
-
-                          </article>
-                        `;
+                                </article>
+                              `;
           })
           .join("");
       }
@@ -3150,8 +3152,8 @@
       }
 
       /* =========================================
-                     LIGHTBOX
-                  ========================================= */
+                           LIGHTBOX
+                        ========================================= */
 
       const lightbox = document.getElementById("lightbox");
       const lightboxImage = document.getElementById("lightboxImage");
@@ -3185,8 +3187,8 @@
       });
 
       /* =========================================
-                         FILTER
-                      ========================================= */
+                               FILTER
+                            ========================================= */
 
       document.querySelectorAll(".filter-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -3217,8 +3219,8 @@
       }
 
       /* =========================================
-   SEARCH
-========================================= */
+         SEARCH
+      ========================================= */
 
       document.getElementById("searchBtn").addEventListener("click", () => {
         const panel = document.getElementById("searchPanel");
@@ -3264,8 +3266,8 @@
         }
       });
       /* =========================================
-                         CART
-                      ========================================= */
+                               CART
+                            ========================================= */
 
       function addToCart(id) {
         const product = products.find((p) => p.id === id);
@@ -3362,27 +3364,27 @@
         if (!cart.length) {
           cartItems.innerHTML = `
 
-                            <div class="empty-cart">
+                                  <div class="empty-cart">
 
-                              <div>
+                                    <div>
 
-                                <div class="empty-cart-icon">
-                                  🛍
-                                </div>
+                                      <div class="empty-cart-icon">
+                                        🛍
+                                      </div>
 
-                                <strong>
-                                  კალათა ცარიელია
-                                </strong>
+                                      <strong>
+                                        კალათა ცარიელია
+                                      </strong>
 
-                                <p style="margin-top:6px;">
-                                  დაამატე სასურველი პროდუქტი.
-                                </p>
+                                      <p style="margin-top:6px;">
+                                        დაამატე სასურველი პროდუქტი.
+                                      </p>
 
-                              </div>
+                                    </div>
 
-                            </div>
+                                  </div>
 
-                          `;
+                                `;
 
           cartSubtotal.textContent = "0.00 ₾";
 
@@ -3403,107 +3405,106 @@
 
             return `
 
-                                <div class="cart-item">
+                                      <div class="cart-item">
 
-                                  <img
-  class="cart-item-img"
-  src="${product.image}"
-  alt="${product.name}"
-  onclick="openLightbox('${product.image}', '${product.name}')"
-/>
-
-
-                                  <div class="cart-item-info">
-
-                                    <h4>
-                                      ${product.name}
-                                    </h4>
-
-                                    <p>
-                                      ${product.brand}
-                                    </p>
+                                        <img
+        class="cart-item-img"
+        src="${product.image}"
+        alt="${product.name}"
+        onclick="openLightbox('${product.image}', '${product.name}')"
+      />
 
 
-                                    <div class="quantity">
+                                        <div class="cart-item-info">
 
-                                      <button
-                                        onclick="
-                                          changeQuantity(
-                                            ${product.id},
-                                            -1
-                                          )
-                                        "
-                                      >
-                                        −
-                                      </button>
+                                          <h4>
+                                            ${product.name}
+                                          </h4>
+
+                                          <p>
+                                            ${product.brand}
+                                          </p>
 
 
-                                      <span>
-                                        ${item.quantity}
-                                      </span>
+                                          <div class="quantity">
+
+                                            <button
+                                              onclick="
+                                                changeQuantity(
+                                                  ${product.id},
+                                                  -1
+                                                )
+                                              "
+                                            >
+                                              −
+                                            </button>
 
 
-                                      <button
-                                        onclick="
-                                          changeQuantity(
-                                            ${product.id},
-                                            1
-                                          )
-                                        "
-                                      >
-                                        +
-                                      </button>
-
-                                    </div>
-
-                                  </div>
+                                            <span>
+                                              ${item.quantity}
+                                            </span>
 
 
-                                  <div class="cart-item-right">
+                                            <button
+                                              onclick="
+                                                changeQuantity(
+                                                  ${product.id},
+                                                  1
+                                                )
+                                              "
+                                            >
+                                              +
+                                            </button>
 
-                                    <div class="cart-item-price">
-                                      ${itemTotal.toFixed(2)} ₾
-                                    </div>
+                                          </div>
+
+                                        </div>
 
 
-                                    <button
-                                      class="remove-item"
-                                      onclick="
-                                        removeFromCart(
-                                          ${product.id}
-                                        )
-                                      "
-                                    >
-                                      წაშლა
-                                    </button>
+                                        <div class="cart-item-right">
 
-                                  </div>
+                                          <div class="cart-item-price">
+                                            ${itemTotal.toFixed(2)} ₾
+                                          </div>
 
-                                </div>
 
-                              `;
+                                          <button
+                                            class="remove-item"
+                                            onclick="
+                                              removeFromCart(
+                                                ${product.id}
+                                              )
+                                            "
+                                          >
+                                            წაშლა
+                                          </button>
+
+                                        </div>
+
+                                      </div>
+
+                                    `;
           })
           .join("");
 
         const subtotal = getCartSubtotal();
 
-        const delivery = subtotal >= 100 ? 0 : 6.5;
-
-        const total = subtotal + delivery;
-
         cartSubtotal.textContent = subtotal.toFixed(2) + " ₾";
 
         document.getElementById("cartDelivery").textContent =
-          delivery === 0 ? "უფასო" : delivery.toFixed(2) + " ₾";
+          subtotal >= 100 ? "უფასო" : "ზონის მიხედვით";
 
-        cartTotal.textContent = total.toFixed(2) + " ₾";
+        cartTotal.textContent =
+          subtotal >= 100
+            ? subtotal.toFixed(2) + " ₾"
+            : subtotal.toFixed(2) + " ₾ + მიწოდება";
 
         checkoutBtn.disabled = false;
       }
 
       /* =========================================
-                         CART DRAWER
-                      ========================================= */
+                               CART DRAWER
+                            ========================================= */
 
       function openCart() {
         cartDrawer.classList.add("active");
@@ -3524,8 +3525,8 @@
       overlay.addEventListener("click", closeCart);
 
       /* =========================================
-                         WISHLIST
-                      ========================================= */
+                               WISHLIST
+                            ========================================= */
 
       function toggleWishlist(id) {
         if (wishlist.includes(id)) {
@@ -3559,8 +3560,8 @@
       });
 
       /* =========================================
-                         PRODUCT MODAL
-                      ========================================= */
+                               PRODUCT MODAL
+                            ========================================= */
 
       function openProduct(id) {
         const product = products.find((p) => p.id === id);
@@ -3583,101 +3584,101 @@
 
         const modalButtonHtml = product.available
           ? `<button
-                                class="btn btn-primary"
-                                onclick="
-                                  addToCart(${product.id});
-                                  closeModal('productModal')
-                                "
-                              >
-                                კალათაში დამატება →
-                              </button>`
+                                      class="btn btn-primary"
+                                      onclick="
+                                        addToCart(${product.id});
+                                        closeModal('productModal')
+                                      "
+                                    >
+                                      კალათაში დამატება →
+                                    </button>`
           : `<button
-                                class="btn btn-primary"
-                                disabled
-                                aria-disabled="true"
-                              >
-                                არ არის ხელმისაწვდომი
-                              </button>`;
+                                      class="btn btn-primary"
+                                      disabled
+                                      aria-disabled="true"
+                                    >
+                                      არ არის ხელმისაწვდომი
+                                    </button>`;
 
         document.getElementById("productModalContent").innerHTML = `
 
-                            <div class="product-modal-grid">
+                                  <div class="product-modal-grid">
 
 
-                 <img
-        class="product-modal-img"
-        src="${modalImageSrc}"
-        alt="${product.name}"
-        onclick="openLightbox('${modalImageSrc}', '${product.name}')"
-      />
+                       <img
+              class="product-modal-img"
+              src="${modalImageSrc}"
+              alt="${product.name}"
+              onclick="openLightbox('${modalImageSrc}', '${product.name}')"
+            />
 
 
-                              <div>
+                                    <div>
 
-                                <div class="modal-brand">
-                                  ${product.brand}
-                                </div>
-
-
-                                <h2 class="modal-product-name">
-                                  ${product.name}
-                                </h2>
+                                      <div class="modal-brand">
+                                        ${product.brand}
+                                      </div>
 
 
-                                <div class="product-detail-item">
-          <strong>🧴 ვისთვისაა</strong>
-          <p>${product.skinType || "ინფორმაცია მალე დაემატება"}</p>
-        </div>
+                                      <h2 class="modal-product-name">
+                                        ${product.name}
+                                      </h2>
 
-        <div class="product-detail-item">
-          <strong>💧 რას აკეთებს</strong>
-          <p>${product.benefits || "ინფორმაცია მალე დაემატება"}</p>
-        </div>
 
-        <div class="product-detail-item">
-          <strong>✨ ძირითადი ინგრედიენტები</strong>
-          <p>${product.ingredients || "ინფორმაცია მალე დაემატება"}</p>
-        </div>
+                                      <div class="product-detail-item">
+                <strong>🧴 ვისთვისაა</strong>
+                <p>${product.skinType || "ინფორმაცია მალე დაემატება"}</p>
+              </div>
 
-        <div class="product-detail-item">
-          <strong>🌿 გამოყენება</strong>
-          <p>${product.usage || "ინფორმაცია მალე დაემატება"}</p>
-        </div> 
-        <div class="product-detail-item">
-  <strong>${product.countryFlag || "🌍"} მწარმოებელი ქვეყანა </strong>
-  <p>${product.country || "ინფორმაცია მალე დაემატება"}</p>
-</div> 
-<div class="product-detail-item">
-  <strong>
-    მოცულობა: ${product.volume || "ინფორმაცია მალე დაემატება"}
-  </strong>
-</div>
+              <div class="product-detail-item">
+                <strong>💧 რას აკეთებს</strong>
+                <p>${product.benefits || "ინფორმაცია მალე დაემატება"}</p>
+              </div>
 
+              <div class="product-detail-item">
+                <strong>✨ ძირითადი ინგრედიენტები</strong>
+                <p>${product.ingredients || "ინფორმაცია მალე დაემატება"}</p>
+              </div>
+
+              <div class="product-detail-item">
+                <strong>🌿 გამოყენება</strong>
+                <p>${product.usage || "ინფორმაცია მალე დაემატება"}</p>
+              </div>
+              <div class="product-detail-item">
+        <strong>${product.countryFlag || "🌍"} მწარმოებელი ქვეყანა </strong>
+        <p>${product.country || "ინფორმაცია მალე დაემატება"}</p>
+      </div>
+      <div class="product-detail-item">
+        <strong>
+          მოცულობა: ${product.volume || "ინფორმაცია მალე დაემატება"}
+        </strong>
       </div>
 
-
-                                ${modalStockHtml}
-
-
-                                <div class="modal-price">
-                                  ${product.price.toFixed(2)} ₾
-                                </div>
+            </div>
 
 
-                                ${modalButtonHtml}
+                                      ${modalStockHtml}
 
-                              </div>
 
-                            </div>
+                                      <div class="modal-price">
+                                        ${product.price.toFixed(2)} ₾
+                                      </div>
 
-                          `;
+
+                                      ${modalButtonHtml}
+
+                                    </div>
+
+                                  </div>
+
+                                `;
 
         document.getElementById("productModal").classList.add("active");
       }
 
       /* =========================================
-                         CHECKOUT
-                      ========================================= */
+                               CHECKOUT
+                            ========================================= */
 
       checkoutBtn.addEventListener("click", openCheckout);
 
@@ -3694,86 +3695,102 @@
       function renderCheckoutSummary() {
         const subtotal = getCartSubtotal();
 
-        const delivery = subtotal >= 100 ? 0 : 6.5;
+        const deliverySelect = document.getElementById("deliverySelect");
+        const selectedOption =
+          deliverySelect.options[deliverySelect.selectedIndex];
+
+        const zonePrice = selectedOption?.dataset.price
+          ? Number(selectedOption.dataset.price)
+          : 0;
+
+        const delivery = subtotal >= 100 ? 0 : zonePrice;
 
         const total = subtotal + delivery;
 
         const summary = document.getElementById("checkoutSummary");
-
         summary.innerHTML = `
 
-                          ${cart
-                            .map((item) => {
-                              const product = products.find(
-                                (p) => p.id === item.id,
-                              );
+                                ${cart
+                                  .map((item) => {
+                                    const product = products.find(
+                                      (p) => p.id === item.id,
+                                    );
 
-                              return `
+                                    return `
+
+                                      <div
+                                        class="checkout-summary-item"
+                                      >
+
+                                        <span>
+                                          ${product.name}
+                                          × ${item.quantity}
+                                        </span>
+
+                                        <strong>
+                                          ${(product.price * item.quantity).toFixed(2)} ₾
+                                        </strong>
+
+                                      </div>
+
+                                    `;
+                                  })
+                                  .join("")}
+
 
                                 <div
                                   class="checkout-summary-item"
+                                  style="
+                                    border-top:1px solid var(--border);
+                                    margin-top:8px;
+                                    padding-top:12px;
+                                  "
                                 >
 
                                   <span>
-                                    ${product.name}
-                                    × ${item.quantity}
+                                    მიწოდება
                                   </span>
 
                                   <strong>
-                                    ${(product.price * item.quantity).toFixed(2)} ₾
+  ${
+    !deliverySelect.value
+      ? "ზონის მიხედვით"
+      : delivery === 0
+        ? "უფასო"
+        : delivery.toFixed(2) + " ₾"
+  }
+</strong>
+
+                                </div>
+
+
+                                <div
+                                  class="checkout-summary-item"
+                                  style="
+                                    font-size:15px;
+                                    font-weight:700;
+                                  "
+                                >
+
+                                  <span>
+                                    სულ
+                                  </span>
+
+                                  <strong>
+                                    ${total.toFixed(2)} ₾
                                   </strong>
 
                                 </div>
 
                               `;
-                            })
-                            .join("")}
-
-
-                          <div
-                            class="checkout-summary-item"
-                            style="
-                              border-top:1px solid var(--border);
-                              margin-top:8px;
-                              padding-top:12px;
-                            "
-                          >
-
-                            <span>
-                              მიწოდება
-                            </span>
-
-                            <strong>
-                              ${delivery === 0 ? "უფასო" : delivery.toFixed(2) + " ₾"}
-                            </strong>
-
-                          </div>
-
-
-                          <div
-                            class="checkout-summary-item"
-                            style="
-                              font-size:15px;
-                              font-weight:700;
-                            "
-                          >
-
-                            <span>
-                              სულ
-                            </span>
-
-                            <strong>
-                              ${total.toFixed(2)} ₾
-                            </strong>
-
-                          </div>
-
-                        `;
       }
+      document
+        .getElementById("deliverySelect")
+        .addEventListener("change", renderCheckoutSummary);
 
       /* =========================================
-                         SUBMIT ORDER
-                      ========================================= */
+                               SUBMIT ORDER
+                            ========================================= */
 
       document
         .getElementById("checkoutForm")
@@ -3783,7 +3800,17 @@
           const formData = new FormData(this);
 
           const subtotal = getCartSubtotal();
-          const delivery = subtotal >= 100 ? 0 : 6.5;
+
+          const deliverySelect = document.getElementById("deliverySelect");
+
+          const selectedOption =
+            deliverySelect.options[deliverySelect.selectedIndex];
+
+          const zonePrice = selectedOption?.dataset.price
+            ? Number(selectedOption.dataset.price)
+            : 0;
+
+          const delivery = subtotal >= 100 ? 0 : zonePrice;
           const total = subtotal + delivery;
 
           const order = {
@@ -3791,6 +3818,8 @@
             phone: formData.get("phone"),
             address: formData.get("address"),
             customer_email: formData.get("email"),
+            delivery_zone: formData.get("delivery_zone"),
+            delivery_price: zonePrice,
 
             items: JSON.stringify(
               cart.map((item) => {
@@ -3818,6 +3847,7 @@
             p_address: order.address,
             p_email: order.customer_email,
             p_items: JSON.parse(order.items),
+            p_delivery_zone: order.delivery_zone,
           });
 
           if (error) {
@@ -3879,8 +3909,8 @@
           this.reset();
         });
       /* =========================================
-                         MODALS
-                      ========================================= */
+                               MODALS
+                            ========================================= */
 
       function closeModal(id) {
         document.getElementById(id).classList.remove("active");
@@ -3895,8 +3925,8 @@
       });
 
       /* =========================================
-                         TOAST
-                      ========================================= */
+                               TOAST
+                            ========================================= */
 
       function showToast(message) {
         toast.textContent = message;
@@ -3909,8 +3939,8 @@
       }
 
       /* =========================================
-                         MOBILE MENU
-                      ========================================= */
+                               MOBILE MENU
+                            ========================================= */
 
       document.getElementById("mobileMenuBtn").addEventListener("click", () => {
         const nav = document.querySelector("nav");
@@ -3941,16 +3971,16 @@
       });
 
       /* =========================================
-                         META PIXEL READY
-                      ========================================= */
+                               META PIXEL READY
+                            ========================================= */
 
       function trackEvent(eventName, data = {}) {
         console.log("META EVENT:", eventName, data);
       }
 
       /* =========================================
-                         INIT
-                      ========================================= */
+                               INIT
+                            ========================================= */
 
       const SUPABASE_URL = "https://kjyqqpybrswcfbyztxcv.supabase.co";
 
