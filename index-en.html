@@ -2010,8 +2010,8 @@
       <div class="trust-icon">✓</div>
 
       <div class="authenticity-text">
-        <strong>Authentic products</strong>
-        <span>Products selected from trusted suppliers</span>
+        <strong>From Trusted Sources</strong>
+        <span>Carefully selected skincare products</span>
       </div>
     </div>
     <!-- ================= CATEGORIES ================= -->
@@ -2026,7 +2026,7 @@
 
         <div class="category-grid">
           <div class="category-card" onclick="filterCategory('serum')">
-            <img src="images/storyy.jpg" alt="Serums" />
+            <img src="images/storyy.jpg" alt="Serum" />
 
             <div class="category-overlay"></div>
 
@@ -2038,7 +2038,7 @@
           </div>
 
           <div class="category-card" onclick="filterCategory('cream')">
-            <img src="images/cream.jpg" alt="Creams" />
+            <img src="images/cream.jpg" alt="Cream" />
 
             <div class="category-overlay"></div>
 
@@ -2048,30 +2048,30 @@
               <h3>Creams</h3>
             </div>
           </div>
-
-          <div class="category-card" onclick="filterCategory('cleanser')">
-            <img src="images/cleanser.png" alt="Cleansers" />
+  <div class="category-card" onclick="filterCategory('toners')">
+            <img src="images/toners.jpg" alt="Toners" />
 
             <div class="category-overlay"></div>
 
             <div class="category-content">
               <div class="category-number">03</div>
 
-              <h3>Cleansers</h3>
+              <h3>Toners</h3>
             </div>
           </div>
-
-          <div class="category-card" onclick="filterCategory('toners')">
-            <img src="images/toners.jpg" alt="SPF" />
+          <div class="category-card" onclick="filterCategory('sunscreen')">
+            <img src="images/spf.png" alt="Sunscreen" />
 
             <div class="category-overlay"></div>
 
             <div class="category-content">
               <div class="category-number">04</div>
 
-              <h3>Toners</h3>
+              <h3>Sunscreens</h3>
             </div>
           </div>
+
+        
         </div>
       </div>
     </section>
@@ -2097,12 +2097,12 @@
 
           <button class="filter-btn" data-filter="cream">Creams</button>
 
-          <button class="filter-btn" data-filter="cleanser">Cleasners</button>
+          
             
           </button>
           <button class="filter-btn" data-filter="toners">Toners</button>
 
-          <button class="filter-btn" data-filter="sunscreen">SPF</button>
+          <button class="filter-btn" data-filter="sunscreen">Sunscreens</button>
         </div>
 
         <div class="product-grid" id="productGrid"></div>
@@ -2491,7 +2491,7 @@
         <p>📦 Estimated delivery time: <strong>1–2 business days</strong></p>
 
         <p>
-          If you have any questions, contact us via Instagram or Facebook.
+          For any questions, you can contact us by email at hello@skinsea.ge or via Instagram/Facebook.
         </p>
         <button class="btn btn-primary" onclick="closeModal('successModal')">
           OK
@@ -2584,13 +2584,14 @@
           brand: "La Roche-Posay",
           name: "Cicaplast Baume B5",
           category: "cream",
-          price: 39.9,
+          price: 49.9,
           badge: "Popular",
 
           image: "images/cicaplast.png",
           images: ["images/cicaplast.png", "images/cicaplast2.png"],
 
           country: "France",
+          volume: "100 ml",
 
           description:
             "A soothing restorative balm for dry and irritated skin.",
@@ -2851,7 +2852,7 @@
   id: 10,
   brand: "The Ordinary",
   name: "The Skin Support Set",
-  category: "serums",
+  category: "serum",
   price: 49.9,
   badge: "SET",
 
@@ -2889,7 +2890,7 @@
   id: 11,
   brand: "La Roche-Posay",
   name: "Anthelios UVMune 400 Oil Control Fluid SPF50+",
-  category: "creams",
+  category: "sunscreen",
   price: 59.90,
   badge: "SPF 50+",
 
@@ -2922,7 +2923,182 @@
 
   available: true,
   stock: 1,
+}, 
+{
+  id: 12,
+  brand: "Medicube",
+  name: "Collagen Firming Sun Cream SPF50+ PA++++",
+  category: "sunscreen",
+  price: 56.9,
+  badge: "SPF 50+",
+
+  image: "images/medicubespf.png",
+  images: ["images/medicubespf.png", "images/medicubespf1.png"],
+
+  country: "South Korea",
+  volume: "50 ml",
+
+  description:
+    "A high-protection SPF50+ PA++++ sunscreen that combines daily sun protection with hydrating skincare. Its lightweight formula helps keep the skin moisturized and comfortable.",
+
+  details:
+    "Medicube Collagen Firming Sun Cream SPF50+ PA++++ is a sunscreen designed for daily use. The formula contains collagen, hyaluronic acid and ceramide to support skin hydration and help care for the skin barrier. SPF50+ PA++++ provides a high level of protection against UVA and UVB rays.",
+
+  skinType:
+    "Suitable for all skin types.",
+
+  benefits:
+    "SPF50+ PA++++ protection • UVA/UVB protection • Hydration • Skin barrier care • Suitable for daily use",
+
+  ingredients:
+    "Collagen • Hyaluronic Acid • Ceramide",
+
+  usage:
+    "Apply to the face and neck as the last step of your morning skincare routine before sun exposure. Reapply throughout the day as needed to maintain protection.",
+
+  available: true,
 },
+{
+  id: 13,
+  brand: "Anua",
+  name: "PDRN Hyaluronic Acid Capsule 100 Serum",
+  category: "serum",
+  price: 54.90,
+  badge: "PDRN",
+
+  image: "images/anuapdrn.png",
+  images: ["images/anuapdrn.png", "images/anuapdrn1.png"],
+
+  country: "South Korea",
+  volume: "30 ml",
+
+  description:
+    "A hydrating serum formulated with PDRN, hyaluronic acid and collagen to help replenish moisture and leave the skin looking smooth, fresh and radiant.",
+
+  details:
+    "Anua PDRN Hyaluronic Acid Capsule 100 Serum is a concentrated hydrating serum designed to support moisture retention and improve the appearance of dry, dehydrated skin. The formula combines PDRN (Sodium DNA), multiple forms of hyaluronic acid and collagen to help maintain hydration and leave the skin feeling soft and plump.",
+
+  skinType:
+    "Suitable for all skin types, especially dry and dehydrated skin.",
+
+  benefits:
+    "Deep hydration • Helps retain moisture • Supports a plump and smooth appearance • Helps improve skin softness • Lightweight serum texture",
+
+  ingredients:
+    "PDRN (Sodium DNA) • Hyaluronic Acid • Hydrolyzed Collagen • Niacinamide",
+
+  usage:
+    "Apply an appropriate amount to clean skin and gently pat until absorbed. Use after toner and before moisturizer, morning and/or evening.",
+
+  available: true,
+}, 
+
+{
+  id: 14,
+  brand: "Vichy",
+  name: "Liftactiv Specialist B3 Serum",
+  category: "serum",
+  price: 64.90,
+  badge: "B3 Serum",
+
+  image: "images/vichyred.png",
+  images: ["images/vichyred.png", "images/vichyred1.png"],
+
+  country: "France",
+  volume: "30 ml",
+
+  description:
+    "A facial serum with niacinamide and glycolic acid, designed to target dark spots and uneven skin tone. It helps improve the appearance of skin for a smoother, brighter and more even-looking complexion.",
+
+  details:
+    "Vichy Liftactiv Specialist B3 Serum is formulated to target dark spots, wrinkles and uneven skin tone. The formula combines 5% Niacinamide B3, Glycolic Acid, Vitamin Cg, Bio-Peptide and Vichy Volcanic Water. With regular use, it helps reduce the appearance of dark spots and improve skin texture for a smoother and more even-looking complexion.",
+
+  skinType:
+    "Suitable for all skin types, including sensitive skin.",
+
+  benefits:
+    "Dark spot care • Helps even skin tone • Anti-wrinkle care • Brighter-looking skin • Improved skin texture",
+
+  ingredients:
+    "5% Niacinamide B3 • Glycolic Acid • Vitamin Cg • Bio-Peptide • Vichy Volcanic Water",
+
+  usage:
+    "Apply a few drops to clean, dry skin, avoiding the eye area. Use morning and/or evening before moisturizer. Apply sunscreen during the day.",
+
+  available: true,
+}, 
+
+{
+  id: 15,
+  brand: "La Roche-Posay",
+  name: "Pure Niacinamide 10 Serum",
+  category: "serum",
+  price: 64.90,
+  badge: "10% Niacinamide",
+
+  image: "images/larochepurple.png",
+  images: ["images/larochepurple.png", "images/larochepurple1.png"],
+
+  country: "France",
+  volume: "30 ml",
+
+  description:
+    "A brightening facial serum with 10% niacinamide, designed to target dark spots, uneven skin tone and dullness. It helps leave the skin looking smoother, brighter and more even.",
+
+  details:
+    "La Roche-Posay Pure Niacinamide 10 Serum is formulated to improve the appearance of dark spots and uneven skin tone. Its formula combines 10% niacinamide with hyaluronic acid to support hydration while helping the complexion look brighter and more even. The lightweight serum is suitable for daily skincare routines.",
+
+  skinType:
+    "Suitable for all skin types, including sensitive skin.",
+
+  benefits:
+    "Dark spot care • Helps even skin tone • Brightens the appearance of skin • Hydration • Smoother-looking complexion",
+
+  ingredients:
+    "10% Niacinamide • Hyaluronic Acid • La Roche-Posay Thermal Spring Water",
+
+  usage:
+    "Apply a few drops to the face and neck after cleansing, avoiding the eye area. Use morning and/or evening before moisturizer. Apply sunscreen during the day.",
+
+  available: true,
+}, 
+
+{
+  id: 16,
+  brand: "La Roche-Posay",
+  name: "Retinol B3 Serum",
+  category: "serum",
+  price:  69.90,
+  badge: "Retinol B3",
+
+  image: "images/larochepink.png",
+  images: ["images/larochepink.png", "images/larochepink1.png"],
+
+  country: "France",
+  volume: "30 ml",
+
+  description:
+    "A facial serum with retinol and vitamin B3, designed to target wrinkles, uneven skin tone and signs of photoaging. It helps leave the skin looking smoother, more even and renewed.",
+
+  details:
+    "La Roche-Posay Retinol B3 Serum is a renewing serum formulated with pure retinol, progressive release retinol, vitamin B3 and glycerin. The formula helps reduce the appearance of wrinkles and signs of photoaging while improving skin texture and promoting a more even-looking complexion. Glycerin helps maintain hydration, while vitamin B3 supports skin comfort.",
+
+  skinType:
+    "Suitable for all skin types, including sensitive skin.",
+
+  benefits:
+    "Anti-wrinkle care • Helps reduce signs of photoaging • Helps even skin tone • Improves skin texture • Hydration",
+
+  ingredients:
+    "Pure Retinol • Progressive Release Retinol • Vitamin B3 • Glycerin • La Roche-Posay Thermal Spring Water",
+
+  usage:
+    "Use in the evening. Apply a few drops to the face and neck, avoiding the eye area. Introduce retinol gradually according to your skin's tolerance. Apply sunscreen during the day.",
+
+  available: true,
+},
+
+
       ];
 
       /* =========================================
