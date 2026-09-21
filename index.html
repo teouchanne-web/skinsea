@@ -1932,7 +1932,7 @@
             <div class="hero-slide">
               <img src="images/hero.jpg" alt="hero skincare" />
             </div>
-            
+
             <div class="hero-slide">
               <img src="images/hero3.png" alt="hero skincare" />
             </div>
@@ -2003,8 +2003,8 @@
       <div class="trust-icon">✓</div>
 
       <div class="authenticity-text">
-        <strong>ორიგინალური პროდუქცია</strong>
-        <span>სანდო მომწოდებლებისგან შერჩეული პროდუქცია</span>
+        <strong>სანდო წყაროებიდან</strong>
+        <span>ყურადღებით შერჩეული კანის მოვლის პროდუქტები</span>
       </div>
     </div>
     <!-- ================= CATEGORIES ================= -->
@@ -2041,28 +2041,27 @@
               <h3>კრემები</h3>
             </div>
           </div>
-
-          <div class="category-card" onclick="filterCategory('cleanser')">
-            <img src="images/cleanser.png" alt="სახის დასაბანი" />
+          <div class="category-card" onclick="filterCategory('toners')">
+            <img src="images/toners.jpg" alt="ტონერები" />
 
             <div class="category-overlay"></div>
 
             <div class="category-content">
               <div class="category-number">03</div>
 
-              <h3>სახის დასაბანი</h3>
+              <h3>ტონერები</h3>
             </div>
           </div>
 
-          <div class="category-card" onclick="filterCategory('toners')">
-            <img src="images/toners.jpg" alt="SPF" />
+          <div class="category-card" onclick="filterCategory('sunscreen')">
+            <img src="images/spf.png" alt="მზისგან დამცავი კრემები" />
 
             <div class="category-overlay"></div>
 
             <div class="category-content">
               <div class="category-number">04</div>
 
-              <h3>ტონერები</h3>
+              <h3>მზისგან დამცავი კრემები</h3>
             </div>
           </div>
         </div>
@@ -2090,14 +2089,13 @@
 
           <button class="filter-btn" data-filter="serum">შრატები</button>
 
-          <button class="filter-btn" data-filter="cream">კრემები</button>
+          <button class="filter-btn" data-filter="creams">კრემები</button>
 
-          <button class="filter-btn" data-filter="cleanser">
-            სახის დასაბანი
-          </button>
           <button class="filter-btn" data-filter="toners">ტონერები</button>
 
-          <button class="filter-btn" data-filter="sunscreen">SPF</button>
+          <button class="filter-btn" data-filter="sunscreen">
+            მზისგან დამცავი კრემები
+          </button>
         </div>
 
         <div class="product-grid" id="productGrid"></div>
@@ -2508,8 +2506,8 @@
 
     <script>
       /* =========================================
-                               HERO SLIDER
-                            ========================================= */
+                                     HERO SLIDER
+                                  ========================================= */
 
       let currentHeroSlide = 0;
       const heroSlides = document.querySelectorAll(".hero-slide");
@@ -2542,8 +2540,8 @@
       }, 5000);
 
       /* =========================================
-                               PRODUCTS
-                            ========================================= */
+                                     PRODUCTS
+                                  ========================================= */
 
       const products = [
         {
@@ -2584,9 +2582,10 @@
           id: 2,
           brand: "La Roche-Posay",
           name: "Cicaplast Baume B5",
-          category: "cream",
-          price: 39.9,
+          category: "creams",
+          price: 49.9,
           badge: "პოპულარული",
+          volume: "100 მლ",
 
           image: "images/cicaplast.png",
           images: ["images/cicaplast.png", "images/cicaplast2.png"],
@@ -2754,7 +2753,7 @@
           price: 39.9,
           badge: "",
 
-          image: "glycolic.png",
+          image: "images/glycolic.png",
           images: ["images/glycolic.png", "images/glycolic2.png"],
 
           country: "კანადა",
@@ -2789,7 +2788,7 @@
           price: 34.9,
           badge: "",
 
-          image: "ordinaryserum.png",
+          image: "images/ordinaryserum.png",
           images: ["images/ordinaryserum.png", "images/ordinaryserum1.png"],
 
           country: "კანადა",
@@ -2823,7 +2822,7 @@
           price: 49.9,
           badge: "",
 
-          image: "centellatoner.png",
+          image: "images/centellatoner.png",
           images: ["images/centellatoner.png", "images/centellatoner1.png"],
 
           country: "სამხრეთ კორეა",
@@ -2849,7 +2848,7 @@
 
           available: true,
           stock: 1,
-        }, 
+        },
         {
           id: 10,
           brand: "The Ordinary",
@@ -2918,13 +2917,183 @@
             "გამოყენებამდე კარგად შეანჯღრიეთ. დაიტანეთ უხვად სახესა და კისერზე მზეზე გასვლამდე. დაცვის შესანარჩუნებლად რეგულარულად განაახლეთ, განსაკუთრებით ოფლიანობის, ცურვის ან პირსახოცით გამშრალების შემდეგ.",
 
           available: true,
+
           stock: 1,
+        },
+
+        {
+          id: 12,
+          brand: "Medicube",
+          name: "Collagen Firming Sun Cream SPF50+ PA++++",
+          category: "sunscreen",
+          price: 56.9,
+          badge: "SPF 50+",
+
+          image: "images/medicubespf.png",
+          images: ["images/medicubespf.png", "images/medicubespf1.png"],
+
+          country: "სამხრეთ კორეა",
+          volume: "50 მლ",
+
+          description:
+            "მაღალი დაცვის SPF50+ PA++++ მზისგაsნ დამცავი კრემი, რომელიც აერთიანებს მზისგან დაცვასა და კანის დამატენიანებელ მოვლას. მსუბუქი ფორმულა ხელს უწყობს კანის დატენიანებას და კომფორტული შეგრძნების შენარჩუნებას.",
+
+          details:
+            "Medicube Collagen Firming Sun Cream SPF50+ PA++++ არის ყოველდღიური გამოყენებისთვის განკუთვნილი მზისგან დამცავი კრემი. ფორმულა შეიცავს კოლაგენს, ჰიალურონის მჟავას და კერამიდს, რომლებიც ხელს უწყობს კანის დატენიანებასა და ბარიერის მოვლას. SPF50+ PA++++ უზრუნველყოფს მაღალი დონის დაცვას UVA და UVB სხივებისგან.",
+
+          skinType: "ყველა ტიპის კანისთვის.",
+
+          benefits:
+            "SPF50+ PA++++ დაცვა • UVA/UVB დაცვა • დატენიანება • კანის ბარიერის მოვლა • ყოველდღიური გამოყენება",
+
+          ingredients: "Collagen • Hyaluronic Acid • Ceramide",
+
+          usage:
+            "დაიტანეთ სახესა და კისერზე დილის მოვლის ბოლო ეტაპზე, მზეზე გასვლამდე. დაცვის შესანარჩუნებლად დღის განმავლობაში საჭიროებისამებრ განაახლეთ.",
+
+          available: true,
+        },
+
+        {
+          id: 13,
+          brand: "Anua",
+          name: "PDRN Hyaluronic Acid Capsule 100 Serum",
+          category: "serum",
+          price: 54.9,
+          badge: "PDRN + Hyaluron",
+
+          image: "images/anuapdrn.png",
+          images: ["images/anuapdrn.png", "images/anuapdrn1.png"],
+
+          country: "სამხრეთ კორეა",
+          volume: "30 მლ",
+
+          description:
+            "ინტენსიურად დამატენიანებელი შრატი PDRN-ით, ჰიალურონის მჟავითა და კოლაგენით. ფორმულა ხელს უწყობს კანის დატენიანებას, ელასტიურობის შენარჩუნებას და კანის უფრო გლუვი და მოვლილი იერის მიღებას.",
+
+          details:
+            "Anua PDRN Hyaluronic Acid Capsule 100 Serum არის კონცენტრირებული დამატენიანებელი შრატი, რომელიც აერთიანებს PDRN-ს (Sodium DNA), ჰიალურონის მჟავასა და კოლაგენს. ფორმულა შექმნილია კანის ინტენსიური დატენიანებისა და ელასტიურობის მოვლისთვის. მსუბუქი შრატი მარტივად ერთვება ყოველდღიურ რუტინაში და კანს უფრო დატენიანებულ და გლუვ იერს აძლევს.",
+
+          skinType:
+            "ყველა ტიპის კანისთვის, განსაკუთრებით გაუწყლოებული და სიმშრალისკენ მიდრეკილი კანისთვის.",
+
+          benefits:
+            "ინტენსიური დატენიანება • კანის ელასტიურობის მოვლა • კანის უფრო გლუვი იერი • კანის ტენიანობის შენარჩუნება • მსუბუქი ტექსტურა",
+
+          ingredients:
+            "PDRN (Sodium DNA) • Hyaluronic Acid • Collagen • Niacinamide • Adenosine",
+
+          usage:
+            "დაიტანეთ რამდენიმე წვეთი სუფთა კანზე და ნაზად გადაანაწილეთ სახესა და კისერზე. გამოიყენეთ დილით და/ან საღამოს, კრემის გამოყენებამდე.",
+
+          available: true,
+        },
+
+        {
+          id: 14,
+          brand: "Vichy",
+          name: "Liftactiv Specialist B3 Serum",
+          category: "serum",
+          price: 64.9,
+          badge: "B3 Serum",
+
+          image: "images/vichyred.png",
+          images: ["images/vichyred.png", "images/vichyred1.png"],
+
+          country: "საფრანგეთი",
+          volume: "30 მლ",
+
+          description:
+            "სახის შრატი ნიაცინამიდითა და გლიკოლის მჟავით, რომელიც შექმნილია პიგმენტური ლაქებისა და კანის არათანაბარი ტონის მოვლისთვის. ფორმულა ხელს უწყობს კანის უფრო გლუვი, თანაბარი და ნათელი იერის მიღებას.",
+
+          details:
+            "Vichy Liftactiv Specialist B3 Serum არის პიგმენტური ლაქებისა და ნაოჭების მოვლისთვის შექმნილი შრატი. ფორმულა აერთიანებს 5% ნიაცინამიდ B3-ს, გლიკოლის მჟავას, Vitamin Cg-ს, ბიო-პეპტიდს და Vichy-ის ვულკანურ წყალს. რეგულარული გამოყენებისას ხელს უწყობს კანის ტონის გათანაბრებას, ლაქების ხილვადობის შემცირებას და კანის უფრო გლუვი იერის მიღებას.",
+
+          skinType: "ყველა ტიპის კანისთვის, მათ შორის მგრძნობიარე კანისთვის.",
+
+          benefits:
+            "პიგმენტური ლაქების მოვლა • კანის ტონის გათანაბრება • ნაოჭების მოვლა • კანის უფრო ნათელი იერი • კანის ტექსტურის გაუმჯობესება",
+
+          ingredients:
+            "5% Niacinamide B3 • Glycolic Acid • Vitamin Cg • Bio-Peptide • Vichy Volcanic Water",
+
+          usage:
+            "დაიტანეთ რამდენიმე წვეთი სუფთა და მშრალ კანზე, თვალის მიდამოს თავიდან აცილებით. გამოიყენეთ დილით და/ან საღამოს, კრემის გამოყენებამდე. დღის განმავლობაში გამოიყენეთ მზისგან დამცავი საშუალება.",
+
+          available: true,
+        },
+
+        {
+          id: 15,
+          brand: "La Roche-Posay",
+          name: "Pure Niacinamide 10 Serum",
+          category: "serum",
+          price: 64.9,
+          badge: "10% Niacinamide",
+
+          image: "images/larochepurple.png",
+          images: ["images/larochepurple1.png", "images/larochepurple.png"],
+
+          country: "საფრანგეთი",
+          volume: "30 მლ",
+
+          description:
+            "კონცენტრირებული შრატი 10% ნიაცინამიდით, რომელიც შექმნილია პიგმენტური ლაქებისა და კანის არათანაბარი ტონის მოვლისთვის. ფორმულა ხელს უწყობს კანის უფრო ნათელი, თანაბარი და გლუვი იერის მიღებას.",
+
+          details:
+            "La Roche-Posay Pure Niacinamide 10 Serum არის კონცენტრირებული შრატი 10% ნიაცინამიდით, რომელიც ხელს უწყობს პიგმენტური ლაქების ხილვადობის შემცირებას და კანის ტონის გათანაბრებას. ფორმულა ასევე შეიცავს ჰიალურონის მჟავას, რომელიც ხელს უწყობს კანის დატენიანებასა და კანის ბარიერის მოვლას. განკუთვნილია ყოველდღიური გამოყენებისთვის.",
+
+          skinType: "ყველა ტიპის კანისთვის, მათ შორის მგრძნობიარე კანისთვის.",
+
+          benefits:
+            "პიგმენტური ლაქების მოვლა • კანის ტონის გათანაბრება • დატენიანება • კანის ბარიერის მოვლა • უფრო ნათელი და გლუვი იერი",
+
+          ingredients: "10% Niacinamide • Hyaluronic Acid",
+
+          usage:
+            "დაიტანეთ რამდენიმე წვეთი სახესა და კისერზე დილით და/ან საღამოს, კრემის გამოყენებამდე. მოერიდეთ თვალებთან პირდაპირ კონტაქტს. დილის რუტინაში გამოიყენეთ მზისგან დამცავი საშუალება.",
+
+          available: true,
+        },
+
+        {
+          id: 16,
+          brand: "La Roche-Posay",
+          name: "Retinol B3 Serum",
+          category: "serum",
+          price: 69.9,
+          badge: "Retinol B3",
+
+          image: "images/larochepink.png",
+          images: ["images/larochepink.png", "images/larochepink11.png"],
+
+          country: "საფრანგეთი",
+          volume: "30 მლ",
+
+          description:
+            "რეტინოლისა და ვიტამინ B3-ის შემცველი სახის შრატი, რომელიც შექმნილია ნაოჭების, კანის არათანაბარი ტონისა და ფოტოდაბერების ნიშნების მოვლისთვის. ხელს უწყობს კანის უფრო გლუვი, თანაბარი და განახლებული იერის მიღებას.",
+
+          details:
+            "La Roche-Posay Retinol B3 Serum არის აღდგენითი შრატი, რომელიც აერთიანებს სუფთა რეტინოლს, ეტაპობრივად გამოთავისუფლებად რეტინოლს, ვიტამინ B3-სა და გლიცერინს. ფორმულა ხელს უწყობს ნაოჭებისა და ფოტოდაბერების ნიშნების შემცირებას, კანის ტექსტურის გაუმჯობესებასა და ტონის გათანაბრებას. გლიცერინი ხელს უწყობს კანის დატენიანებას, ხოლო ვიტამინი B3 კანის მოვლასა და კომფორტის შენარჩუნებას.",
+
+          skinType: "ყველა ტიპის კანისთვის, მათ შორის მგრძნობიარე კანისთვის.",
+
+          benefits:
+            "ნაოჭების მოვლა • ფოტოდაბერების ნიშნების შემცირება • კანის ტონის გათანაბრება • კანის ტექსტურის გაუმჯობესება • დატენიანება",
+
+          ingredients:
+            "Pure Retinol • Progressive Release Retinol • Vitamin B3 • Glycerin • La Roche-Posay Thermal Spring Water",
+
+          usage:
+            "გამოიყენეთ საღამოს. დაიტანეთ რამდენიმე წვეთი სახესა და კისერზე, თვალის მიდამოს თავიდან აცილებით. რეტინოლის გამოყენებისას დაიწყეთ ეტაპობრივად, კანის შეგუების შესაბამისად. დღის განმავლობაში გამოიყენეთ მზისგან დამცავი საშუალება.",
+
+          available: true,
         },
       ];
 
       /* =========================================
-                               STATE
-                            ========================================= */
+                                     STATE
+                                  ========================================= */
 
       let cart = [];
       let wishlist = [];
@@ -2956,8 +3125,8 @@
       let currentFilter = "all";
 
       /* =========================================
-                               DOM
-                            ========================================= */
+                                     DOM
+                                  ========================================= */
 
       const productGrid = document.getElementById("productGrid");
 
@@ -2978,8 +3147,8 @@
       const toast = document.getElementById("toast");
 
       /* =========================================
-                               STORAGE
-                            ========================================= */
+                                     STORAGE
+                                  ========================================= */
 
       function saveCart() {
         localStorage.setItem("skinsea_cart", JSON.stringify(cart));
@@ -2990,8 +3159,8 @@
       }
 
       /* =========================================
-                               PRODUCT RENDER
-                            ========================================= */
+                                     PRODUCT RENDER
+                                  ========================================= */
 
       function renderProducts() {
         const searchTerm =
@@ -3012,26 +3181,26 @@
 
         if (!filtered.length) {
           productGrid.innerHTML = `
-                              <div
-                                style="
-                                  grid-column:1/-1;
-                                  text-align:center;
-                                  padding:60px 20px;
-                                  color:var(--muted);
-                                "
-                              >
-                                <div
-                                  style="
-                                    font-size:40px;
-                                    margin-bottom:10px;
-                                  "
-                                >
-                                  ⌕
-                                </div>
+                                    <div
+                                      style="
+                                        grid-column:1/-1;
+                                        text-align:center;
+                                        padding:60px 20px;
+                                        color:var(--muted);
+                                      "
+                                    >
+                                      <div
+                                        style="
+                                          font-size:40px;
+                                          margin-bottom:10px;
+                                        "
+                                      >
+                                        ⌕
+                                      </div>
 
-                                პროდუქტი ვერ მოიძებნა.
-                              </div>
-                            `;
+                                      პროდუქტი ვერ მოიძებნა.
+                                    </div>
+                                  `;
 
           return;
         }
@@ -3053,130 +3222,130 @@
 
             const addButtonHtml = product.available
               ? `<button
-                                    class="add-btn"
-                                    onclick="addToCart(${product.id})"
-                                  >
-                                    + კალათაში
-                                  </button>`
+                                          class="add-btn"
+                                          onclick="addToCart(${product.id})"
+                                        >
+                                          + კალათაში
+                                        </button>`
               : `<button
-                                    class="add-btn"
-                                    disabled
-                                    aria-disabled="true"
-                                  >
-                                    არ არის ხელმისაწვდომი
-                                  </button>`;
+                                          class="add-btn"
+                                          disabled
+                                          aria-disabled="true"
+                                        >
+                                          არ არის ხელმისაწვდომი
+                                        </button>`;
 
             return `
-                                <article class="product-card">
+                                      <article class="product-card">
 
-                                  <div
-                                    class="product-image-wrap"
-                                    onclick="openProduct(${product.id})"
-                                    style="cursor:pointer"
-                                  >
+                                        <div
+                                          class="product-image-wrap"
+                                          onclick="openProduct(${product.id})"
+                                          style="cursor:pointer"
+                                        >
 
-                                    ${
-                                      product.badge
-                                        ? `<div class="badge">
-                                             ${product.badge}
-                                           </div>`
-                                        : ""
-                                    }
+                                          ${
+                                            product.badge
+                                              ? `<div class="badge">
+                                                   ${product.badge}
+                                                 </div>`
+                                              : ""
+                                          }
 
-                                    <button
-                                      class="wishlist-btn ${isFavorite ? "active" : ""}"
-                                      onclick="
-                                        event.stopPropagation();
-                                        toggleWishlist(${product.id})
-                                      "
-                                    >
-                                      ${isFavorite ? "♥" : "♡"}
-                                    </button>
+                                          <button
+                                            class="wishlist-btn ${isFavorite ? "active" : ""}"
+                                            onclick="
+                                              event.stopPropagation();
+                                              toggleWishlist(${product.id})
+                                            "
+                                          >
+                                            ${isFavorite ? "♥" : "♡"}
+                                          </button>
 
-                                    <div
-                                      class="product-slider"
-                                      data-product-id="${product.id}"
-                                    >
-                                      <img
-                                        class="product-image slider-image"
-                                        src="${productImages[0]}"
-                                        alt="${product.name}"
-                                        data-index="0"
-                                      />
+                                          <div
+                                            class="product-slider"
+                                            data-product-id="${product.id}"
+                                          >
+                                            <img
+                                              class="product-image slider-image"
+                                              src="${productImages[0]}"
+                                              alt="${product.name}"
+                                              data-index="0"
+                                            />
 
-                                      ${
-                                        hasSlider
-                                          ? `
-                                            <button
-                                              class="slider-arrow slider-prev"
-                                              onclick="
-                                                event.stopPropagation();
-                                                changeProductImage(${product.id}, -1);
-                                              "
-                                              aria-label="წინა ფოტო"
-                                            >
-                                              ‹
-                                            </button>
+                                            ${
+                                              hasSlider
+                                                ? `
+                                                  <button
+                                                    class="slider-arrow slider-prev"
+                                                    onclick="
+                                                      event.stopPropagation();
+                                                      changeProductImage(${product.id}, -1);
+                                                    "
+                                                    aria-label="წინა ფოტო"
+                                                  >
+                                                    ‹
+                                                  </button>
 
-                                            <button
-                                              class="slider-arrow slider-next"
-                                              onclick="
-                                                event.stopPropagation();
-                                                changeProductImage(${product.id}, 1);
-                                              "
-                                              aria-label="შემდეგი ფოტო"
-                                            >
-                                              ›
-                                            </button>
+                                                  <button
+                                                    class="slider-arrow slider-next"
+                                                    onclick="
+                                                      event.stopPropagation();
+                                                      changeProductImage(${product.id}, 1);
+                                                    "
+                                                    aria-label="შემდეგი ფოტო"
+                                                  >
+                                                    ›
+                                                  </button>
 
-                                            <div class="slider-dots">
-                                              ${productImages
-                                                .map(
-                                                  (_, index) => `
-                                                    <span
-                                                      class="slider-dot ${index === 0 ? "active" : ""}"
-                                                    ></span>
-                                                  `,
-                                                )
-                                                .join("")}
+                                                  <div class="slider-dots">
+                                                    ${productImages
+                                                      .map(
+                                                        (_, index) => `
+                                                          <span
+                                                            class="slider-dot ${index === 0 ? "active" : ""}"
+                                                          ></span>
+                                                        `,
+                                                      )
+                                                      .join("")}
+                                                  </div>
+                                                `
+                                                : ""
+                                            }
+                                          </div>
+
+                                        </div>
+
+                                        <div class="product-info">
+
+                                          <div class="product-brand">
+                                            ${product.brand}
+                                          </div>
+
+                                          <div class="product-name">
+                                            ${product.name}
+                                          </div>
+
+                                          <div class="product-desc">
+                                            ${product.description}
+                                          </div>
+
+                                          ${stockHtml}
+
+                                          <div class="product-bottom">
+
+                                            <div class="price">
+                                              ${product.price.toFixed(2)} ₾
                                             </div>
-                                          `
-                                          : ""
-                                      }
-                                    </div>
 
-                                  </div>
+                                            ${addButtonHtml}
 
-                                  <div class="product-info">
+                                          </div>
 
-                                    <div class="product-brand">
-                                      ${product.brand}
-                                    </div>
+                                        </div>
 
-                                    <div class="product-name">
-                                      ${product.name}
-                                    </div>
-
-                                    <div class="product-desc">
-                                      ${product.description}
-                                    </div>
-
-                                    ${stockHtml}
-
-                                    <div class="product-bottom">
-
-                                      <div class="price">
-                                        ${product.price.toFixed(2)} ₾
-                                      </div>
-
-                                      ${addButtonHtml}
-
-                                    </div>
-
-                                  </div>
-
-                                </article>
-                              `;
+                                      </article>
+                                    `;
           })
           .join("");
       }
@@ -3223,8 +3392,8 @@
       }
 
       /* =========================================
-                           LIGHTBOX
-                        ========================================= */
+                                 LIGHTBOX
+                              ========================================= */
 
       const lightbox = document.getElementById("lightbox");
       const lightboxImage = document.getElementById("lightboxImage");
@@ -3258,8 +3427,8 @@
       });
 
       /* =========================================
-                               FILTER
-                            ========================================= */
+                                     FILTER
+                                  ========================================= */
 
       document.querySelectorAll(".filter-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -3290,8 +3459,8 @@
       }
 
       /* =========================================
-         SEARCH
-      ========================================= */
+               SEARCH
+            ========================================= */
 
       document.getElementById("searchBtn").addEventListener("click", () => {
         const panel = document.getElementById("searchPanel");
@@ -3337,8 +3506,8 @@
         }
       });
       /* =========================================
-                               CART
-                            ========================================= */
+                                     CART
+                                  ========================================= */
 
       function addToCart(id) {
         const product = products.find((p) => p.id === id);
@@ -3435,27 +3604,27 @@
         if (!cart.length) {
           cartItems.innerHTML = `
 
-                                  <div class="empty-cart">
+                                        <div class="empty-cart">
 
-                                    <div>
+                                          <div>
 
-                                      <div class="empty-cart-icon">
-                                        🛍
-                                      </div>
+                                            <div class="empty-cart-icon">
+                                              🛍
+                                            </div>
 
-                                      <strong>
-                                        კალათა ცარიელია
-                                      </strong>
+                                            <strong>
+                                              კალათა ცარიელია
+                                            </strong>
 
-                                      <p style="margin-top:6px;">
-                                        დაამატე სასურველი პროდუქტი.
-                                      </p>
+                                            <p style="margin-top:6px;">
+                                              დაამატე სასურველი პროდუქტი.
+                                            </p>
 
-                                    </div>
+                                          </div>
 
-                                  </div>
+                                        </div>
 
-                                `;
+                                      `;
 
           cartSubtotal.textContent = "0.00 ₾";
 
@@ -3476,85 +3645,85 @@
 
             return `
 
-                                      <div class="cart-item">
+                                            <div class="cart-item">
 
-                                        <img
-        class="cart-item-img"
-        src="${product.image}"
-        alt="${product.name}"
-        onclick="openLightbox('${product.image}', '${product.name}')"
-      />
-
-
-                                        <div class="cart-item-info">
-
-                                          <h4>
-                                            ${product.name}
-                                          </h4>
-
-                                          <p>
-                                            ${product.brand}
-                                          </p>
+                                              <img
+              class="cart-item-img"
+              src="${product.image}"
+              alt="${product.name}"
+              onclick="openLightbox('${product.image}', '${product.name}')"
+            />
 
 
-                                          <div class="quantity">
+                                              <div class="cart-item-info">
 
-                                            <button
-                                              onclick="
-                                                changeQuantity(
-                                                  ${product.id},
-                                                  -1
-                                                )
-                                              "
-                                            >
-                                              −
-                                            </button>
+                                                <h4>
+                                                  ${product.name}
+                                                </h4>
+
+                                                <p>
+                                                  ${product.brand}
+                                                </p>
 
 
-                                            <span>
-                                              ${item.quantity}
-                                            </span>
+                                                <div class="quantity">
+
+                                                  <button
+                                                    onclick="
+                                                      changeQuantity(
+                                                        ${product.id},
+                                                        -1
+                                                      )
+                                                    "
+                                                  >
+                                                    −
+                                                  </button>
 
 
-                                            <button
-                                              onclick="
-                                                changeQuantity(
-                                                  ${product.id},
-                                                  1
-                                                )
-                                              "
-                                            >
-                                              +
-                                            </button>
-
-                                          </div>
-
-                                        </div>
+                                                  <span>
+                                                    ${item.quantity}
+                                                  </span>
 
 
-                                        <div class="cart-item-right">
+                                                  <button
+                                                    onclick="
+                                                      changeQuantity(
+                                                        ${product.id},
+                                                        1
+                                                      )
+                                                    "
+                                                  >
+                                                    +
+                                                  </button>
 
-                                          <div class="cart-item-price">
-                                            ${itemTotal.toFixed(2)} ₾
-                                          </div>
+                                                </div>
+
+                                              </div>
 
 
-                                          <button
-                                            class="remove-item"
-                                            onclick="
-                                              removeFromCart(
-                                                ${product.id}
-                                              )
-                                            "
-                                          >
-                                            წაშლა
-                                          </button>
+                                              <div class="cart-item-right">
 
-                                        </div>
+                                                <div class="cart-item-price">
+                                                  ${itemTotal.toFixed(2)} ₾
+                                                </div>
 
-                                      </div>
 
-                                    `;
+                                                <button
+                                                  class="remove-item"
+                                                  onclick="
+                                                    removeFromCart(
+                                                      ${product.id}
+                                                    )
+                                                  "
+                                                >
+                                                  წაშლა
+                                                </button>
+
+                                              </div>
+
+                                            </div>
+
+                                          `;
           })
           .join("");
 
@@ -3574,8 +3743,8 @@
       }
 
       /* =========================================
-                               CART DRAWER
-                            ========================================= */
+                                     CART DRAWER
+                                  ========================================= */
 
       function openCart() {
         cartDrawer.classList.add("active");
@@ -3596,8 +3765,8 @@
       overlay.addEventListener("click", closeCart);
 
       /* =========================================
-                               WISHLIST
-                            ========================================= */
+                                     WISHLIST
+                                  ========================================= */
 
       function toggleWishlist(id) {
         if (wishlist.includes(id)) {
@@ -3631,8 +3800,8 @@
       });
 
       /* =========================================
-                               PRODUCT MODAL
-                            ========================================= */
+                                     PRODUCT MODAL
+                                  ========================================= */
 
       function openProduct(id) {
         const product = products.find((p) => p.id === id);
@@ -3655,101 +3824,101 @@
 
         const modalButtonHtml = product.available
           ? `<button
-                                      class="btn btn-primary"
-                                      onclick="
-                                        addToCart(${product.id});
-                                        closeModal('productModal')
-                                      "
-                                    >
-                                      კალათაში დამატება →
-                                    </button>`
+                                            class="btn btn-primary"
+                                            onclick="
+                                              addToCart(${product.id});
+                                              closeModal('productModal')
+                                            "
+                                          >
+                                            კალათაში დამატება →
+                                          </button>`
           : `<button
-                                      class="btn btn-primary"
-                                      disabled
-                                      aria-disabled="true"
-                                    >
-                                      არ არის ხელმისაწვდომი
-                                    </button>`;
+                                            class="btn btn-primary"
+                                            disabled
+                                            aria-disabled="true"
+                                          >
+                                            არ არის ხელმისაწვდომი
+                                          </button>`;
 
         document.getElementById("productModalContent").innerHTML = `
 
-                                  <div class="product-modal-grid">
+                                        <div class="product-modal-grid">
 
 
-                       <img
-              class="product-modal-img"
-              src="${modalImageSrc}"
-              alt="${product.name}"
-              onclick="openLightbox('${modalImageSrc}', '${product.name}')"
-            />
+                             <img
+                    class="product-modal-img"
+                    src="${modalImageSrc}"
+                    alt="${product.name}"
+                    onclick="openLightbox('${modalImageSrc}', '${product.name}')"
+                  />
 
 
-                                    <div>
+                                          <div>
 
-                                      <div class="modal-brand">
-                                        ${product.brand}
-                                      </div>
-
-
-                                      <h2 class="modal-product-name">
-                                        ${product.name}
-                                      </h2>
+                                            <div class="modal-brand">
+                                              ${product.brand}
+                                            </div>
 
 
-                                      <div class="product-detail-item">
-                <strong>🧴 ვისთვისაა</strong>
-                <p>${product.skinType || "ინფორმაცია მალე დაემატება"}</p>
-              </div>
+                                            <h2 class="modal-product-name">
+                                              ${product.name}
+                                            </h2>
 
-              <div class="product-detail-item">
-                <strong>💧 რას აკეთებს</strong>
-                <p>${product.benefits || "ინფორმაცია მალე დაემატება"}</p>
-              </div>
 
-              <div class="product-detail-item">
-                <strong>✨ ძირითადი ინგრედიენტები</strong>
-                <p>${product.ingredients || "ინფორმაცია მალე დაემატება"}</p>
-              </div>
+                                            <div class="product-detail-item">
+                      <strong>🧴 ვისთვისაა</strong>
+                      <p>${product.skinType || "ინფორმაცია მალე დაემატება"}</p>
+                    </div>
 
-              <div class="product-detail-item">
-                <strong>🌿 გამოყენება</strong>
-                <p>${product.usage || "ინფორმაცია მალე დაემატება"}</p>
-              </div>
-              <div class="product-detail-item">
-        <strong>${product.countryFlag || "🌍"} მწარმოებელი ქვეყანა </strong>
-        <p>${product.country || "ინფორმაცია მალე დაემატება"}</p>
-      </div>
-      <div class="product-detail-item">
-        <strong>
-          მოცულობა: ${product.volume || "ინფორმაცია მალე დაემატება"}
-        </strong>
-      </div>
+                    <div class="product-detail-item">
+                      <strong>💧 რას აკეთებს</strong>
+                      <p>${product.benefits || "ინფორმაცია მალე დაემატება"}</p>
+                    </div>
 
+                    <div class="product-detail-item">
+                      <strong>✨ ძირითადი ინგრედიენტები</strong>
+                      <p>${product.ingredients || "ინფორმაცია მალე დაემატება"}</p>
+                    </div>
+
+                    <div class="product-detail-item">
+                      <strong>🌿 გამოყენება</strong>
+                      <p>${product.usage || "ინფორმაცია მალე დაემატება"}</p>
+                    </div>
+                    <div class="product-detail-item">
+              <strong>${product.countryFlag || "🌍"} მწარმოებელი ქვეყანა </strong>
+              <p>${product.country || "ინფორმაცია მალე დაემატება"}</p>
+            </div>
+            <div class="product-detail-item">
+              <strong>
+                მოცულობა: ${product.volume || "ინფორმაცია მალე დაემატება"}
+              </strong>
             </div>
 
-
-                                      ${modalStockHtml}
-
-
-                                      <div class="modal-price">
-                                        ${product.price.toFixed(2)} ₾
-                                      </div>
+                  </div>
 
 
-                                      ${modalButtonHtml}
+                                            ${modalStockHtml}
 
-                                    </div>
 
-                                  </div>
+                                            <div class="modal-price">
+                                              ${product.price.toFixed(2)} ₾
+                                            </div>
 
-                                `;
+
+                                            ${modalButtonHtml}
+
+                                          </div>
+
+                                        </div>
+
+                                      `;
 
         document.getElementById("productModal").classList.add("active");
       }
 
       /* =========================================
-                               CHECKOUT
-                            ========================================= */
+                                     CHECKOUT
+                                  ========================================= */
 
       checkoutBtn.addEventListener("click", openCheckout);
 
@@ -3781,87 +3950,87 @@
         const summary = document.getElementById("checkoutSummary");
         summary.innerHTML = `
 
-                                ${cart
-                                  .map((item) => {
-                                    const product = products.find(
-                                      (p) => p.id === item.id,
-                                    );
+                                      ${cart
+                                        .map((item) => {
+                                          const product = products.find(
+                                            (p) => p.id === item.id,
+                                          );
 
-                                    return `
+                                          return `
+
+                                            <div
+                                              class="checkout-summary-item"
+                                            >
+
+                                              <span>
+                                                ${product.name}
+                                                × ${item.quantity}
+                                              </span>
+
+                                              <strong>
+                                                ${(product.price * item.quantity).toFixed(2)} ₾
+                                              </strong>
+
+                                            </div>
+
+                                          `;
+                                        })
+                                        .join("")}
+
 
                                       <div
                                         class="checkout-summary-item"
+                                        style="
+                                          border-top:1px solid var(--border);
+                                          margin-top:8px;
+                                          padding-top:12px;
+                                        "
                                       >
 
                                         <span>
-                                          ${product.name}
-                                          × ${item.quantity}
+                                          მიწოდება
                                         </span>
 
                                         <strong>
-                                          ${(product.price * item.quantity).toFixed(2)} ₾
+        ${
+          !deliverySelect.value
+            ? "ზონის მიხედვით"
+            : delivery === 0
+              ? "უფასო"
+              : delivery.toFixed(2) + " ₾"
+        }
+      </strong>
+
+                                      </div>
+
+
+                                      <div
+                                        class="checkout-summary-item"
+                                        style="
+                                          font-size:15px;
+                                          font-weight:700;
+                                        "
+                                      >
+
+                                        <span>
+                                          სულ
+                                        </span>
+
+                                        <strong>
+                                          ${total.toFixed(2)} ₾
                                         </strong>
 
                                       </div>
 
                                     `;
-                                  })
-                                  .join("")}
-
-
-                                <div
-                                  class="checkout-summary-item"
-                                  style="
-                                    border-top:1px solid var(--border);
-                                    margin-top:8px;
-                                    padding-top:12px;
-                                  "
-                                >
-
-                                  <span>
-                                    მიწოდება
-                                  </span>
-
-                                  <strong>
-  ${
-    !deliverySelect.value
-      ? "ზონის მიხედვით"
-      : delivery === 0
-        ? "უფასო"
-        : delivery.toFixed(2) + " ₾"
-  }
-</strong>
-
-                                </div>
-
-
-                                <div
-                                  class="checkout-summary-item"
-                                  style="
-                                    font-size:15px;
-                                    font-weight:700;
-                                  "
-                                >
-
-                                  <span>
-                                    სულ
-                                  </span>
-
-                                  <strong>
-                                    ${total.toFixed(2)} ₾
-                                  </strong>
-
-                                </div>
-
-                              `;
       }
       document
         .getElementById("deliverySelect")
         .addEventListener("change", renderCheckoutSummary);
 
       /* =========================================
-                               SUBMIT ORDER
-                            ========================================= */
+                                     SUBMIT ORDER
+                                  ========================================= */
 
       document
         .getElementById("checkoutForm")
@@ -3980,8 +4149,8 @@
           this.reset();
         });
       /* =========================================
-                               MODALS
-                            ========================================= */
+                                     MODALS
+                                  ========================================= */
 
       function closeModal(id) {
         document.getElementById(id).classList.remove("active");
@@ -3996,8 +4165,8 @@
       });
 
       /* =========================================
-                               TOAST
-                            ========================================= */
+                                     TOAST
+                                  ========================================= */
 
       function showToast(message) {
         toast.textContent = message;
@@ -4010,8 +4179,8 @@
       }
 
       /* =========================================
-                               MOBILE MENU
-                            ========================================= */
+                                     MOBILE MENU
+                                  ========================================= */
 
       document.getElementById("mobileMenuBtn").addEventListener("click", () => {
         const nav = document.querySelector("nav");
@@ -4042,16 +4211,16 @@
       });
 
       /* =========================================
-                               META PIXEL READY
-                            ========================================= */
+                                     META PIXEL READY
+                                  ========================================= */
 
       function trackEvent(eventName, data = {}) {
         console.log("META EVENT:", eventName, data);
       }
 
       /* =========================================
-                               INIT
-                            ========================================= */
+                                     INIT
+                                  ========================================= */
 
       const SUPABASE_URL = "https://kjyqqpybrswcfbyztxcv.supabase.co";
 
