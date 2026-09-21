@@ -4059,6 +4059,7 @@
             address: formData.get("address"),
             customer_email: formData.get("email"),
             delivery_zone: formData.get("delivery_zone"),
+            comment: formData.get("comment") || "",
             delivery_price: zonePrice,
 
             items: JSON.stringify(
@@ -4088,6 +4089,7 @@
             p_email: order.customer_email,
             p_items: JSON.parse(order.items),
             p_delivery_zone: order.delivery_zone,
+            p_comment: order.comment || "",
           });
 
           if (error) {
@@ -4115,22 +4117,6 @@
           } else {
             console.log("EMAIL SENT:", emailData);
           }
-
-          trackEvent("Purchase", {
-            value: total,
-            currency: "GEL",
-          });
-
-          cart = [];
-
-          saveCart();
-          renderCart();
-
-          closeModal("checkoutModal");
-
-          document.getElementById("successModal").classList.add("active");
-
-          this.reset();
 
           trackEvent("Purchase", {
             value: total,
