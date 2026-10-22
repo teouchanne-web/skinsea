@@ -4054,6 +4054,9 @@
                                       `;
 
         document.getElementById("productModal").classList.add("active");
+        const url = new URL(window.location.href);
+        url.searchParams.set("product", product.id);
+        window.history.pushState({}, "", url);
       }
 
       /* =========================================
@@ -4280,12 +4283,18 @@
 
       function closeModal(id) {
         document.getElementById(id).classList.remove("active");
+
+        if (id === "productModal") {
+          const url = new URL(window.location.href);
+          url.searchParams.delete("product");
+          window.history.replaceState({}, "", url);
+        }
       }
 
       document.querySelectorAll(".modal").forEach((modal) => {
         modal.addEventListener("click", (event) => {
           if (event.target === modal) {
-            modal.classList.remove("active");
+            closeModal(modal.id);
           }
         });
       });
@@ -4382,6 +4391,13 @@
 
         renderProducts();
         renderCart();
+        const productIdFromUrl = new URLSearchParams(
+          window.location.search,
+        ).get("product");
+
+        if (productIdFromUrl) {
+          openProduct(Number(productIdFromUrl));
+        }
 
         console.log("STOCK LOADED:", data);
       }
