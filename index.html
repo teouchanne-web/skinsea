@@ -2037,7 +2037,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- ================= CATEGORIES ================= -->
 
     <section class="categories" id="categories">
@@ -2466,7 +2466,25 @@
                 <option value="rustavi" data-price="8">რუსთავი — 8 ₾</option>
 
                 <option value="mtskheta" data-price="8">მცხეთა — 8 ₾</option>
+
+                <option value="region_city" data-price="8">
+                  რეგიონი — ქალაქი — 8 ₾
+                </option>
+
+                <option value="region_village" data-price="10">
+                  რეგიონი — რაიონი / სოფელი — 10 ₾
+                </option>
               </select>
+              <div
+                id="regionLocationField"
+                style="display: none; margin-top: 12px">
+                <label for="regionLocation">ქალაქი / რაიონი / სოფელი *</label>
+                <input
+                  type="text"
+                  id="regionLocation"
+                  name="region_location"
+                  placeholder="მაგ. ბათუმი, გორი, სოფ. ნატახტარი" />
+              </div>
             </div>
 
             <div class="form-group full">
@@ -4162,7 +4180,21 @@
       }
       document
         .getElementById("deliverySelect")
-        .addEventListener("change", renderCheckoutSummary);
+        .addEventListener("change", function () {
+          renderCheckoutSummary();
+
+          const regionField = document.getElementById("regionLocationField");
+          const regionInput = document.getElementById("regionLocation");
+
+          if (this.value === "region_city" || this.value === "region_village") {
+            regionField.style.display = "block";
+            regionInput.required = true;
+          } else {
+            regionField.style.display = "none";
+            regionInput.required = false;
+            regionInput.value = "";
+          }
+        });
 
       /* =========================================
                                      SUBMIT ORDER
@@ -4192,7 +4224,9 @@
           const order = {
             customer_name: formData.get("name"),
             phone: formData.get("phone"),
-            address: formData.get("address"),
+            address: formData.get("region_location")
+              ? `${formData.get("region_location")} — ${formData.get("address")}`
+              : formData.get("address"),
             customer_email: formData.get("email"),
             delivery_zone: formData.get("delivery_zone"),
             comment: formData.get("comment") || "",
