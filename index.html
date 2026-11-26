@@ -5126,7 +5126,7 @@
               class="cart-item-img"
               src="${product.image}"
               alt="${product.name}"
-              onclick="openLightbox('${product.image}', '${product.name}')"
+              onclick="openLightbox(products.find(p => p.id === ${product.id}).image, products.find(p => p.id === ${product.id}).name)"
             />
 
 
@@ -5861,7 +5861,8 @@
         catalogReady = false;
         const { data, error } = await supabaseClient
           .from("Products")
-          .select("id, price, stock, available, old_price, coming_soon");
+          .select("id, brand, name, category, price, stock, available, old_price, coming_soon, badge, image, images, country, volume, description, details, skin_type, benefits, ingredient, usage")
+          .order("id", { ascending: true });
 
         if (error || !Array.isArray(data)) {
           console.error("CATALOG ERROR:", error);
@@ -5871,7 +5872,31 @@
           return;
         }
 
-        const dbProducts = new Map(data.map((item) => [Number(item.id), item]));
+        const previousProducts = new Map(products.map(p => [p.id, p]));
+        const dbProducts = new Map(data.map(item => [Number(item.id), item]));
+        const nextProducts = data.filter(row => row.name && row.brand && row.category).map(row => {
+          const old = previousProducts.get(Number(row.id)) || {};
+          const image = row.image || old.image || "images/favicon.png";
+          return {
+            ...old,
+            id: Number(row.id),
+            brand: row.brand,
+            name: row.name,
+            category: row.category,
+            badge: row.badge ?? old.badge ?? "",
+            image,
+            images: Array.isArray(row.images) && row.images.length ? row.images : [image],
+            country: row.country ?? old.country ?? "",
+            volume: row.volume ?? old.volume ?? "",
+            description: row.description ?? old.description ?? "",
+            details: row.details ?? old.details ?? "",
+            skinType: row.skin_type ?? old.skinType ?? "",
+            benefits: row.benefits ?? old.benefits ?? "",
+            ingredients: row.ingredient ?? old.ingredients ?? "",
+            usage: row.usage ?? old.usage ?? "",
+          };
+        });
+        products.splice(0, products.length, ...nextProducts);
         products.forEach((product) => {
           const dbProduct = dbProducts.get(product.id);
           product.comingSoon = dbProduct?.coming_soon === true;
@@ -5906,8 +5931,7 @@
       renderProducts();
       // Saved cart is validated and rendered only after Supabase loads.
       checkoutBtn.disabled = true;
-      loadStock();
-      initializeWishlist();
+      loadStock().then(() => initializeWishlist());
       let skinseaSlideIndex = 0;
 
       function showSkinseaSlide(index) {
