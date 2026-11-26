@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Account | SKINSEA</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <style>
+      :root {
+        --blue: #6faec2;
+        --blue-dark: #3f849c;
+        --blue-light: #eaf7fa;
+        --cream: #faf8f3;
+        --text: #24363b;
+        --muted: #7d8b8f;
+        --border: #e2ebee;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #f7fbfd;
+        color: var(--text);
+        font-family: "DM Sans", Arial, sans-serif;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      button,
+      input {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      .container {
+        width: min(1180px, calc(100% - 40px));
+        margin: auto;
+      }
+      .topbar {
+        background: var(--text);
+        color: white;
+        text-align: center;
+        padding: 9px 15px;
+        font-size: 12px;
+        letter-spacing: 0.3px;
+      }
+      .site-header {
+        background: rgba(250, 248, 243, 0.95);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      }
+      .nav {
+        height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .logo-icon {
+        width: 28px;
+        height: 34px;
+        background: var(--blue);
+        border-radius: 70% 30% 70% 30%;
+        transform: rotate(35deg);
+        position: relative;
+      }
+      .logo-icon:after {
+        content: "";
+        width: 7px;
+        height: 7px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        position: absolute;
+        top: 7px;
+        left: 8px;
+      }
+      .logo-text {
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        color: #24444d;
+      }
+      .back {
+        font-size: 13px;
+        color: var(--blue-dark);
+        font-weight: 600;
+      }
+      .account-wrap {
+        max-width: 950px;
+        margin: 35px auto 80px;
+        padding: 0 15px;
+      }
+      .account-wrap h1 {
+        font-size: 26px;
+        margin: 0 0 12px;
+        color: #173e4a;
+      }
+      .lead {
+        font-size: 13px;
+        color: #91a5b0;
+        margin: 0 0 30px;
+      }
+      .account-grid {
+        display: grid;
+        grid-template-columns: 217px 1fr;
+        gap: 24px;
+      }
+      .sidebar,
+      .panel {
+        border: 1px solid #dce9ef;
+        background: white;
+        border-radius: 16px;
+      }
+      .sidebar {
+        padding: 22px;
+        min-height: 570px;
+      }
+      .side-btn {
+        width: 100%;
+        display: block;
+        text-align: left;
+        border: 0;
+        background: transparent;
+        color: #234a57;
+        font-size: 13px;
+        border-radius: 10px;
+        padding: 14px 12px;
+        margin-bottom: 9px;
+      }
+      .side-btn.active {
+        background: #eaf7fa;
+        color: #2580a1;
+        font-weight: 700;
+      }
+      .panel {
+        padding: 22px;
+        min-height: 570px;
+      }
+      .tab {
+        display: none;
+      }
+      .tab.active {
+        display: block;
+      }
+      .panel h2 {
+        font-size: 19px;
+        margin: 0 0 12px;
+        color: #173e4a;
+      }
+      .sub {
+        font-size: 12px;
+        color: #94a5ad;
+        margin: 0 0 20px;
+      }
+      .order {
+        border: 1px solid #dce9ef;
+        border-radius: 13px;
+        padding: 16px;
+        margin-bottom: 17px;
+      }
+      .order-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+      }
+      .order-title {
+        font-weight: 700;
+        font-size: 13px;
+        color: #123b4a;
+      }
+      .order-date {
+        font-size: 12px;
+        color: #90a5b0;
+        margin-top: 7px;
+      }
+      .status {
+        border-radius: 20px;
+        padding: 8px 12px;
+        font-size: 11px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .processing {
+        background: #fff2da;
+        color: #ac7b23;
+      }
+      .sent {
+        background: #e5f5ff;
+        color: #3284a7;
+      }
+      .delivered {
+        background: #e4f7eb;
+        color: #398e57;
+      }
+      .cancelled {
+        background: #fbeaea;
+        color: #a12c2c;
+      }
+      .order-line {
+        border-top: 1px solid #e0eaf0;
+        margin-top: 17px;
+        padding-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 12px;
+      }
+      .order-line strong {
+        white-space: nowrap;
+      }
+      .quantity {
+        font-size: 11px;
+        color: #94a5ad;
+        margin-top: 5px;
+      }
+      .note {
+        font-size: 12px;
+        color: #8299a2;
+        line-height: 1.8;
+      }
+      .field {
+        display: grid;
+        gap: 7px;
+        margin-bottom: 16px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .field input {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px;
+        width: 100%;
+        background: white;
+      }
+      .save {
+        border: 0;
+        border-radius: 24px;
+        background: var(--text);
+        color: white;
+        padding: 12px 20px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .save:disabled {
+        opacity: 0.6;
+        cursor: wait;
+      }
+      .notice {
+        background: #eef8fb;
+        padding: 14px;
+        border-radius: 12px;
+        font-size: 12px;
+        color: #427589;
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+      .copyright {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 22px;
+        color: #71868b;
+        font-size: 11px;
+        text-align: center;
+      }
+      footer {
+        background: #17282d;
+        color: white;
+        padding: 60px 0 30px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 50px;
+        margin-bottom: 50px;
+      }
+      .footer-logo {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+      .footer-about {
+        color: #9aadb1;
+        font-size: 13px;
+        line-height: 1.8;
+        max-width: 300px;
+      }
+      .footer-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 17px;
+      }
+      .footer-links {
+        display: grid;
+        gap: 11px;
+        color: #9aadb1;
+        font-size: 12px;
+      }
+      .footer-links a:hover {
+        color: white;
+      }
+      .footer-socials {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+      .footer-socials a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 9px 16px;
+        background: #2f7f7a;
+        color: white;
+        border: 1px solid #2f7f7a;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+      .footer-socials a:hover {
+        background: white;
+        color: #2f7f7a;
+        transform: translateY(-2px);
+      }
+      @media (max-width: 900px) {
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 650px) {
+        .account-grid {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          min-height: 0;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 6px;
+          padding: 12px;
+        }
+        .side-btn {
+          margin: 0;
+          font-size: 12px;
+        }
+        .panel {
+          min-height: 450px;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .nav {
+          height: 68px;
+        }
+        .back {
+          font-size: 11px;
+        }
+        .logo-text {
+          font-size: 21px;
+        }
+        .order-head {
+          align-items: flex-start;
+        }
+        .account-wrap {
+          margin-top: 25px;
+        }
+      }
+
+      .wishlist-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border: 1px solid #dce9ef;
+        border-radius: 13px;
+        padding: 12px;
+        margin-bottom: 12px;
+      }
+      .wishlist-card img {
+        width: 70px;
+        height: 76px;
+        object-fit: contain;
+        border-radius: 9px;
+        background: #faf8f3;
+      }
+      .wishlist-card-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .wishlist-card-info a {
+        color: #234a57;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .wishlist-remove {
+        border: 1px solid #dce9ef;
+        border-radius: 20px;
+        background: #fff;
+        color: #3f849c;
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      ✦ Free delivery on orders over 100 GEL • Estimated delivery: 1–3 business
+      days ✦
+    </div>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="index-en.html" class="logo" aria-label="SKINSEA Home"
+          ><span class="logo-icon"></span
+          ><span class="logo-text">skinsea</span></a
+        ><a href="index-en.html" class="back">← Back to Shop</a>
+      </div>
+    </header>
+    <main class="account-wrap">
+      <h1>My Account 🩵</h1>
+      <p class="lead">
+        Manage your personal information and view your order history.
+      </p>
+      <div class="account-grid">
+        <aside class="sidebar" aria-label="Account menu">
+          <button class="side-btn active" data-tab="orders" type="button">
+            📦 My Orders
+          </button>
+          <button class="side-btn" data-tab="profile" type="button">
+            👤 Personal Information
+          </button>
+          <button class="side-btn" data-tab="wishlist" type="button">
+            ♡ Wishlist
+          </button>
+          <button class="side-btn" data-tab="addresses" type="button">
+            📍 Addresses
+          </button>
+          <button class="side-btn" id="logout-btn" type="button">
+            🚪 Sign Out
+          </button>
+        </aside>
+        <div class="panel">
+          <section class="tab active" id="orders">
+            <h2>My Orders</h2>
+            <p class="sub">Your order history</p>
+            <div id="account-message" class="notice">
+              Checking your account…
+            </div>
+            <div id="orders-list" aria-live="polite"></div>
+          </section>
+          <section class="tab" id="profile">
+            <h2>Personal Information</h2>
+            <p class="sub">Your account details</p>
+            <label class="field"
+              >First Name<input
+                id="profile-first-name"
+                placeholder="Your first name"
+                autocomplete="given-name"
+            /></label>
+            <label class="field"
+              >Last Name<input
+                id="profile-last-name"
+                placeholder="Your last name"
+                autocomplete="family-name"
+            /></label>
+            <label class="field"
+              >Email<input
+                id="profile-email"
+                type="email"
+                placeholder="example@email.com"
+                autocomplete="email"
+                readonly
+            /></label>
+            <button class="save" type="button" id="save-profile">
+              Save Changes
+            </button>
+            <p id="profile-message" class="note" aria-live="polite"></p>
+          </section>
+          <section class="tab" id="wishlist">
+            <h2>Wishlist ♡</h2>
+            <p class="sub">Your saved products</p>
+            <div id="wishlist-list" aria-live="polite"></div>
+            <p id="wishlist-message" class="note" role="status"></p>
+          </section>
+          <section class="tab" id="addresses">
+            <h2>Addresses 📍</h2>
+            <p class="sub">Your saved delivery address</p>
+            <div class="notice">
+              Your address is saved securely to your signed-in account. You can
+              update it at any time.
+            </div>
+            <label class="field"
+              >City<input
+                id="address-city"
+                placeholder="Tbilisi"
+                autocomplete="address-level2"
+                maxlength="100"
+            /></label>
+            <label class="field"
+              >Street, Building, Apartment<input
+                id="address-street"
+                placeholder="Street, building, apartment"
+                autocomplete="street-address"
+                maxlength="300"
+            /></label>
+            <label class="field"
+              >Additional Details (optional)<input
+                id="address-details"
+                placeholder="Entrance, floor, delivery instructions"
+                maxlength="300"
+            /></label>
+            <button class="save" type="button" id="save-address">
+              Save Address
+            </button>
+            <p
+              id="address-message"
+              class="note"
+              role="status"
+              aria-live="polite"></p>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">skinsea</div>
+            <p class="footer-about">
+              An online skincare destination for those who love simple,
+              effortless beauty.
+            </p>
+            <div class="footer-socials">
+              <a
+                href="https://www.instagram.com/skinsea.skincare/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Skinsea Instagram"
+                >Instagram</a
+              ><a
+                href="https://www.facebook.com/profile.php?id=61594212786400"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Skinsea Facebook"
+                >Facebook</a
+              >
+            </div>
+          </div>
+          <div>
+            <div class="footer-title">Explore</div>
+            <div class="footer-links">
+              <a href="index-en.html#products">Products</a
+              ><a href="index-en.html#categories">Categories</a
+              ><a href="index-en.html#brands">Brands</a
+              ><a href="index-en.html#story">About Us</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-title">Help</div>
+            <div class="footer-links">
+              <a href="delivery.html">Delivery</a
+              ><a href="return.html">Returns</a><a href="faq.html">FAQ</a
+              ><a href="contact.html">Contact</a
+              ><a href="privacy-policy.html">Privacy Policy</a
+              ><a href="terms.html">Terms &amp; Conditions</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-title">Contact</div>
+            <div class="footer-links">
+              <a href="mailto:hello@skinsea.ge">hello@skinsea.ge</a
+              ><span>Tbilisi, Georgia</span>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">© 2026 skinsea. All rights reserved.</div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      const tabs = document.querySelectorAll(".tab");
+      document.querySelectorAll(".side-btn[data-tab]").forEach((btn) =>
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".side-btn[data-tab]")
+            .forEach((b) => b.classList.remove("active"));
+          tabs.forEach((t) => t.classList.remove("active"));
+          btn.classList.add("active");
+          document.getElementById(btn.dataset.tab).classList.add("active");
+        }),
+      );
+      const SUPABASE_URL = "https://kjyqqpybrswcfbyztxcv.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "sb_publishable_SlW6I1RqObjbd24gpW1WXg_mFY1laA-";
+      const message = document.getElementById("account-message");
+      const ordersList = document.getElementById("orders-list");
+      const escapeHTML = (value) =>
+        String(value ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      const formatMoney = (value) => Number(value || 0).toFixed(2) + " ₾";
+      const statusMap = {
+        processing: ["Processing", "processing"],
+        sent: ["Shipped", "sent"],
+        shipped: ["Shipped", "sent"],
+        delivered: ["Delivered", "delivered"],
+        cancelled: ["Cancelled", "cancelled"],
+        canceled: ["Cancelled", "cancelled"],
+      };
+      function parseItems(value) {
+        try {
+          const parsed = typeof value === "string" ? JSON.parse(value) : value;
+          return Array.isArray(parsed) ? parsed : [];
+        } catch {
+          return [];
+        }
+      }
+      function renderOrder(order) {
+        const date = order.created_at
+          ? new Date(order.created_at).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          : "";
+        const [statusText, statusClass] = statusMap[order.status] || [
+          escapeHTML(order.status || "Unknown"),
+          "processing",
+        ];
+        const itemLines = parseItems(order.items)
+          .map((item) => {
+            const name =
+              item.name || item.title || item.product_name || "Product";
+            const qty = Number(item.quantity ?? item.qty ?? 1);
+            const unitPrice = Number(item.price ?? 0);
+            return `<div class="order-line"><div>${escapeHTML(name)}<div class="quantity">Quantity: ${escapeHTML(qty)}</div></div><strong>${formatMoney(unitPrice * qty)}</strong></div>`;
+          })
+          .join("");
+        return `<article class="order"><div class="order-head"><div><div class="order-title">Order #${escapeHTML(order.id)}</div><div class="order-date">${escapeHTML(date)}</div></div><span class="status ${statusClass}">${statusText}</span></div>${itemLines}<div class="order-line"><strong>Total (including delivery)</strong><strong>${formatMoney(order.total)}</strong></div></article>`;
+      }
+      const client = window.supabase
+        ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+        : null;
+      async function loadOrders() {
+        if (!client) {
+          message.textContent = "Unable to connect. Please refresh the page.";
+          return;
+        }
+        try {
+          const {
+            data: { user },
+            error: userError,
+          } = await client.auth.getUser();
+          if (userError || !user) {
+            message.innerHTML =
+              'To view your orders, <a href="login-en.html" style="font-weight:700;text-decoration:underline">sign in to your account</a>.';
+            return;
+          }
+          const { data, error } = await client
+            .from("Orders")
+            .select("id, created_at, items, total, status")
+            .eq("user_id", user.id)
+            .order("created_at", { ascending: false });
+          if (error) throw error;
+          if (!data?.length) {
+            message.textContent = "You have no orders yet.";
+            return;
+          }
+          message.style.display = "none";
+          ordersList.innerHTML = data.map(renderOrder).join("");
+        } catch (err) {
+          console.error("Orders loading error:", err);
+          message.textContent =
+            "Unable to load orders. Please try again later.";
+        }
+      }
+      async function loadProfile() {
+        const profileMessage = document.getElementById("profile-message");
+        if (!client) {
+          profileMessage.textContent = "Unable to connect to the service.";
+          return;
+        }
+        try {
+          const {
+            data: { user },
+            error,
+          } = await client.auth.getUser();
+          if (error) throw error;
+          if (!user) {
+            profileMessage.textContent =
+              "Please sign in to view your personal information.";
+            return;
+          }
+          document.getElementById("profile-email").value = user.email || "";
+          document.getElementById("profile-first-name").value =
+            user.user_metadata?.first_name || "";
+          document.getElementById("profile-last-name").value =
+            user.user_metadata?.last_name || "";
+        } catch (err) {
+          console.error("Profile loading error:", err);
+          profileMessage.textContent = "Unable to load your information.";
+        }
+      }
+      document
+        .getElementById("save-profile")
+        .addEventListener("click", async () => {
+          const profileMessage = document.getElementById("profile-message");
+          const saveButton = document.getElementById("save-profile");
+          saveButton.disabled = true;
+          profileMessage.textContent = "Saving…";
+          try {
+            if (!client) throw new Error("Supabase is unavailable");
+            const {
+              data: { user },
+              error: userError,
+            } = await client.auth.getUser();
+            if (userError) throw userError;
+            if (!user) throw new Error("Not signed in");
+            const firstName = document
+              .getElementById("profile-first-name")
+              .value.trim();
+            const lastName = document
+              .getElementById("profile-last-name")
+              .value.trim();
+            const { error } = await client.auth.updateUser({
+              data: { first_name: firstName, last_name: lastName },
+            });
+            if (error) throw error;
+            profileMessage.textContent =
+              "✓ Your information has been saved successfully!";
+          } catch (err) {
+            console.error("Profile saving error:", err);
+            profileMessage.textContent = "Unable to save your information.";
+          } finally {
+            saveButton.disabled = false;
+          }
+        });
+      document
+        .getElementById("logout-btn")
+        .addEventListener("click", async () => {
+          if (!confirm("Are you sure you want to sign out?")) return;
+          try {
+            if (!client) throw new Error("Supabase is unavailable");
+            const { error } = await client.auth.signOut();
+            if (error) throw error;
+            window.location.href = "login-en.html";
+          } catch (err) {
+            console.error("Logout error:", err);
+            alert("Unable to sign out. Please try again.");
+          }
+        });
+      async function loadAddress() {
+        const msg = document.getElementById("address-message");
+        try {
+          if (!client) throw new Error("Supabase unavailable");
+          const {
+            data: { user },
+            error,
+          } = await client.auth.getUser();
+          if (error) throw error;
+          if (!user) {
+            msg.textContent = "Please sign in to manage your address.";
+            return;
+          }
+          const address = user.user_metadata?.delivery_address || {};
+          document.getElementById("address-city").value = address.city || "";
+          document.getElementById("address-street").value =
+            address.street || "";
+          document.getElementById("address-details").value =
+            address.details || "";
+        } catch (err) {
+          console.error("Address loading error:", err);
+          msg.textContent = "Unable to load your address.";
+        }
+      }
+      document
+        .getElementById("save-address")
+        .addEventListener("click", async () => {
+          const msg = document.getElementById("address-message");
+          const button = document.getElementById("save-address");
+          const city = document.getElementById("address-city").value.trim();
+          const street = document.getElementById("address-street").value.trim();
+          const details = document
+            .getElementById("address-details")
+            .value.trim();
+          if (!city || !street) {
+            msg.textContent = "Please enter your city and street address.";
+            return;
+          }
+          button.disabled = true;
+          msg.textContent = "Saving…";
+          try {
+            if (!client) throw new Error("Supabase unavailable");
+            const {
+              data: { user },
+              error: userError,
+            } = await client.auth.getUser();
+            if (userError) throw userError;
+            if (!user) {
+              msg.textContent = "Please sign in to save your address.";
+              return;
+            }
+            const { error } = await client.auth.updateUser({
+              data: { delivery_address: { city, street, details } },
+            });
+            if (error) throw error;
+            msg.textContent = "✓ Your delivery address has been saved!";
+          } catch (err) {
+            console.error("Address saving error:", err);
+            msg.textContent = "Unable to save your address. Please try again.";
+          } finally {
+            button.disabled = false;
+          }
+        });
+
+      const wishlistList = document.getElementById("wishlist-list");
+      const wishlistMessage = document.getElementById("wishlist-message");
+      let wishlistCurrentUser = null;
+      let wishlistItems = [];
+      function wishlistValid(items) {
+        return Array.isArray(items)
+          ? items
+              .map((x) => ({
+                id: Number(x?.id),
+                name: String(x?.name || `Product #${x?.id}`),
+                image: String(x?.image || ""),
+              }))
+              .filter((x) => Number.isFinite(x.id))
+          : [];
+      }
+      function renderAccountWishlist() {
+        wishlistList.replaceChildren();
+        if (!wishlistItems.length) {
+          wishlistMessage.textContent =
+            "Your wishlist is empty. Save products using the heart icon ♡";
+          return;
+        }
+        wishlistMessage.textContent = "";
+        wishlistItems.forEach((item) => {
+          const card = document.createElement("div");
+          card.className = "wishlist-card";
+          if (
+            item.image &&
+            !/^(https?:|data:|\/\/)/i.test(item.image) &&
+            !item.image.includes("..")
+          ) {
+            const img = document.createElement("img");
+            img.src = item.image;
+            img.alt = "";
+            img.onerror = () => {
+              img.style.display = "none";
+            };
+            card.append(img);
+          }
+          const info = document.createElement("div");
+          info.className = "wishlist-card-info";
+          const link = document.createElement("a");
+          link.href =
+            "index-en.html" + "?product=" + encodeURIComponent(item.id);
+          link.textContent = item.name;
+          info.append(link);
+          card.append(info);
+          const remove = document.createElement("button");
+          remove.type = "button";
+          remove.className = "wishlist-remove";
+          remove.textContent = "Remove";
+          remove.addEventListener("click", () => removeWishlistItem(item.id));
+          card.append(remove);
+          wishlistList.append(card);
+        });
+      }
+      async function loadAccountWishlist() {
+        try {
+          if (!client) throw new Error("Supabase unavailable");
+          const {
+            data: { user },
+            error,
+          } = await client.auth.getUser();
+          if (error) throw error;
+          if (!user) {
+            wishlistMessage.textContent =
+              "Please sign in to view your wishlist.";
+            return;
+          }
+          wishlistCurrentUser = user.id;
+          const remoteIds = Array.isArray(user.user_metadata?.wishlist_ids)
+            ? user.user_metadata.wishlist_ids
+                .map(Number)
+                .filter(Number.isFinite)
+            : [];
+          const snapshots = wishlistValid(user.user_metadata?.wishlist_items);
+          const guestIds = (() => {
+            try {
+              const v = JSON.parse(
+                localStorage.getItem("skinsea_wishlist") || "[]",
+              );
+              return Array.isArray(v)
+                ? v.map(Number).filter(Number.isFinite)
+                : [];
+            } catch {
+              return [];
+            }
+          })();
+          const allIds = [...new Set([...remoteIds, ...guestIds])];
+          wishlistItems = allIds.map(
+            (id) =>
+              snapshots.find((x) => x.id === id) || {
+                id,
+                name: `Product #${id}`,
+                image: "",
+              },
+          );
+          localStorage.removeItem("skinsea_wishlist");
+          localStorage.setItem(
+            `skinsea_wishlist_${user.id}`,
+            JSON.stringify(allIds),
+          );
+          renderAccountWishlist();
+          if (guestIds.some((id) => !remoteIds.includes(id)))
+            await persistAccountWishlist();
+        } catch (err) {
+          console.error("Wishlist load error:", err);
+          wishlistMessage.textContent = "Could not load your wishlist.";
+        }
+      }
+      async function persistAccountWishlist() {
+        if (!client || !wishlistCurrentUser) return;
+        const {
+          data: { user },
+          error: authError,
+        } = await client.auth.getUser();
+        if (authError || !user || user.id !== wishlistCurrentUser)
+          throw new Error("Not signed in");
+        const { error } = await client.auth.updateUser({
+          data: {
+            wishlist_ids: wishlistItems.map((x) => x.id),
+            wishlist_items: wishlistItems,
+          },
+        });
+        if (error) throw error;
+        localStorage.setItem(
+          `skinsea_wishlist_${user.id}`,
+          JSON.stringify(wishlistItems.map((x) => x.id)),
+        );
+      }
+      async function removeWishlistItem(id) {
+        const previous = [...wishlistItems];
+        wishlistItems = wishlistItems.filter((item) => item.id !== id);
+        renderAccountWishlist();
+        try {
+          await persistAccountWishlist();
+        } catch (err) {
+          console.error(err);
+          wishlistItems = previous;
+          renderAccountWishlist();
+          wishlistMessage.textContent = "Could not save your changes.";
+        }
+      }
+
+      loadAccountWishlist();
+      loadOrders();
+      loadProfile();
+      loadAddress();
+    </script>
+  </body>
+</html>
