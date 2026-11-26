@@ -5873,7 +5873,7 @@
       async function loadStock() {
         const { data, error } = await supabaseClient
           .from("Products")
-          .select("id, price, stock, available, old_price, coming_soon");
+          .select("*").order("id", { ascending: true });
 
         if (error || !Array.isArray(data)) {
           console.error("PRODUCT PRICE/STOCK ERROR:", error);
@@ -5884,6 +5884,33 @@
         }
 
         const byId = new Map(data.map((row) => [Number(row.id), row]));
+        const previous = new Map(products.map(p => [Number(p.id), p]));
+        const english = (row, field, fallback = "") => {
+          const value = row[field + "_en"];
+          if (typeof value === "string" && value.trim()) return value;
+          if (fallback) return fallback;
+          const original = row[field];
+          return typeof original === "string" && !/[\u10A0-\u10FF\u1C90-\u1CBF]/.test(original) ? original : "";
+        };
+        const next = data.filter(row => row.name && row.brand && row.category).map(row => {
+          const old = previous.get(Number(row.id)) || {};
+          const image = row.image || old.image || "images/favicon.png";
+          const jelly = /PDRN Collagen Glow Jelly Serum/i.test(row.name);
+          return {
+            ...old, id: Number(row.id), brand: row.brand, name: english(row, "name", row.name), category: row.category,
+            image, images: Array.isArray(row.images) && row.images.length ? row.images : [image],
+            badge: english(row, "badge", old.badge),
+            country: english(row, "country", old.country || "South Korea"),
+            volume: english(row, "volume", old.volume || (jelly ? "30 ml" : String(row.volume || "").replace(/მლ/g, "ml"))),
+            description: english(row, "description", old.description || (jelly ? "A lightweight jelly serum for hydration, radiance and firmer-looking skin." : "")),
+            details: english(row, "details", old.details || (jelly ? "A jelly-textured facial serum formulated with PDRN, collagen water and niacinamide." : "")),
+            skinType: english(row, "skin_type", old.skinType || (jelly ? "Especially suitable for dehydrated and dull-looking skin." : "")),
+            benefits: english(row, "benefits", old.benefits || (jelly ? "Hydration • Radiance • Supports elasticity • Smoother-looking texture" : "")),
+            ingredients: english(row, "ingredients", old.ingredients || (jelly ? "PDRN (Salmon DNA), 65% Collagen Water, 5% Niacinamide. See packaging for the full ingredient list." : "")),
+            usage: english(row, "usage", old.usage || (jelly ? "Apply a small amount to cleansed skin, gently spread and follow with moisturizer." : "")),
+          };
+        });
+        products.splice(0, products.length, ...next);
         products.forEach((product) => {
           const row = byId.get(Number(product.id));
           product.comingSoon = row?.coming_soon === true;
@@ -5895,7 +5922,8 @@
               : 0;
           product.available = Boolean(
             row &&
-            row.available !== false &&
+            row.available === true &&
+            !product.comingSoon &&
             product.stock > 0 &&
             product.price > 0,
           );
@@ -5927,8 +5955,7 @@
       renderProducts();
       // Do not clean saved cart before current stock and prices have loaded.
       checkoutBtn.disabled = true;
-      loadStock();
-      initializeWishlist();
+      loadStock().then(() => initializeWishlist());
       let skinseaSlideIndex = 0;
 
       function showSkinseaSlide(index) {
