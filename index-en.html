@@ -737,6 +737,10 @@
         color: #b86f72;
       }
 
+      .stock.coming-soon {
+        color: var(--blue-dark);
+      }
+
       .add-btn:disabled,
       .btn:disabled {
         opacity: 0.55;
@@ -4658,7 +4662,7 @@
             const stockHtml =
               product.available && product.stock > 0 && product.price > 0
                 ? `<div class="stock">✓ In Stock</div>`
-                : `<div class="stock unavailable">${product.comingSoon ? "Coming Soon" : "Out of Stock"}</div>`;
+                : `<div class="stock ${product.comingSoon ? "coming-soon" : "unavailable"}">${product.comingSoon ? "◷ Coming Soon" : "Out of Stock"}</div>`;
 
             const addButtonHtml =
               product.available && product.stock > 0 && product.price > 0
@@ -5371,7 +5375,7 @@
         const modalStockHtml =
           product.available && product.stock > 0 && product.price > 0
             ? `<div class="stock">✓ In Stock</div>`
-            : `<div class="stock unavailable">${product.comingSoon ? "Coming Soon" : "Out of Stock"}</div>`;
+            : `<div class="stock ${product.comingSoon ? "coming-soon" : "unavailable"}">${product.comingSoon ? "◷ Coming Soon" : "Out of Stock"}</div>`;
 
         const modalButtonHtml =
           product.available && product.stock > 0 && product.price > 0
