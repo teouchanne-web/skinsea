@@ -5861,7 +5861,7 @@
         catalogReady = false;
         const { data, error } = await supabaseClient
           .from("Products")
-          .select("id, brand, name, category, price, stock, available, old_price, coming_soon, badge, image, images, country, volume, description, details, skin_type, benefits, ingredient, usage")
+          .select("id, brand, name, category, price, stock, available, old_price, coming_soon, badge, image, images, country, volume, description, details, skin_type, benefits, ingredients, usage")
           .order("id", { ascending: true });
 
         if (error || !Array.isArray(data)) {
@@ -5892,7 +5892,7 @@
             details: row.details ?? old.details ?? "",
             skinType: row.skin_type ?? old.skinType ?? "",
             benefits: row.benefits ?? old.benefits ?? "",
-            ingredients: row.ingredient ?? old.ingredients ?? "",
+            ingredients: row.ingredients ?? old.ingredients ?? "",
             usage: row.usage ?? old.usage ?? "",
           };
         });
