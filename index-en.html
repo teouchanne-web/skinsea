@@ -44,7 +44,7 @@
 
     <meta
       name="description"
-      content="Skinsea — an online skincare store in Georgia. Discover skincare products from Vichy, La Roche-Posay, COSRX, SKIN1004, The Ordinary and more." />
+      content="SKINSEA — authentic Korean skincare in Georgia. Discover Anua, Medicube and SKIN1004." />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -147,7 +147,7 @@
         align-items: center;
         gap: 9px;
         font-size: 24px;
-        font-weight: 500;
+        font-weight: 700;
         letter-spacing: -1px;
       }
 
@@ -544,8 +544,12 @@
 
       .category-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 18px;
+      }
+
+      .category-card[onclick="filterCategory('devices')"] {
+        background: linear-gradient(145deg, #d9eaf0 0%, #92b8c5 100%);
       }
 
       .category-card {
@@ -1458,7 +1462,7 @@
         }
 
         .category-grid {
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
         .product-grid {
@@ -1826,7 +1830,6 @@
           object-position: center !important;
         }
       }
-
       .language-switch {
         display: inline-flex;
         align-items: center;
@@ -1836,13 +1839,934 @@
         letter-spacing: 0.4px;
         white-space: nowrap;
       }
+
       .language-switch a {
         color: var(--muted);
       }
+
       .language-switch a.active {
         color: var(--blue-dark);
       }
+      .skinsea-authenticity {
+        max-width: 1050px;
+        margin: 45px auto;
+        padding: 30px 38px;
+        background: #edf6fa;
+        border: 1px solid #d9eaf1;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+      }
+
+      .authenticity-icon {
+        width: 52px;
+        height: 52px;
+        min-width: 52px;
+        border-radius: 50%;
+        background: #d6eaf3;
+        color: #4388a6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .authenticity-content h3 {
+        margin: 0 0 10px;
+        font-size: 23px;
+        color: #24383d;
+      }
+
+      .authenticity-content p {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.8;
+        color: #65777e;
+      }
+
+      @media (max-width: 768px) {
+        .skinsea-authenticity {
+          margin: 25px 16px;
+          padding: 24px;
+          flex-direction: column;
+          text-align: center;
+          gap: 15px;
+        }
+
+        .authenticity-content h3 {
+          font-size: 20px;
+        }
+      }
+
+      /* Optional discount presentation */
+      .discount-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        z-index: 4;
+        background: #b64e60;
+        color: #fff;
+        padding: 7px 11px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .product-image-wrap:has(.discount-badge) .badge {
+        top: 48px;
+      }
+      .sale-current-price {
+        color: var(--blue-dark);
+        font-weight: 700;
+      }
+      .sale-old-price {
+        color: var(--muted);
+        font-size: 0.72em;
+        font-weight: 400;
+        margin-left: 7px;
+        white-space: nowrap;
+      }
+
+      /* Personal greeting beside the account icon */
+      .account-greeting {
+        color: #24444d;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+        max-width: 190px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .account-greeting[hidden] {
+        display: none !important;
+      }
+      @media (max-width: 650px) {
+        .account-greeting {
+          font-size: 11px;
+          max-width: 95px;
+        }
+      }
+
+      /* ================= ACCOUNT DROPDOWN ================= */
+      .account-menu {
+        position: relative;
+      }
+      .account-menu summary {
+        list-style: none;
+        cursor: pointer;
+      }
+      .account-menu summary::-webkit-details-marker {
+        display: none;
+      }
+      .account-menu summary svg {
+        width: 23px;
+        height: 23px;
+      }
+      .account-menu-panel {
+        position: absolute;
+        top: calc(100% + 12px);
+        right: 0;
+        width: 180px;
+        padding: 9px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        z-index: 1500;
+      }
+      .account-menu-panel a {
+        display: block;
+        padding: 12px;
+        font-size: 13px;
+        border-radius: 8px;
+        color: var(--text);
+      }
+      .account-menu-panel a:hover,
+      .account-menu-panel a:focus-visible {
+        background: var(--blue-light);
+        color: var(--blue-dark);
+      }
+
+      /* SKINSEA responsive corrections: keep content inside mobile viewport */
+      .hero-grid > *,
+      .product-modal-grid > *,
+      .modal-box > * {
+        min-width: 0;
+      }
+      .modal-box {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+      .product-modal-grid {
+        min-width: 0;
+      }
+      .product-modal-grid img,
+      .product-modal-grid video {
+        max-width: 100%;
+      }
+      .modal-product-name,
+      .modal-description {
+        overflow-wrap: anywhere;
+      }
+      @media (max-width: 900px) {
+        .hero-grid {
+          gap: 36px;
+        }
+        .hero-grid > * {
+          min-width: 0;
+          max-width: 100%;
+        }
+      }
+      @media (max-width: 600px) {
+        .hero {
+          overflow-x: clip;
+        }
+        .hero-grid {
+          min-width: 0 !important;
+          max-width: 100% !important;
+        }
+        .hero-grid > div {
+          width: 100%;
+          max-width: 100%;
+          min-width: 0;
+        }
+        .hero h1 {
+          font-size: clamp(30px, 9vw, 40px) !important;
+          line-height: 1.13 !important;
+          letter-spacing: -0.7px !important;
+          max-width: 100%;
+          overflow-wrap: anywhere;
+          word-break: normal;
+        }
+        .hero-text {
+          overflow-wrap: anywhere;
+        }
+        .modal {
+          padding: 12px !important;
+          overflow-x: hidden;
+        }
+        .modal-box {
+          width: 100% !important;
+          min-width: 0 !important;
+          max-width: calc(100vw - 24px) !important;
+          max-height: calc(100dvh - 24px);
+          padding: 18px !important;
+          border-radius: 22px;
+          overflow-x: hidden;
+          overflow-y: auto;
+          overscroll-behavior: contain;
+        }
+        .product-modal-grid {
+          display: grid !important;
+          grid-template-columns: minmax(0, 1fr) !important;
+          gap: 18px !important;
+          width: 100%;
+          min-width: 0;
+          max-width: 100%;
+        }
+        .product-modal-grid > * {
+          min-width: 0 !important;
+          max-width: 100%;
+        }
+        .product-modal-img {
+          display: block;
+          width: 100% !important;
+          max-width: 100% !important;
+          height: auto !important;
+          max-height: 330px;
+          aspect-ratio: 1 / 1;
+          object-fit: cover;
+          border-radius: 16px;
+        }
+        .modal-product-name {
+          font-size: clamp(23px, 7vw, 29px);
+          line-height: 1.2;
+        }
+        .product-slider {
+          width: 100%;
+          max-width: 100%;
+          min-width: 0;
+          overflow: hidden;
+        }
+        .product-slider img {
+          max-width: 100%;
+        }
+        .cart-drawer {
+          width: min(100%, 420px);
+          max-width: 100vw;
+        }
+        .cart-item {
+          grid-template-columns: 60px minmax(0, 1fr) auto;
+          gap: 8px;
+        }
+        .cart-item-info {
+          min-width: 0;
+          overflow-wrap: anywhere;
+        }
+      }
+
+      /* SKINSEA mobile product modal and swipeable image gallery */
+      #productModal .modal-box {
+        position: relative;
+      }
+      .skinsea-modal-gallery {
+        position: relative;
+        min-width: 0;
+        width: 100%;
+        align-self: start;
+      }
+      .skinsea-modal-gallery .product-modal-img {
+        display: block;
+        width: 100%;
+        height: 390px;
+        object-fit: contain;
+        background: #f3f7f6;
+        border-radius: 18px;
+        cursor: zoom-in;
+      }
+      .skinsea-gallery-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 3;
+        width: 36px;
+        height: 36px;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.92);
+        color: #24363b;
+        font-size: 24px;
+        box-shadow: 0 2px 12px #0002;
+      }
+      .skinsea-gallery-arrow.prev {
+        left: 8px;
+      }
+      .skinsea-gallery-arrow.next {
+        right: 8px;
+      }
+      .skinsea-gallery-dots {
+        display: flex;
+        justify-content: center;
+        gap: 7px;
+        padding: 12px 0 2px;
+      }
+      .skinsea-gallery-dots button {
+        width: 8px;
+        height: 8px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: #cad8dc;
+      }
+      .skinsea-gallery-dots button.active {
+        background: #3f849c;
+      }
+      /* Single authoritative mobile product modal layout */
+      @media (max-width: 600px) {
+        #productModal.modal {
+          position: fixed !important;
+          inset: 0 !important;
+          width: 100% !important;
+          height: 100dvh !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          overflow: hidden !important;
+          z-index: 5000 !important;
+        }
+        #productModal.modal.active {
+          display: flex !important;
+          align-items: stretch !important;
+          justify-content: stretch !important;
+        }
+        #productModal > .modal-box {
+          position: relative !important;
+          flex: 1 1 100% !important;
+          width: 100% !important;
+          min-width: 0 !important;
+          max-width: 100% !important;
+          height: 100% !important;
+          max-height: 100% !important;
+          margin: 0 !important;
+          padding: 64px 18px 32px !important;
+          border-radius: 0 !important;
+          overflow-x: hidden !important;
+          overflow-y: auto !important;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
+          animation: none !important;
+          transform: none !important;
+        }
+        #productModal .modal-close {
+          position: fixed !important;
+          top: 12px !important;
+          right: 14px !important;
+          margin: 0 !important;
+          float: none !important;
+          z-index: 5100 !important;
+          background: #edf6fa !important;
+          box-shadow: 0 2px 12px #0002;
+        }
+        #productModalContent,
+        #productModalContent .product-modal-grid,
+        #productModalContent .product-modal-grid > * {
+          width: 100% !important;
+          min-width: 0 !important;
+          max-width: 100% !important;
+          box-sizing: border-box;
+        }
+        #productModalContent .product-modal-grid {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: stretch !important;
+          gap: 18px !important;
+          height: auto !important;
+          overflow: visible !important;
+        }
+        #productModalContent .skinsea-modal-gallery {
+          position: relative;
+          flex: none;
+        }
+        #productModalContent .skinsea-modal-gallery .product-modal-img {
+          display: block !important;
+          width: 100% !important;
+          height: auto !important;
+          aspect-ratio: 1 / 1;
+          max-height: none !important;
+          object-fit: contain !important;
+        }
+        #lightbox {
+          position: fixed !important;
+          inset: 0 !important;
+          width: 100% !important;
+          height: 100dvh !important;
+          padding: 60px 12px 20px !important;
+          z-index: 8000 !important;
+        }
+        #lightbox .lightbox-close {
+          position: fixed !important;
+          top: 12px !important;
+          right: 12px !important;
+          z-index: 8001 !important;
+        }
+        #lightbox .lightbox-image {
+          max-width: 100% !important;
+          max-height: calc(100dvh - 90px) !important;
+          object-fit: contain !important;
+        }
+      }
+
+      /* Verified mobile viewport and lightbox corrections — 2026-11-16 */
+      @media (max-width: 600px) {
+        #productModal {
+          width: 100vw !important;
+          max-width: 100vw !important;
+          left: 0 !important;
+          right: 0 !important;
+          overflow-x: hidden !important;
+        }
+        #productModal .modal-box {
+          width: 100% !important;
+          max-width: 100% !important;
+          box-sizing: border-box !important;
+          overflow-x: hidden !important;
+          overflow-y: auto !important;
+        }
+        #productModal .product-modal-grid,
+        #productModal .skinsea-modal-gallery,
+        #productModal .product-modal-img {
+          width: 100% !important;
+          max-width: 100% !important;
+          min-width: 0 !important;
+        }
+        .lightbox {
+          position: fixed !important;
+          inset: 0 !important;
+          width: 100vw !important;
+          max-width: 100vw !important;
+          height: 100dvh !important;
+          box-sizing: border-box !important;
+          padding: 16px !important;
+          overflow: hidden !important;
+          z-index: 99999 !important;
+        }
+        .lightbox img {
+          display: block !important;
+          max-width: 100% !important;
+          max-height: 80dvh !important;
+          width: auto !important;
+          height: auto !important;
+          object-fit: contain !important;
+          margin: auto !important;
+        }
+      }
+      .lightbox .lightbox-close {
+        position: fixed !important;
+        top: 16px !important;
+        right: 16px !important;
+        z-index: 100000 !important;
+        display: grid !important;
+        place-items: center !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+      }
+
+      .nav-actions {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 7px !important;
+        min-width: 0 !important;
+      }
+
+      .account-greeting:not([hidden]) {
+        display: inline-block !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: 150px !important;
+        flex: 0 1 auto !important;
+        font-size: 12px !important;
+        font-weight: 600;
+        color: #24444d;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+
+      .account-greeting[hidden] {
+        display: none !important;
+      }
+
+      @media (max-width: 600px) {
+        .nav {
+          gap: 6px !important;
+        }
+
+        .nav-actions {
+          flex-wrap: nowrap !important;
+          gap: 2px !important;
+          min-width: 0 !important;
+        }
+
+        .account-greeting:not([hidden]) {
+          max-width: 70px !important;
+          font-size: 10px !important;
+        }
+      }
+
+      /* Mobile header: match the Georgian signed-in layout */
+      @media (max-width: 600px) {
+        .nav {
+          gap: 4px !important;
+        }
+        .nav-actions {
+          gap: 5px !important;
+          flex: 0 0 auto;
+        }
+        .nav-actions .language-switch {
+          flex-shrink: 0;
+        }
+        .nav-actions #searchBtn {
+          width: 25px !important;
+          height: 30px !important;
+          flex-shrink: 0;
+        }
+        .nav-actions .account-greeting:not([hidden]) {
+          display: inline-block !important;
+          max-width: none !important;
+          width: auto !important;
+          flex: 0 0 auto !important;
+          font-size: 10px !important;
+          white-space: nowrap !important;
+          overflow: visible !important;
+          text-overflow: clip !important;
+        }
+        .nav-actions .account-menu,
+        .nav-actions #wishlistBtn,
+        .nav-actions #cartBtn,
+        .nav-actions #mobileMenuBtn {
+          display: none !important;
+        }
+      }
+
+      /* Desktop: give the signed-in greeting its natural width. */
+      @media (min-width: 601px) {
+        .nav-actions {
+          flex-shrink: 0;
+        }
+        .nav-actions .account-menu > summary {
+          width: auto !important;
+          min-width: 42px;
+          height: 42px;
+          padding: 0 7px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 7px;
+          white-space: nowrap;
+        }
+        .nav-actions .account-menu .account-greeting:not([hidden]) {
+          width: auto !important;
+          max-width: none !important;
+          flex: 0 0 auto !important;
+          overflow: visible !important;
+          text-overflow: clip !important;
+          white-space: nowrap !important;
+          font-size: 12px !important;
+        }
+      }
+      @media (min-width: 901px) and (max-width: 1200px) {
+        .nav {
+          gap: 14px;
+        }
+        .nav > nav {
+          gap: 14px;
+          font-size: 14px;
+        }
+        .nav-actions {
+          gap: 5px;
+        }
+        .nav-actions .icon-btn {
+          width: 34px;
+          height: 38px;
+        }
+      }
+
+      /* Signed-in greeting opens the account dropdown on mobile. */
+      .account-menu > summary {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .account-menu-panel [hidden] {
+        display: none !important;
+      }
+      @media (max-width: 600px) {
+        .nav-actions .account-menu {
+          display: block !important;
+          flex: 0 0 auto;
+        }
+        .nav-actions .account-menu > summary {
+          width: auto;
+          height: 30px;
+          padding: 0 2px;
+        }
+        .nav-actions
+          .account-menu:has(.account-greeting:not([hidden]))
+          summary
+          svg {
+          display: none;
+        }
+        .nav-actions .account-menu .account-greeting:not([hidden]) {
+          display: inline-block !important;
+          max-width: none !important;
+          width: auto !important;
+          overflow: visible !important;
+          white-space: nowrap !important;
+          font-size: 10px !important;
+        }
+        .account-menu-panel {
+          right: 0;
+          top: calc(100% + 8px);
+        }
+      }
+
+      /* SKINSEA mobile navigation: keep account, cart and menu accessible. */
+      @media (max-width: 600px) {
+        header .container.nav {
+          display: flex !important;
+          flex-direction: row !important;
+          flex-wrap: nowrap !important;
+          align-items: center !important;
+          justify-content: space-between !important;
+          gap: 4px !important;
+          height: 62px !important;
+          min-width: 0 !important;
+        }
+        header .nav > .logo {
+          display: inline-flex !important;
+          flex: 0 0 auto !important;
+          gap: 5px !important;
+          min-width: 0 !important;
+        }
+        header .nav .logo-icon {
+          width: 23px !important;
+          height: 27px !important;
+          flex: 0 0 23px !important;
+        }
+        header .nav .logo-text {
+          font-size: 18px !important;
+          letter-spacing: 0.35px !important;
+        }
+        header .nav-actions {
+          display: flex !important;
+          flex: 0 1 auto !important;
+          align-items: center !important;
+          justify-content: flex-end !important;
+          flex-wrap: nowrap !important;
+          gap: 2px !important;
+          min-width: 0 !important;
+          width: auto !important;
+        }
+        header .nav-actions .language-switch {
+          display: inline-flex !important;
+          flex: 0 0 auto !important;
+          gap: 2px !important;
+          font-size: 10px !important;
+          letter-spacing: 0 !important;
+          white-space: nowrap !important;
+        }
+        header .nav-actions #searchBtn,
+        header .nav-actions #cartBtn,
+        header .nav-actions #mobileMenuBtn {
+          display: grid !important;
+          place-items: center !important;
+          flex: 0 0 28px !important;
+          width: 28px !important;
+          height: 34px !important;
+          min-width: 28px !important;
+          padding: 0 !important;
+          font-size: 17px !important;
+        }
+        header .nav-actions .account-menu {
+          display: block !important;
+          flex: 0 0 28px !important;
+          width: 28px !important;
+          min-width: 28px !important;
+        }
+        header .nav-actions .account-menu > summary {
+          display: flex !important;
+          justify-content: center !important;
+          align-items: center !important;
+          width: 28px !important;
+          min-width: 28px !important;
+          height: 34px !important;
+          padding: 0 !important;
+        }
+        header .nav-actions .account-menu > summary svg {
+          display: block !important;
+          width: 19px !important;
+          height: 19px !important;
+          flex-shrink: 0 !important;
+        }
+        header .nav-actions .account-greeting,
+        header .nav-actions .account-menu .account-greeting:not([hidden]) {
+          display: none !important;
+        }
+        header .nav-actions #wishlistBtn {
+          display: none !important;
+        }
+        header .nav-actions #cartBtn .cart-count {
+          display: grid !important;
+          top: -1px !important;
+          right: -2px !important;
+        }
+        header .nav-actions .account-menu-panel {
+          right: 0 !important;
+        }
+      }
+
+      /* Checkout: narrow mobile screens */
+      #checkoutModal .modal-box {
+        min-width: 0;
+        box-sizing: border-box;
+      }
+      #checkoutModal .form-grid,
+      #checkoutModal .form-group {
+        min-width: 0;
+      }
+      #checkoutModal .form-group input,
+      #checkoutModal .form-group select,
+      #checkoutModal .form-group textarea {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+      #checkoutModal .checkout-summary {
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+      @media (max-width: 600px) {
+        #checkoutModal {
+          padding: 10px;
+          align-items: center;
+          justify-content: center;
+        }
+        #checkoutModal .modal-box {
+          width: 100%;
+          max-width: 100%;
+          max-height: calc(100dvh - 20px);
+          overflow-x: hidden;
+          overflow-y: auto;
+          padding: 20px 15px;
+          border-radius: 18px;
+        }
+        #checkoutModal .form-grid {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 0;
+        }
+        #checkoutModal .form-group,
+        #checkoutModal .form-group.full {
+          grid-column: 1 / -1;
+        }
+        #checkoutModal .checkout-summary {
+          padding: 14px 12px;
+        }
+      }
+      /* TRUST: aligned with Georgian index.html */
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: min(1180px, calc(100% - 40px));
+        max-width: 1180px;
+        margin: 0 auto;
+        gap: 0;
+      }
+      .trust-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 27px 20px;
+        border-right: 1px solid var(--border);
+        border-bottom: 0;
+        flex: initial;
+      }
+      .trust-item:last-child {
+        border-right: 0;
+      }
+      .trust-item-inner {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        width: auto;
+        white-space: normal;
+      }
+      @media (max-width: 600px) {
+        .trust-grid {
+          grid-template-columns: 1fr;
+          width: calc(100% - 28px);
+          max-width: 100%;
+        }
+        .trust-item {
+          border-right: 0;
+          border-bottom: 1px solid var(--border);
+        }
+        .trust-item:last-child {
+          border-bottom: 0;
+        }
+      }
+
+      .trust-item-inner {
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.5;
+      }
+      .trust-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        color: #4389ac;
+      }
+      .trust-icon svg {
+        width: 20px;
+        height: 20px;
+        stroke-width: 1.8;
+      }
+      /* SKINSEA | subtle seaside hero background (decorative only) */
+      .hero > .container {
+        position: relative;
+        z-index: 2;
+      }
+      .hero {
+        isolation: isolate;
+        background:
+          radial-gradient(
+            ellipse 34% 54% at 0% 46%,
+            rgba(190, 232, 245, 0.29),
+            transparent 90%
+          ),
+          radial-gradient(
+            ellipse 35% 65% at 100% 52%,
+            rgba(196, 233, 242, 0.22),
+            transparent 90%
+          ),
+          linear-gradient(180deg, #faf9f6 0%, #fbfaf8 61%, #f1fbfd 100%);
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 37%;
+        background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201600%20290%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23d8f2f9%22%20stop-opacity%3D%22.16%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23a8ddeb%22%20stop-opacity%3D%22.54%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22b%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23bce7f1%22%20stop-opacity%3D%22.2%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d5f4fa%22%20stop-opacity%3D%22.64%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M0%2080%20C180%200%20275%20205%20470%20190%20S760%20105%20970%20170%20S1340%2060%201600%20108%20V290%20H0Z%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Cpath%20d%3D%22M0%20173%20C230%20110%20390%20270%20650%20210%20S1010%20148%201210%20208%20S1440%20130%201600%20150%20V290%20H0Z%22%20fill%3D%22url%28%23b%29%22%2F%3E%3Cpath%20d%3D%22M0%20223%20C250%20180%20420%20258%20680%20232%20S1130%20206%201600%20240%22%20stroke%3D%22%23fff%22%20stroke-width%3D%223%22%20fill%3D%22none%22%20opacity%3D%22.68%22%2F%3E%3C%2Fsvg%3E");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .hero::after {
+        content: "";
+      }
+      .hero > .container {
+        position: relative;
+        z-index: 1;
+      }
+      .hero > .drop {
+        opacity: 0.38;
+      }
+      @media (max-width: 900px) {
+        .hero::after {
+          width: 210px;
+          height: 115px;
+          opacity: 0.52;
+        }
+      }
+      @media (max-width: 600px) {
+        .hero::before {
+          height: 20%;
+          opacity: 0.52;
+        }
+        .hero::after {
+          width: 145px;
+          height: 90px;
+          opacity: 0.32;
+        }
+        .hero {
+          background: linear-gradient(180deg, #faf9f6 0%, #f7fcfd 100%);
+        }
+      }
+
+      /* SKINSEA | standalone seashell illustration, no lettering */
+      .hero::after {
+        content: "";
+        position: absolute;
+        left: clamp(8px, 3vw, 55px);
+        bottom: 12px;
+        width: clamp(95px, 12vw, 180px);
+        aspect-ratio: 260 / 190;
+        background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20260%20190%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23fffef9%22%2F%3E%3Cstop%20offset%3D%22.55%22%20stop-color%3D%22%23f6e6d6%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23dfc4b0%22%2F%3E%3C%2FlinearGradient%3E%3Cfilter%20id%3D%22shadow%22%3E%3CfeGaussianBlur%20stdDeviation%3D%225%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cellipse%20cx%3D%22130%22%20cy%3D%22168%22%20rx%3D%22100%22%20ry%3D%2212%22%20fill%3D%22%236099ac%22%20opacity%3D%22.18%22%20filter%3D%22url%28%23shadow%29%22%2F%3E%3Cpath%20d%3D%22M129%20166%20C105%20155%2050%20131%2038%20100%20C25%2065%2051%2048%2070%2063%20C61%2029%2096%2023%20111%2052%20C119%2013%20153%2013%20158%2052%20C182%2023%20211%2039%20193%2069%20C229%2058%20241%2088%20219%20114%20C199%20138%20150%20158%20129%20166Z%22%20fill%3D%22url%28%23g%29%22%20stroke%3D%22%23e4c9b7%22%20stroke-width%3D%222%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23d3b8a6%22%20stroke-width%3D%222.4%22%20opacity%3D%22.55%22%3E%3Cpath%20d%3D%22M129%20166%20Q65%20101%2069%2064%22%2F%3E%3Cpath%20d%3D%22M129%20166%20Q90%2085%20111%2052%22%2F%3E%3Cpath%20d%3D%22M129%20166%20Q130%2079%20134%2035%22%2F%3E%3Cpath%20d%3D%22M129%20166%20Q168%2080%20158%2052%22%2F%3E%3Cpath%20d%3D%22M129%20166%20Q193%20100%20193%2069%22%2F%3E%3Cpath%20d%3D%22M129%20166%20Q210%20121%20219%20114%22%2F%3E%3C%2Fg%3E%3Cellipse%20cx%3D%22130%22%20cy%3D%22160%22%20rx%3D%2220%22%20ry%3D%228%22%20fill%3D%22%23d5b5a0%22%20opacity%3D%22.7%22%2F%3E%3C%2Fsvg%3E")
+          center / contain no-repeat;
+        opacity: 0.86;
+        pointer-events: none;
+        z-index: 1;
+      }
+      @media (max-width: 600px) {
+        .hero::after {
+          width: 95px;
+          bottom: 5px;
+          left: 2px;
+          opacity: 0.62;
+        }
+      }
     </style>
+    <script
+      src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"
+      defer></script>
   </head>
 
   <body>
@@ -1851,7 +2775,7 @@
     <!-- ================= TOP BAR ================= -->
 
     <div class="topbar">
-      ✦ Free delivery on orders over 100 GEL, estimated delivery time: 1–3
+      ✦ Free delivery on orders over 100 GEL • Estimated delivery time: 1–3
       business days ✦
     </div>
 
@@ -1868,9 +2792,9 @@
           <a href="#products">Products</a>
           <a href="#categories">Categories</a>
           <a href="#brands">Brands</a>
-          <a href="#story">About us</a>
+          <a href="#story">About Us</a>
 
-          <a href="contact-en.html">Contact</a>
+          <a href="contact.html">Contact</a>
         </nav>
 
         <div class="nav-actions">
@@ -1882,6 +2806,31 @@
           <button class="icon-btn" id="searchBtn" aria-label="Search">
             🔍
           </button>
+
+          <details class="account-menu" id="accountMenu">
+            <summary
+              class="icon-btn"
+              aria-label="User Account"
+              title="My Account">
+              <span class="account-greeting" id="accountGreeting" hidden></span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M4.5 20c.7-4 3.3-6 7.5-6s6.8 2 7.5 6"></path>
+              </svg>
+            </summary>
+            <div class="account-menu-panel">
+              <a href="login-en.html" id="accountSignIn">Sign In / Register</a>
+              <a href="account-en.html">My Account</a>
+              <a href="#" id="accountSignOut" hidden>Sign Out</a>
+            </div>
+          </details>
 
           <button class="icon-btn" id="wishlistBtn" aria-label="Wishlist">
             ♡
@@ -1937,32 +2886,32 @@
           <div class="eyebrow">✦ Your new skincare ritual</div>
 
           <h1>
-            Find your<br />
-            <span>beauty</span><br />
-            ritual
+            Discover<br />
+            <span>Authentic</span><br />
+            Korean Skincare
           </h1>
 
           <p class="hero-text">
-            Skincare products that make your everyday routine simpler, more
+            Skincare products that make your daily routine simpler, more
             enjoyable and effective.
           </p>
 
           <div class="hero-buttons">
-            <a href="#products" class="btn btn-primary"> Shop products → </a>
+            <a href="#products" class="btn btn-primary"> Shop Products → </a>
 
-            <a href="#story" class="btn btn-light"> Learn more </a>
+            <a href="#story" class="btn btn-light"> Learn More </a>
           </div>
         </div>
 
         <div class="hero-visual">
           <div class="hero-slider">
+            <div class="hero-slide">
+              <img src="images/hero.png" alt="hero skincare" />
+            </div>
             <div class="hero-slide active">
               <img src="images/anua100.png" alt="anua skincare" />
             </div>
 
-            <div class="hero-slide">
-              <img src="images/hyalub5.png" alt="Hyalub5 skincare" />
-            </div>
             <div class="hero-slide">
               <img src="images/hero.jpg" alt="hero skincare" />
             </div>
@@ -1970,12 +2919,11 @@
             <div class="hero-slide">
               <img src="images/medicubebluecapsule.png" alt="hero skincare" />
             </div>
-            <div class="hero-slide">
-              <img src="images/herosea.png" alt="hero skincare" />
-            </div>
+
             <div class="hero-slide">
               <img src="images/medicubebluehero.png" alt="hero skincare" />
             </div>
+
             <button
               class="hero-slider-arrow prev"
               onclick="changeHeroSlide(-1)"
@@ -1999,18 +2947,6 @@
                 class="hero-slider-dot"
                 onclick="goToHeroSlide(1)"
                 aria-label="Slide 2"></button>
-              <button
-                class="hero-slider-dot"
-                onclick="goToHeroSlide(2)"
-                aria-label="Slide 3"></button>
-              <button
-                class="hero-slider-dot"
-                onclick="goToHeroSlide(3)"
-                aria-label="Slide 4"></button>
-              <button
-                class="hero-slider-dot"
-                onclick="goToHeroSlide(4)"
-                aria-label="Slide 5"></button>
             </div>
           </div>
 
@@ -2018,9 +2954,9 @@
             <div class="floating-icon">✦</div>
 
             <div>
-              <small> Our pick </small>
+              <small> Our Selection </small>
 
-              <strong> Everyday skincare routine </strong>
+              <strong> Everyday Skincare Routine </strong>
             </div>
           </div>
         </div>
@@ -2030,21 +2966,39 @@
     <!-- ================= TRUST ================= -->
 
     <div class="trust">
-      <div class="container trust-grid">
+      <div class="trust-grid">
         <div class="trust-item">
-          <span class="trust-icon">✓</span>
-          Quality products
+          <div class="trust-item-inner">
+            <span class="trust-icon"><i data-lucide="check-circle"></i></span>
+            <span>Quality Products</span>
+          </div>
         </div>
+        <div class="trust-item">
+          <div class="trust-item-inner">
+            <span class="trust-icon"><i data-lucide="truck"></i></span>
+            <span>Fast Delivery</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-item-inner">
+            <span class="trust-icon"><i data-lucide="sparkles"></i></span>
+            <span>Famous Korean Brands</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="skinsea-authenticity">
+      <div class="authenticity-icon">✓</div>
 
-        <div class="trust-item">
-          <span class="trust-icon">⌁</span>
-          Fast delivery
-        </div>
+      <div class="authenticity-content">
+        <h3>100% Authentic Korean Skincare</h3>
 
-        <div class="trust-item">
-          <span class="trust-icon">↻</span>
-          Easy returns
-        </div>
+        <p>
+          Every product at SKINSEA is authentic. We source our products from a
+          trusted international supplier that is an authorized distributor of
+          selected Korean beauty brands and provides written confirmation of
+          product authenticity.
+        </p>
       </div>
     </div>
 
@@ -2054,13 +3008,13 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Find what you need</h2>
+            <h2>Find What You Need</h2>
           </div>
         </div>
 
         <div class="category-grid">
           <div class="category-card" onclick="filterCategory('serum')">
-            <img src="images/storyy.jpg" alt="Serum" />
+            <img src="images/storyy.jpg" alt="Serums" />
 
             <div class="category-overlay"></div>
 
@@ -2072,7 +3026,7 @@
           </div>
 
           <div class="category-card" onclick="filterCategory('cream')">
-            <img src="images/cream.jpg" alt="Cream" />
+            <img src="images/cream.jpg" alt="Creams" />
 
             <div class="category-overlay"></div>
 
@@ -2082,19 +3036,19 @@
               <h3>Creams</h3>
             </div>
           </div>
-          <div class="category-card" onclick="filterCategory('toners')">
-            <img src="images/toners.jpg" alt="Toners" />
+          <div class="category-card" onclick="filterCategory('cleanser')">
+            <img src="images/cleanser1.png" alt="Facial Cleansers" />
 
             <div class="category-overlay"></div>
 
             <div class="category-content">
               <div class="category-number">03</div>
-
-              <h3>Toners</h3>
+              <h3>Facial Cleansers</h3>
             </div>
           </div>
+
           <div class="category-card" onclick="filterCategory('sunscreen')">
-            <img src="images/spf.png" alt="Sunscreen" />
+            <img src="images/spf.png" alt="Sunscreens" />
 
             <div class="category-overlay"></div>
 
@@ -2102,6 +3056,30 @@
               <div class="category-number">04</div>
 
               <h3>Sunscreens</h3>
+            </div>
+          </div>
+          <div class="category-card" onclick="filterCategory('devices')">
+            <img src="images/devices.png" alt="Beauty Devices" />
+            <div class="category-overlay"></div>
+            <div class="category-content">
+              <div class="category-number">05</div>
+              <h3>Beauty Devices</h3>
+            </div>
+          </div>
+          <div class="category-card" onclick="filterCategory('accessories')">
+            <img src="images/beauty.jpg" alt="Accessories" />
+            <div class="category-overlay"></div>
+            <div class="category-content">
+              <div class="category-number">06</div>
+              <h3>Accessories</h3>
+            </div>
+          </div>
+          <div class="category-card" onclick="filterCategory('mask')">
+            <img src="images/mask.png" alt="Face Masks" />
+            <div class="category-overlay"></div>
+            <div class="category-content">
+              <div class="category-number">07</div>
+              <h3>Masks</h3>
             </div>
           </div>
         </div>
@@ -2116,7 +3094,7 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Featured products</h2>
+            <h2>Featured Products</h2>
           </div>
 
           <p>Popular products for your everyday skincare routine.</p>
@@ -2129,9 +3107,18 @@
 
           <button class="filter-btn" data-filter="cream">Creams</button>
 
-          <button class="filter-btn" data-filter="toners">Toners</button>
+          <button class="filter-btn" data-filter="cleanser">
+            Facial Cleansers
+          </button>
 
           <button class="filter-btn" data-filter="sunscreen">Sunscreens</button>
+          <button class="filter-btn" data-filter="devices">
+            Beauty Devices
+          </button>
+          <button class="filter-btn" data-filter="accessories">
+            Accessories
+          </button>
+          <button class="filter-btn" data-filter="mask">Masks</button>
         </div>
 
         <div class="product-grid" id="productGrid"></div>
@@ -2146,6 +3133,10 @@
 
         <img
           src="images/skinseabanner1.png"
+          alt="Skinsea skincare banner"
+          class="skinsea-slide" />
+        <img
+          src="images/skinseabanner2.png"
           alt="Skinsea skincare banner"
           class="skinsea-slide" />
 
@@ -2171,7 +3162,7 @@
       </div>
 
       <div class="skinsea-brand-text">
-        <h2>Skincare made simple</h2>
+        <h2>Skincare Made Simple</h2>
 
         <p>
           Discover products suited to your skin, learn more about ingredients
@@ -2195,14 +3186,11 @@
         </div>
 
         <div class="brand-grid">
-          <div class="brand">VICHY</div>
+          <div class="brand">Medicube</div>
 
-          <div class="brand">La Roche-Posay</div>
+          <div class="brand">Anua</div>
 
-          <div class="brand">COSRX</div>
-
-          <div class="brand">SKIN1004</div>
-          <div class="brand">The Ordinary</div>
+          <div class="brand">Skin 1004</div>
         </div>
       </div>
     </section>
@@ -2221,36 +3209,50 @@
         <div>
           <h2>
             Skincare<br />
-            shouldn’t be complicated.
+            shouldn't be complicated.
           </h2>
 
           <p>
-            Skinsea was created to make finding great skincare products simple
-            and enjoyable.
+            SKINSEA was founded on one simple idea — quality skincare should be
+            accessible, easy to understand, and enjoyable for everyone.
           </p>
 
           <p>
-            We select products from well-known brands and aim to make your
-            everyday skincare routine easier.
+            We believe that beautiful skin doesn't come from complicated
+            routines or countless products, but from choosing the right
+            skincare.
+          </p>
+
+          <p>
+            That's why at SKINSEA, you'll discover authentic Korean skincare
+            from well-known and trusted brands. We carefully select products
+            designed to address different skin types and concerns, making your
+            daily skincare routine simpler and more enjoyable.
+          </p>
+
+          <p>
+            Our goal is to help you create your own skincare ritual — one that
+            fits your skin's needs, your preferences, and your lifestyle.
+          </p>
+
+          <p>
+            <strong> SKINSEA — Discover your skincare ritual. </strong>
           </p>
 
           <div class="story-points">
             <div class="story-point">
-              <span class="check"> ✓ </span>
-
-              Simple choices
+              <span class="check">✓</span>
+              Simple and thoughtful choices
             </div>
 
             <div class="story-point">
-              <span class="check"> ✓ </span>
-
-              Well-known brands
+              <span class="check">✓</span>
+              Authentic Korean skincare
             </div>
 
             <div class="story-point">
-              <span class="check"> ✓ </span>
-
-              Fast delivery
+              <span class="check">✓</span>
+              Trusted Korean brands
             </div>
           </div>
         </div>
@@ -2266,7 +3268,7 @@
             <div class="footer-logo">skinsea</div>
 
             <p class="footer-about">
-              An online skincare space for people who like beauty kept simple.
+              An online skincare destination for those who love simple beauty.
             </p>
 
             <div class="footer-socials">
@@ -2306,15 +3308,15 @@
             <div class="footer-title">Help</div>
 
             <div class="footer-links">
-              <a href="delivery-en.html" class="active">Delivery</a>
+              <a href="delivery.html"> Delivery </a>
 
-              <a href="return-en.html">Returns</a>
+              <a href="return.html"> Returns </a>
 
-              <a href="faq-en.html"> FAQ </a>
+              <a href="faq.html"> Frequently Asked Questions </a>
 
-              <a href="contact-en.html">Contact</a>
-              <a href="privacy-policy-en.html">Privacy Policy</a>
-              <a href="terms-en.html">Terms & Conditions</a>
+              <a href="contact.html"> Contact </a>
+              <a href="privacy-policy.html">Privacy Policy</a>
+              <a href="terms.html">Terms and Conditions</a>
             </div>
           </div>
 
@@ -2341,7 +3343,7 @@
 
     <aside class="cart-drawer" id="cartDrawer">
       <div class="drawer-head">
-        <h3>Your cart</h3>
+        <h3>Your Cart</h3>
 
         <button class="close-btn" id="closeCart">✕</button>
       </div>
@@ -2358,7 +3360,7 @@
         <div class="summary-row">
           <span> Delivery </span>
 
-          <span id="cartDelivery"> Based on zone </span>
+          <span id="cartDelivery"> - </span>
         </div>
 
         <div class="summary-row summary-total">
@@ -2393,7 +3395,7 @@
         class="lightbox-image"
         id="lightboxImage"
         src=""
-        alt="Product image" />
+        alt="Product photo" />
     </div>
 
     <!-- ================= CHECKOUT MODAL ================= -->
@@ -2406,14 +3408,16 @@
 
         <h2 class="modal-title">Checkout</h2>
 
-        <p class="modal-subtitle">Enter your details to complete your order.</p>
+        <p class="modal-subtitle">
+          Fill in your details to receive an order confirmation by email.
+        </p>
 
         <div class="checkout-summary" id="checkoutSummary"></div>
 
         <form id="checkoutForm">
           <div class="form-grid">
             <div class="form-group">
-              <label> Full name * </label>
+              <label> Full Name * </label>
 
               <input type="text" name="name" required />
             </div>
@@ -2443,42 +3447,37 @@
               <input
                 type="text"
                 name="address"
-                placeholder="Street, number, apartment"
+                placeholder="Street, building, apartment"
                 required />
             </div>
 
             <div class="form-group">
-              <label> Delivery </label>
+              <label> Delivery Zone * </label>
 
               <select name="delivery_zone" id="deliverySelect" required>
                 <option value="" disabled selected>Select delivery zone</option>
-                <option value="tbilisi" data-price="5">Tbilisi — 5 ₾</option>
 
-                <option value="tkhinvala-kaklebi" data-price="6">
+                <option value="tbilisi" data-price="6">Tbilisi — 6 ₾</option>
+
+                <option value="tkhinvala_kaklebi" data-price="6">
                   Tkhinvala / Kaklebi — 6 ₾
                 </option>
 
-                <option value="special-zone" data-price="7">
-                  Tskneti / Lilo / Ponichala / Kojori and other areas — 7 ₾
+                <option value="special_zone" data-price="7">
+                  Tskneti / Lilo / Ponichala / Kojori and others — 7 ₾
                 </option>
 
                 <option value="rustavi" data-price="8">Rustavi — 8 ₾</option>
 
                 <option value="mtskheta" data-price="8">Mtskheta — 8 ₾</option>
-                <option value="region_city" data-price="8">
-                  Region — City — 8 ₾
+
+                <option value="region_city" data-price="9">
+                  Region — City — 9 ₾
                 </option>
 
-                <option value="region_village" data-price="10">
-                  Region — District / Village — 10 ₾
+                <option value="region_village" data-price="11">
+                  Region — District / Village — 11 ₾
                 </option>
-              </select>
-            </div>
-            <div class="form-group full">
-              <label> Payment method </label>
-
-              <select name="payment">
-                <option value="COD">Pay the courier — Bank transfer</option>
               </select>
               <div
                 id="regionLocationField"
@@ -2493,7 +3492,15 @@
             </div>
 
             <div class="form-group full">
-              <label> Additional comment </label>
+              <label> Payment Method </label>
+
+              <select name="payment">
+                <option value="COD">Pay the courier by bank transfer</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label> Additional Comments </label>
 
               <textarea
                 name="comment"
@@ -2502,9 +3509,10 @@
           </div>
 
           <div class="delivery-info">
-            🚚 You will receive your order confirmation and details by email.
+            🚚 You will receive order confirmation and details by email.
           </div>
-          <button class="checkout-btn" type="submit">Place order →</button>
+
+          <button class="checkout-btn" type="submit">Place Order →</button>
         </form>
       </div>
     </div>
@@ -2515,21 +3523,21 @@
       <div class="modal-box success-box">
         <div class="success-icon">✓</div>
 
-        <h2>Order received! 🌊</h2>
+        <h2>Order Received! 🌊</h2>
 
-        <p>Thank you for choosing Skinsea 💙</p>
+        <p>Thank you for choosing SKINSEA 💙</p>
 
         <p>
-          We’ve successfully received your order. An order confirmation has been
-          sent to the email address you provided. The courier will contact you
-          using the phone number you provided before delivery.
+          We have received your order. A confirmation has been sent to your
+          email address. Before delivery, the courier will contact you at the
+          phone number provided.
         </p>
 
         <p>📦 Estimated delivery time: <strong>1–3 business days</strong></p>
 
         <p>
-          For any questions, you can contact us by email at hello@skinsea.ge or
-          via Instagram/Facebook.
+          If you have questions, contact us by email: hello@skinsea.ge or via
+          Instagram/Facebook.
         </p>
         <button class="btn btn-primary" onclick="closeModal('successModal')">
           OK
@@ -2545,8 +3553,8 @@
 
     <script>
       /* =========================================
-                         HERO SLIDER
-                      ========================================= */
+                                     HERO SLIDER
+                                  ========================================= */
 
       let currentHeroSlide = 0;
       const heroSlides = document.querySelectorAll(".hero-slide");
@@ -2579,658 +3587,858 @@
       }, 5000);
 
       /* =========================================
-                         PRODUCTS
-                      ========================================= */
+                                     PRODUCTS
+                                  ========================================= */
 
       const products = [
         {
           id: 1,
-          brand: "Vichy",
-          name: "Minéral 89",
+          brand: "Anua",
+          name: "Azelaic Acid 10 Hyaluron Redness Soothing Serum",
           category: "serum",
-          price: 43.9,
+          price: 0,
+          oldPrice: null,
           badge: "",
 
-          image: "images/vichy.png",
-          images: ["images/vichy.png", "images/vichy2.png"],
+          image: "images/anua-azelaic.png",
+          images: [
+            "images/anua-azelaic.png",
+            "images/anua-azelaic2.png",
+            "images/anuaazelaic3.png",
+          ],
 
-          country: "France",
-          volume: "50 ml",
+          country: "South Korea",
+          volume: "30 ml",
 
           description:
-            "A lightweight hydrating serum for your everyday skincare routine.",
+            "A lightweight serum with 10% azelaic acid and hyaluronic acid to help calm visible redness and support hydration.",
+
           details:
-            "A lightweight hydrating serum that helps replenish moisture and leaves skin looking smoother and plumper.",
+            "A lightweight serum with 10% azelaic acid and hyaluronic acid to help calm visible redness and support hydration.",
 
           skinType:
-            "For all skin types, including sensitive and dehydrated skin.",
+            "Ideal for oily, combination and blemish-prone skin; introduce gradually if your skin is sensitive.",
 
-          benefits:
-            "Intense hydration • Smoother, plumper-looking skin • Supports the skin’s moisture barrier",
+          benefits: "Soothing • Hydration • More even-looking skin tone",
 
           ingredients:
-            "Hyaluronic acid • Polyglutamic acid • Vichy volcanic mineralizing water",
+            "10% Azelaic Acid • Hyaluronic Acid • Calming Complex • Centella",
 
           usage:
-            "Apply morning and/or evening to cleansed skin. Follow with moisturizer and use SPF in the morning.",
-          available: true,
-          stock: 2,
+            "Apply a few drops to clean, dry skin. Start 2–3 times per week, then increase as tolerated. Follow with moisturizer and daytime SPF.",
+
+          available: false,
+          stock: 0,
         },
 
         {
           id: 2,
-          brand: "La Roche-Posay",
-          name: "Cicaplast Baume B5",
-          category: "cream",
-          price: 31.9,
+          brand: "Anua",
+          name: "Niacinamide 10 TXA 4 Serum",
+          category: "serum",
+          price: 0,
+          oldPrice: null,
           badge: "",
 
-          image: "images/cicaplast.png",
-          images: ["images/cicaplast.png", "images/cicaplast2.png"],
+          image: "images/anua-niacinamide.png",
+          images: [
+            "images/anua-niacinamide.png",
+            "images/anua-niacinamide2.png",
+            "images/anua-niacinamide3.png",
+          ],
 
-          country: "France",
-          volume: "100 ml",
+          country: "South Korea",
+          volume: "30 ml",
 
           description:
-            "A soothing restorative balm for dry and irritated skin.",
+            "A brightening serum with niacinamide and tranexamic acid to help improve the appearance of uneven skin tone.",
+
           details:
-            "A soothing restorative balm that helps protect dry, irritated and weakened skin while supporting the skin barrier.",
+            "A brightening serum with niacinamide and tranexamic acid to help improve the appearance of uneven skin tone.",
 
           skinType:
-            "For dry, sensitive and irritated skin, including skin with a weakened barrier.",
+            "For skin with visible discoloration, dullness or uneven tone.",
 
-          benefits:
-            "Soothes irritated skin • Supports the skin barrier • Helps reduce dryness and discomfort • Protects the skin",
+          benefits: "Brightening • Even-looking skin tone • Hydration",
 
-          ingredients:
-            "5% Panthenol • Madecassoside • Tribioma • Zinc and manganese",
+          ingredients: "10% Niacinamide • 4% Tranexamic Acid",
 
           usage:
-            "Apply to clean, dry skin as needed. Suitable for face and body. Avoid the eye area.",
-          available: true,
-          stock: 5,
+            "Apply to clean skin before moisturizer. Use sunscreen during the day.",
+
+          available: false,
+          stock: 0,
         },
 
         {
           id: 3,
-          brand: "COSRX",
-          name: "Skin Booster",
-          category: "serum",
-          price: 35.9,
+          brand: "Medicube",
+          name: "3H Relief Cream",
+          category: "cream",
+          price: 0,
+          oldPrice: null,
           badge: "",
 
-          image: "images/booster.png",
-          images: ["images/booster.png", "images/booster1.png"],
+          image: "images/medicube-3h.png",
+          images: ["images/medicube-3h.png", "images/medicube-3h2.png"],
 
           country: "South Korea",
-          volume: "150 ml",
+          volume: "50 ml",
 
           description:
-            "A multi-purpose peptide serum for hydration and smoother, healthier-looking skin.",
+            "A comforting moisturizing cream designed to soothe and support the skin barrier.",
 
           details:
-            "A lightweight serum with six types of peptides that helps hydrate skin and support smoother-looking texture and elasticity.",
+            "A comforting moisturizing cream designed to soothe and support the skin barrier.",
 
-          skinType:
-            "For all skin types, including dry, combination and sensitive skin.",
+          skinType: "For skin needing moisture and comfort.",
 
-          benefits:
-            "Intense hydration • Improved-looking texture • Supports elasticity • Smoother, healthier-looking skin",
+          benefits: "Moisturizing • Soothing • Barrier care",
 
-          ingredients:
-            "6 types of peptides • Hyaluronic acid • NAG (N-acetyl glucosamine) • Amino acids",
+          ingredients: "Moisturizing and skin-soothing ingredients",
 
           usage:
-            "Apply after toner to cleansed skin, morning and/or evening. Gently pat until absorbed, then continue your routine.",
+            "Apply to face and neck as the moisturizing step of your routine.",
 
-          available: true,
+          available: false,
+          stock: 0,
         },
 
         {
           id: 4,
-          brand: "La Roche-Posay",
-          name: "Vitamin C Serum",
+          brand: "Medicube",
+          name: "Azelaic Acid 16 BB Soothing Serum",
           category: "serum",
-          price: 0.0,
+          price: 0,
+          oldPrice: null,
           badge: "",
 
-          image: "images/laroche.png",
-          images: ["images/larochec.png", "images/larochec1.png"],
+          image: "images/medicube-azelaic.png",
+          images: [
+            "images/medicube-azelaic.png",
+            "images/medicube-azelaic2.png",
+          ],
 
-          country: "France",
+          country: "South Korea",
           volume: "30 ml",
 
           description:
-            "A vitamin C serum for brighter, more even and smoother-looking skin.",
+            "A soothing serum formulated with azelaic acid to support a clearer, calmer-looking complexion.",
 
           details:
-            "An antioxidant vitamin C serum that helps improve the look of skin tone and texture, boost radiance and reduce the appearance of fine lines.",
+            "A soothing serum formulated with azelaic acid to support a clearer, calmer-looking complexion.",
 
-          skinType:
-            "For all skin types, especially uneven tone, dull-looking skin and early signs of ageing.",
+          skinType: "For skin prone to redness, excess oil or uneven texture.",
 
-          benefits:
-            "Radiance • More even-looking tone • Improved texture • Antioxidant protection • Reduced appearance of fine lines",
+          benefits: "Soothing • Smoother-looking texture • Skin comfort",
 
-          ingredients:
-            "Vitamin C • Salicylic acid • Neurosensine • La Roche-Posay thermal spring water",
+          ingredients: "Azelaic Acid • Soothing ingredients",
 
           usage:
-            "Apply in the morning to cleansed face and neck, avoiding the eye area. Follow with moisturizer and SPF.",
+            "Apply to clean skin and follow with moisturizer. Introduce gradually and use daytime SPF.",
 
-          available: true,
+          available: false,
+          stock: 0,
         },
 
         {
           id: 5,
-          brand: "SKIN1004",
-          name: "Centella Ampoule",
-          category: "serum",
-          price: 33.9,
-          badge: "",
-
-          image: "images/centella.png",
-          images: ["images/centella.png", "images/centella2.png"],
-
-          country: "South Korea",
-          volume: "100 ml",
-
-          description: "A lightweight ampoule to soothe the skin.",
-          details: "Helps soothe and hydrate the skin.",
-
-          skinType: "For all skin types.",
-
-          benefits: "Helps hydrate the skin and restore a comfortable feel",
-
-          ingredients: "Centella Asiatica extract",
-
-          usage:
-            "Apply a few drops to clean skin and gently pat until fully absorbed.",
-
-          available: true,
-          stock: 1,
-        },
-        {
-          id: 6,
-          brand: "Vichy",
-          name: "Normaderm Phytosolution",
-          category: "serum",
-          price: 39.9,
-          badge: "",
-
-          image: "images/vichygreen.png",
-          images: ["images/vichygreen.png", "images/vichygreen2.png"],
-
-          country: "France",
-          volume: "50 ml",
-
-          description:
-            "A dual-action daily treatment for blemish-prone skin that hydrates and helps reduce the appearance of imperfections.",
-
-          details:
-            "A lightweight daily treatment for oily and blemish-prone skin that hydrates and helps improve the appearance of pores, imperfections and skin texture.",
-
-          skinType: "For oily, combination and blemish-prone skin.",
-
-          benefits:
-            "Helps reduce the appearance of imperfections and pores • Hydrates • Improves the look of texture • Helps control oily shine",
-
-          ingredients:
-            "Salicylic acid • Hyaluronic acid • Vichy volcanic mineralizing water",
-
-          usage:
-            "Apply morning and/or evening to cleansed skin, avoiding the eye area. Use SPF in the morning.",
-
-          available: true,
-          stock: 1,
-        },
-        {
-          id: 7,
-          brand: "The Ordinary",
-          name: "Glycolic Acid 7% Exfoliating Toner",
-          category: "toners",
-          price: 29.9,
-          badge: "",
-
-          image: "glycolic.png",
-          images: ["images/glycolic.png", "images/glycolic2.png"],
-
-          country: "Canada",
-          volume: "240 ml",
-
-          description:
-            "An exfoliating toner with 7% glycolic acid to improve the look of skin texture and tone.",
-
-          details:
-            "An AHA-based exfoliating toner that helps remove dead surface cells and improve the appearance of texture, brightness and evenness.",
-
-          skinType:
-            "For normal, combination and oily skin. Use extra caution on sensitive skin.",
-
-          benefits:
-            "Improved-looking texture • Brighter, more even appearance • Surface exfoliation • Smoother-looking skin",
-
-          ingredients:
-            "7% Glycolic acid • Aloe vera • Amino acids • Ginseng extract",
-
-          usage:
-            "Use in the evening on clean, dry skin. Do not rinse. Avoid the eye area. Do not combine with other strong exfoliating acids in the same routine, and always use SPF in the morning.",
-          available: true,
-          stock: 1,
-        },
-        {
-          id: 8,
-          brand: "The Ordinary",
-          name: "Hyaluronic Acid 2% + B5",
-          category: "serum",
-          price: 0.0,
-          badge: "",
-
-          image: "ordinaryserum.png",
-          images: ["images/ordinaryserum.png", "images/ordinaryserum1.png"],
-
-          country: "Canada",
-          volume: "30 ml",
-
-          description:
-            "A hyaluronic acid serum for intense hydration and smoother-looking skin.",
-
-          details:
-            "A lightweight serum with 2% hyaluronic acid and vitamin B5 that helps hydrate, retain moisture and leave skin looking smoother and plumper.",
-
-          skinType:
-            "For all skin types, including dry, dehydrated and sensitive skin.",
-
-          benefits:
-            "Intense hydration • Moisture retention • Smoother, plumper-looking skin • Supports the skin barrier",
-
-          ingredients: "2% Hyaluronic acid • Provitamin B5 (Panthenol)",
-
-          usage:
-            "Apply a few drops morning and/or evening to cleansed skin before moisturizer, then continue your skincare routine.",
-
-          available: true,
-          stock: 1,
-        },
-        {
-          id: 9,
-          brand: "Skin1004",
-          name: "Madagascar Centella Hyalu-Cica Brightening Toner",
-          category: "toners",
-          price: 31.9,
-          badge: "New",
-
-          image: "images/centellatoner.png",
-          images: ["images/centellatoner.png", "images/centellatoner1.png"],
-
-          country: "South Korea",
-          volume: "210 ml",
-
-          description:
-            "A lightweight hydrating toner with Centella Asiatica and Hyalu-Cica complex that helps soothe and hydrate the skin while supporting a brighter, more even-looking complexion.",
-
-          details:
-            "A gentle daily toner with a lightweight, watery texture. The formula helps hydrate and soothe the skin, absorbs easily and leaves the skin feeling fresh without heaviness or stickiness.",
-
-          skinType:
-            "Suitable for all skin types, especially dehydrated, sensitive or dull-looking skin.",
-
-          benefits:
-            "Hydration • Soothing care • Supports a brighter and more even-looking complexion • Lightweight texture",
-
-          ingredients:
-            "Centella Asiatica Extract • Hyaluronic Acid • Niacinamide",
-
-          usage:
-            "After cleansing, apply a small amount using a cotton pad or your hands and gently pat into the skin. Follow with serum and moisturizer.",
-
-          available: true,
-          stock: 1,
-        },
-        {
-          id: 10,
-          brand: "The Ordinary",
-          name: "The Skin Support Set",
-          category: "serum",
-          price: 35.9,
-          badge: "SET",
-
-          image: "ordinaryset.png",
-          images: ["images/ordinaryset.png", "images/ordinaryset1.png"],
-
-          country: "Canada",
-          volume: "2 × 30 ml",
-
-          description:
-            "A skincare set featuring two popular The Ordinary serums — Niacinamide 10% + Zinc 1% and Hyaluronic Acid 2% + B5. The duo helps hydrate the skin, improve its appearance and support a smoother-looking complexion.",
-
-          details:
-            "The Skin Support Set includes two 30 ml serums. Niacinamide 10% + Zinc 1% helps improve the appearance of skin texture and balance excess oil, while Hyaluronic Acid 2% + B5 provides hydration and helps the skin look smoother and plumper.",
-
-          skinType:
-            "Suitable for all skin types, especially skin concerned with excess oil, uneven texture or dehydration.",
-
-          benefits:
-            "Hydration • Oil balance • Smoother-looking texture • Improved skin appearance",
-
-          ingredients:
-            "Niacinamide 10% • Zinc PCA • Hyaluronic Acid 2% • Vitamin B5",
-
-          usage:
-            "Apply a few drops to clean skin in the morning or evening. The two serums can be used in the same routine. Follow with moisturizer, and use SPF during the day.",
-
-          available: true,
-          stock: 1,
-        },
-        {
-          id: 11,
-          brand: "La Roche-Posay",
-          name: "Anthelios UVMune 400 Oil Control Fluid SPF50+",
-          category: "sunscreen",
-          price: 31.9,
-          badge: "SPF 50+",
-
-          image: "images/larochespf.png",
-          images: ["images/larochespf.png", "images/larochespf1.png"],
-
-          country: "France",
-          volume: "50 ml",
-
-          description:
-            "A very high protection SPF50+ facial sunscreen fluid designed for oily and combination skin. It provides broad-spectrum UVA and UVB protection while helping control excess shine.",
-
-          details:
-            "La Roche-Posay Anthelios UVMune 400 Oil Control Fluid SPF50+ is a lightweight facial sunscreen developed for oily and combination skin. UVMune 400 technology provides very high protection against UVA and UVB rays, including ultra-long UVA. Its Oil Control formula helps reduce excess shine and leaves the skin with a mattifying effect.",
-
-          skinType:
-            "Suitable for oily and combination skin, including sensitive skin.",
-
-          benefits:
-            "SPF50+ protection • UVA/UVB protection • Ultra-long UVA protection • Oil and shine control • Mattifying effect • Lightweight texture",
-
-          ingredients: "Mexoryl 400 • UV filter complex • Airlicium",
-
-          usage:
-            "Shake well before use. Apply generously to the face and neck before sun exposure. Reapply frequently to maintain protection, especially after sweating, swimming or towel drying.",
-
-          available: true,
-          stock: 1,
-        },
-        {
-          id: 12,
           brand: "Medicube",
-          name: "Collagen Firming Sun Cream SPF50+ PA++++",
-          category: "sunscreen",
-          price: 33.9,
-          badge: "SPF 50+",
-
-          image: "images/medicubespf.png",
-          images: ["images/medicubespf.png", "images/medicubespf1.png"],
-
-          country: "South Korea",
-          volume: "50 ml",
-
-          description:
-            "A high-protection SPF50+ PA++++ sunscreen that combines daily sun protection with hydrating skincare. Its lightweight formula helps keep the skin moisturized and comfortable.",
-
-          details:
-            "Medicube Collagen Firming Sun Cream SPF50+ PA++++ is a sunscreen designed for daily use. The formula contains collagen, hyaluronic acid and ceramide to support skin hydration and help care for the skin barrier. SPF50+ PA++++ provides a high level of protection against UVA and UVB rays.",
-
-          skinType: "Suitable for all skin types.",
-
-          benefits:
-            "SPF50+ PA++++ protection • UVA/UVB protection • Hydration • Skin barrier care • Suitable for daily use",
-
-          ingredients: "Collagen • Hyaluronic Acid • Ceramide",
-
-          usage:
-            "Apply to the face and neck as the last step of your morning skincare routine before sun exposure. Reapply throughout the day as needed to maintain protection.",
-
-          available: true,
-        },
-        {
-          id: 13,
-          brand: "Anua",
-          name: "PDRN Hyaluronic Acid Capsule 100 Serum",
-          category: "serum",
-          price: 33.9,
-          badge: "PDRN",
-
-          image: "images/anuapdrn.png",
-          images: ["images/anuapdrn.png", "images/anuapdrn1.png"],
-
-          country: "South Korea",
-          volume: "30 ml",
-
-          description:
-            "A hydrating serum formulated with PDRN, hyaluronic acid and collagen to help replenish moisture and leave the skin looking smooth, fresh and radiant.",
-
-          details:
-            "Anua PDRN Hyaluronic Acid Capsule 100 Serum is a concentrated hydrating serum designed to support moisture retention and improve the appearance of dry, dehydrated skin. The formula combines PDRN (Sodium DNA), multiple forms of hyaluronic acid and collagen to help maintain hydration and leave the skin feeling soft and plump.",
-
-          skinType:
-            "Suitable for all skin types, especially dry and dehydrated skin.",
-
-          benefits:
-            "Deep hydration • Helps retain moisture • Supports a plump and smooth appearance • Helps improve skin softness • Lightweight serum texture",
-
-          ingredients:
-            "PDRN (Sodium DNA) • Hyaluronic Acid • Hydrolyzed Collagen • Niacinamide",
-
-          usage:
-            "Apply an appropriate amount to clean skin and gently pat until absorbed. Use after toner and before moisturizer, morning and/or evening.",
-
-          available: true,
-        },
-
-        {
-          id: 14,
-          brand: "Vichy",
-          name: "Liftactiv Specialist B3 Serum",
-          category: "serum",
-          price: 0.0,
-          badge: "B3 Serum",
-
-          image: "images/vichyred.png",
-          images: ["images/vichyred.png", "images/vichyred1.png"],
-
-          country: "France",
-          volume: "30 ml",
-
-          description:
-            "A facial serum with niacinamide and glycolic acid, designed to target dark spots and uneven skin tone. It helps improve the appearance of skin for a smoother, brighter and more even-looking complexion.",
-
-          details:
-            "Vichy Liftactiv Specialist B3 Serum is formulated to target dark spots, wrinkles and uneven skin tone. The formula combines 5% Niacinamide B3, Glycolic Acid, Vitamin Cg, Bio-Peptide and Vichy Volcanic Water. With regular use, it helps reduce the appearance of dark spots and improve skin texture for a smoother and more even-looking complexion.",
-
-          skinType: "Suitable for all skin types, including sensitive skin.",
-
-          benefits:
-            "Dark spot care • Helps even skin tone • Anti-wrinkle care • Brighter-looking skin • Improved skin texture",
-
-          ingredients:
-            "5% Niacinamide B3 • Glycolic Acid • Vitamin Cg • Bio-Peptide • Vichy Volcanic Water",
-
-          usage:
-            "Apply a few drops to clean, dry skin, avoiding the eye area. Use morning and/or evening before moisturizer. Apply sunscreen during the day.",
-
-          available: true,
-        },
-
-        {
-          id: 15,
-          brand: "La Roche-Posay",
-          name: "Pure Niacinamide 10 Serum",
-          category: "serum",
-          price: 35.9,
-          badge: "10% Niacinamide",
-
-          image: "images/larochepurple.png",
-          images: ["images/larochepurple.png", "images/larochepurple1.png"],
-
-          country: "France",
-          volume: "30 ml",
-
-          description:
-            "A brightening facial serum with 10% niacinamide, designed to target dark spots, uneven skin tone and dullness. It helps leave the skin looking smoother, brighter and more even.",
-
-          details:
-            "La Roche-Posay Pure Niacinamide 10 Serum is formulated to improve the appearance of dark spots and uneven skin tone. Its formula combines 10% niacinamide with hyaluronic acid to support hydration while helping the complexion look brighter and more even. The lightweight serum is suitable for daily skincare routines.",
-
-          skinType: "Suitable for all skin types, including sensitive skin.",
-
-          benefits:
-            "Dark spot care • Helps even skin tone • Brightens the appearance of skin • Hydration • Smoother-looking complexion",
-
-          ingredients:
-            "10% Niacinamide • Hyaluronic Acid • La Roche-Posay Thermal Spring Water",
-
-          usage:
-            "Apply a few drops to the face and neck after cleansing, avoiding the eye area. Use morning and/or evening before moisturizer. Apply sunscreen during the day.",
-
-          available: true,
-        },
-
-        {
-          id: 16,
-          brand: "La Roche-Posay",
-          name: "Retinol B3 Serum",
-          category: "serum",
-          price: 35.9,
-          badge: "Retinol B3",
-
-          image: "images/larochepink.png",
-          images: ["images/larochepink.png", "images/larochepink1.png"],
-
-          country: "France",
-          volume: "30 ml",
-
-          description:
-            "A facial serum with retinol and vitamin B3, designed to target wrinkles, uneven skin tone and signs of photoaging. It helps leave the skin looking smoother, more even and renewed.",
-
-          details:
-            "La Roche-Posay Retinol B3 Serum is a renewing serum formulated with pure retinol, progressive release retinol, vitamin B3 and glycerin. The formula helps reduce the appearance of wrinkles and signs of photoaging while improving skin texture and promoting a more even-looking complexion. Glycerin helps maintain hydration, while vitamin B3 supports skin comfort.",
-
-          skinType: "Suitable for all skin types, including sensitive skin.",
-
-          benefits:
-            "Anti-wrinkle care • Helps reduce signs of photoaging • Helps even skin tone • Improves skin texture • Hydration",
-
-          ingredients:
-            "Pure Retinol • Progressive Release Retinol • Vitamin B3 • Glycerin • La Roche-Posay Thermal Spring Water",
-
-          usage:
-            "Use in the evening. Apply a few drops to the face and neck, avoiding the eye area. Introduce retinol gradually according to your skin's tolerance. Apply sunscreen during the day.",
-
-          available: true,
-        },
-        {
-          id: 17,
-          brand: "Medicube",
-          name: "Hyaluronic Multi Peptide Serum",
-          category: "serum",
-          price: 0.0,
-          badge: "Hyaluronic + Peptide",
-
-          image: "images/medicubeblue.png",
-          images: ["images/medicubeblue.png", "images/medicubeblue1.png"],
-
-          country: "South Korea",
-          volume: "30 ml",
-
-          description:
-            "A hydrating facial serum with hyaluronic acid and peptides that helps provide intensive hydration, support skin elasticity and promote a smoother, more hydrated-looking complexion.",
-
-          details:
-            "Medicube Hyaluronic Multi Peptide Serum is a lightweight hydrating serum formulated with 0.5% Sodium Hyaluronate and a complex of 13 types of peptides. The formula helps maintain skin hydration, reduce feelings of dryness and support a smoother, more supple-looking complexion. Its lightweight texture spreads easily and is comfortable for daily skincare.",
-
-          skinType:
-            "Suitable for all skin types, especially dry and dehydrated skin.",
-
-          benefits:
-            "Intensive hydration • Helps maintain moisture • Supports skin elasticity • Smoother, more hydrated-looking skin • Lightweight texture",
-
-          ingredients: "Sodium Hyaluronate 0.5% • 13 Types Peptide Complex",
-
-          usage:
-            "After cleansing and toning, apply a few drops to the face and neck and gently spread over the skin. Follow with moisturizer. Suitable for use in the morning and evening.",
-
-          available: true,
-        },
-        {
-          id: 18,
-          brand: "Medicube",
-          name: "PDRN Pink Peptide Serum",
-          category: "serum",
-          price: 33.9,
-          badge: "PDRN + Peptide",
-
-          image: "images/medicubepink.png",
-          images: ["images/medicubepink.png", "images/medicubepink1.png"],
-
-          country: "South Korea",
-          volume: "30 ml",
-
-          description:
-            "A facial serum with PDRN and peptides that helps hydrate the skin, support elasticity and promote a smoother, healthy-looking complexion.",
-
-          details:
-            "Medicube PDRN Pink Peptide Serum is a lightweight daily serum formulated with 1% PDRN (Sodium DNA) and a complex of 5 types of peptides. The formula helps hydrate the skin, support elasticity and promote a smoother, well-cared-for appearance. Its lightweight texture spreads easily and fits comfortably into a daily skincare routine.",
-
-          skinType:
-            "Suitable for all skin types, especially dry, dull or less elastic-looking skin.",
-
-          benefits:
-            "Hydration • Supports skin elasticity • Smoother-looking skin • Promotes a healthy, well-cared-for appearance • Lightweight texture",
-
-          ingredients: "PDRN (Sodium DNA) 1% • 5 Types Peptide Complex",
-
-          usage:
-            "After cleansing and toning, apply a few drops to the face and neck and gently spread over the skin. Follow with moisturizer. Suitable for use in the morning and evening.",
-
-          available: true,
-        },
-        {
-          id: 19,
-          brand: "Medicube",
-          name: "TXA Niacinamide Capsule Cream",
+          name: "Deep Vita C Capsule Cream",
           category: "cream",
-          price: 0.0,
-          badge: "TXA + Niacinamide",
+          price: 0,
+          oldPrice: null,
+          badge: "",
 
-          image: "images/medicubepinkcream.png",
+          image: "images/medicube-vita-c.png",
           images: [
-            "images/medicubepinkcream.png",
-            "images/medicubepinkcream1.png",
+            "images/medicube-vita-c.png",
+            "images/medicube-vita-c2.png",
+            "images/vitaccream.png",
           ],
 
           country: "South Korea",
           volume: "55 g",
 
           description:
-            "A facial cream with TXA and niacinamide that helps promote a brighter, more even-looking skin tone while providing hydration and supporting a smooth, well-cared-for complexion.",
+            "A vitamin C capsule cream designed to promote a brighter, more radiant-looking complexion.",
 
           details:
-            "Medicube TXA Niacinamide Capsule Cream is a daily facial cream formulated with TXA and niacinamide. The formula is designed to care for uneven and dull-looking skin and helps promote a brighter, more even-looking complexion. Its capsule cream texture blends into the skin as it is applied, leaving it feeling hydrated, smooth and well cared for.",
+            "A vitamin C capsule cream designed to promote a brighter, more radiant-looking complexion.",
 
-          skinType:
-            "Suitable for all skin types, especially uneven, dull-looking or pigmentation-prone skin.",
+          skinType: "For dull-looking skin and uneven skin tone.",
 
-          benefits:
-            "Supports a more even-looking skin tone • Brighter-looking complexion • Hydration • Smooth and well-cared-for appearance",
+          benefits: "Radiance • Hydration • More even-looking tone",
 
-          ingredients: "TXA (Tranexamic Acid) • Niacinamide",
+          ingredients: "Vitamin C • Moisturizing ingredients",
 
           usage:
-            "Use as the final step of your skincare routine. Apply an appropriate amount to the face and neck and gently spread until absorbed. Suitable for use in the morning and evening. Apply sunscreen during the day.",
+            "Blend the capsules into the gel and apply evenly to face and neck. Use sunscreen during the day.",
+
+          available: false,
+          stock: 0,
+        },
+        {
+          id: 6,
+          brand: "Medicube",
+          name: "Glutathione Glow Serum",
+          category: "serum",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+
+          image: "images/medicube-glutathione.png",
+          images: [
+            "images/medicube-glutathione.png",
+            "images/medicube-glutathione2.png",
+          ],
+
+          country: "South Korea",
+          volume: "30 ml",
+
+          description:
+            "A glow-enhancing serum with glutathione to help skin look brighter and more luminous.",
+
+          details:
+            "A glow-enhancing serum with glutathione to help skin look brighter and more luminous.",
+
+          skinType: "For dull-looking skin and uneven skin tone.",
+
+          benefits: "Radiance • Hydration • Brighter-looking skin",
+
+          ingredients: "Glutathione • Skin-conditioning ingredients",
+
+          usage: "Apply a few drops after cleansing and before moisturizer.",
+
+          available: false,
+          stock: 0,
+        },
+        {
+          id: 7,
+          brand: "Medicube",
+          name: "Hyaluronic Moisturizing Capsule Cream",
+          category: "cream",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+
+          image: "images/medicube-hyaluronic.png",
+          images: [
+            "images/medicube-hyaluronic.png",
+            "images/medicube-hyaluronic2.png",
+            "images/medicubebluecapsule1.png",
+          ],
+
+          country: "South Korea",
+          volume: "55 g",
+
+          description:
+            "A hydrating capsule cream formulated to help skin feel smooth, supple and moisturized.",
+
+          details:
+            "A hydrating capsule cream formulated to help skin feel smooth, supple and moisturized.",
+
+          skinType: "For skin in need of extra hydration.",
+
+          benefits: "Hydration • Softness • Skin comfort",
+
+          ingredients: "Hyaluronic Acid • Moisturizing ingredients",
+
+          usage:
+            "Mix the capsule and gel textures, then apply as a moisturizer.",
+
+          available: false,
+          stock: 0,
+        },
+        {
+          id: 8,
+          brand: "Medicube",
+          name: "Kojic Acid Turmeric Vita Capsule Cream",
+          category: "cream",
+          price: 0,
+          oldPrice: null,
+          badge: "For Pigmentation ✨",
+          image: "images/medicube-kojic-turmeric.png",
+          images: [
+            "images/medicube-kojic-turmeric.png",
+
+            "images/kojiccream.png",
+          ],
+          country: "South Korea",
+          volume: "53 g",
+
+          description:
+            "A capsule cream with kojic acid and turmeric-inspired ingredients for a brighter, more even-looking complexion.",
+
+          details:
+            "A capsule cream with kojic acid and turmeric-inspired ingredients for a brighter, more even-looking complexion.",
+
+          skinType: "For dull or uneven-looking skin.",
+
+          benefits: "Brightening • Hydration • More even-looking tone",
+
+          ingredients: "Kojic Acid • Turmeric • Vitamins",
+
+          usage:
+            "Blend capsules with gel and apply to the skin. Use daytime SPF.",
+
+          available: false,
+          stock: 0,
+        },
+        {
+          id: 9,
+          brand: "Medicube",
+          name: "PDRN Pink Collagen Capsule Cream",
+          category: "cream",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/medicube-pdrn-pink.png",
+          images: [
+            "images/medicube-pdrn-pink.png",
+            "images/pinkpdrncapsule.png",
+          ],
+          country: "South Korea",
+          volume: "55 g",
+
+          description:
+            "A pink capsule cream with PDRN and collagen-inspired skincare ingredients for a moisturized, plump-looking finish.",
+
+          details:
+            "A pink capsule cream with PDRN and collagen-inspired skincare ingredients for a moisturized, plump-looking finish.",
+
+          skinType: "For skin needing hydration and a smoother appearance.",
+
+          benefits: "Moisture • Plump-looking skin • Smoothness",
+
+          ingredients: "PDRN • Collagen • Moisturizing ingredients",
+
+          usage:
+            "Mix capsule and gel textures and apply evenly as a moisturizer.",
+
+          available: false,
+          stock: 0,
+        },
+        {
+          id: 10,
+          brand: "Medicube",
+          name: "Ultra Light PDRN Pink Peptide Serum",
+          category: "serum",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/medicube-pdrn-peptide.png",
+          images: [
+            "images/medicube-pdrn-peptide.png",
+            "images/ultralightserum.png",
+          ],
+          country: "South Korea",
+          volume: "30 ml",
+
+          description:
+            "A lightweight pink peptide serum designed to hydrate and support a smooth-looking complexion.",
+
+          details:
+            "A lightweight pink peptide serum designed to hydrate and support a smooth-looking complexion.",
+
+          skinType:
+            "For skin seeking lightweight hydration and a refined appearance.",
+
+          benefits: "Hydration • Smooth-looking skin • Skin care",
+
+          ingredients: "PDRN • Peptides • Moisturizing ingredients",
+
+          usage: "Apply after cleansing and before moisturizer.",
+
+          available: false,
+          stock: 0,
+        },
+        {
+          id: 11,
+          brand: "SKIN1004",
+          name: "Madagascar Centella Hyalu-Cica Water-Fit Sun Serum",
+          category: "sunscreen",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/skin1004-hyalu-cica-sun.png",
+          images: [
+            "images/skin1004-hyalu-cica-sun.png",
+            "images/skin1004-hyalu-cica-sun2.png",
+          ],
+          country: "South Korea",
+          volume: "50 ml",
+
+          description:
+            "A lightweight daily sunscreen serum with Hyalu-Cica skincare ingredients.",
+
+          details:
+            "A lightweight daily sunscreen serum with Hyalu-Cica skincare ingredients.",
+
+          skinType: "For daily sun protection across a range of skin types.",
+
+          benefits: "Sun protection • Hydration • Lightweight finish",
+
+          ingredients: "UV Filters • Hyaluronic Acid • Centella",
+
+          usage:
+            "Apply generously as the final step of your morning routine. Reapply according to the product instructions.",
+
+          available: false,
+          stock: 0,
+        },
+
+        {
+          id: 12,
+          brand: "SKIN1004",
+          name: "Madagascar Centella Hyalu-Teca Firming Cream",
+          category: "cream",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/skin1004-hyalu-teca.png",
+          image: "images/skin1004-hyalu-teca.png",
+          images: [
+            "images/skin1004-hyalu-teca.png",
+            "images/skin1004cream.png",
+          ],
+          country: "South Korea",
+          volume: "50 ml",
+
+          description:
+            "A moisturizing firming cream from the Madagascar Centella Hyalu-Teca range.",
+
+          details:
+            "A moisturizing firming cream from the Madagascar Centella Hyalu-Teca range.",
+
+          skinType:
+            "For skin seeking moisture and a firmer-looking appearance.",
+
+          benefits: "Hydration • Skin comfort • Firmer-looking skin",
+
+          ingredients: "Centella • Hyalu-Teca • Moisturizing ingredients",
+
+          usage:
+            "Apply as the final moisturizing step of your skincare routine.",
+
+          available: false,
+          stock: 0,
+        },
+
+        {
+          id: 13,
+          brand: "SKIN1004",
+          name: "Madagascar Centella Ampoule",
+          category: "serum",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/skin1004-centella-ampoule.png",
+          images: [
+            "images/skin1004-centella-ampoule.png",
+            "images/skin1004-centella-ampoule2.png",
+          ],
+          country: "South Korea",
+          volume: "55 ml",
+
+          description:
+            "A lightweight centella ampoule that helps soothe and hydrate the skin.",
+
+          details:
+            "A lightweight centella ampoule that helps soothe and hydrate the skin.",
+
+          skinType:
+            "Suitable for many skin types, including skin seeking soothing care.",
+
+          benefits: "Soothing • Hydration • Skin comfort",
+
+          ingredients: "Centella Asiatica Extract",
+
+          usage:
+            "Apply a few drops to clean skin and pat gently until absorbed.",
+
+          available: false,
+          stock: 0,
+        },
+
+        {
+          id: 14,
+          brand: "Medicube",
+          name: "AGE-R Booster Pro Pink Edition",
+          category: "devices",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/medicube-booster-pro-pink.png",
+          images: [
+            "images/medicube-booster-pro-pink.png",
+            "images/device1.png",
+          ],
+          country: "South Korea",
+          volume: "1 set",
+
+          description:
+            "A multi-mode facial skincare device designed for use with compatible skincare products.",
+
+          details:
+            "A multi-mode facial skincare device designed for use with compatible skincare products.",
+
+          skinType:
+            "For users following the manufacturer’s recommended skincare device routine.",
+
+          benefits: "Device-assisted skincare routine",
+
+          ingredients: "Electronic skincare device",
+
+          usage:
+            "Follow the manufacturer’s official instructions for each mode, duration and safety precaution.",
+
+          available: false,
+          stock: 0,
+        },
+
+        {
+          id: 15,
+          brand: "Anua",
+          name: "Heartleaf Quercetinol Pore Deep Cleansing Foam",
+          category: "cleanser",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/anua-heartleaf-cleanser.png",
+          images: [
+            "images/anua-heartleaf-cleanser.png",
+            "images/anuaheartleafcleanser.png",
+          ],
+          country: "South Korea",
+          volume: "150 ml",
+
+          description:
+            "A foaming facial cleanser with heartleaf extract to remove daily impurities and excess oil.",
+
+          details:
+            "A foaming facial cleanser with heartleaf extract to remove daily impurities and excess oil.",
+
+          skinType:
+            "For a variety of skin types, especially combination and oily skin. Patch-test if sensitive.",
+
+          benefits: "Cleansing • Removing excess oil • Fresh skin feel",
+
+          ingredients: "Heartleaf Extract • Glycerin • Gentle cleansing agents",
+
+          usage:
+            "Wet face with lukewarm water. Lather a small amount, gently massage while avoiding eyes, and rinse thoroughly.",
+
+          available: false,
+          stock: 0,
+        },
+
+        {
+          id: 16,
+          brand: "Medicube",
+          name: "TXA Niacinamide Capsule Cream",
+          category: "cream",
+          price: 0.0,
+          oldPrice: null,
+          badge: "TXA + Niacinamide",
+          image: "images/medicubepinkcream.png",
+          images: [
+            "images/medicubepinkcream.png",
+            "images/medicubepinkcream1.png",
+            "images/medicubepinkcream2.png",
+          ],
+
+          country: "South Korea",
+          volume: "55 g",
+
+          description:
+            "A capsule face cream with TXA and niacinamide to support a brighter, more even-looking skin tone.",
+
+          details:
+            "A capsule face cream with TXA and niacinamide to support a brighter, more even-looking skin tone.",
+
+          skinType:
+            "For all skin types, particularly dull or uneven-looking skin.",
+
+          benefits: "More even-looking skin tone • Radiance • Hydration",
+
+          ingredients: "Tranexamic Acid (TXA) • Niacinamide",
+
+          usage:
+            "Blend capsule and cream textures and apply to face and neck. Use sunscreen during the day.",
 
           available: true,
+        },
+        {
+          id: 17,
+          brand: "Medicube",
+          name: "Pore Brush",
+          category: "accessories",
+          price: 29.9,
+          oldPrice: null,
+          badge: "",
+          image: "images/porebrush.png",
+          images: ["images/porebrush.png"],
+          country: "South Korea",
+          volume: "1 piece",
+          description:
+            "A facial cleansing accessory designed to complement your pore care routine.",
+          details:
+            "Medicube Pore Brush is a facial cleansing accessory designed to be used together with a facial cleanser.",
+          skinType: "Use according to your skin's individual sensitivity.",
+          benefits:
+            "An additional accessory for your facial cleansing routine.",
+          ingredients: "Not applicable — accessory",
+          usage:
+            "Use gently without applying excessive pressure. Rinse and allow to dry after each use.",
+          available: false,
+          stock: 0,
+        },
+
+        {
+          id: 18,
+          brand: "Medicube",
+          name: "Collagen Jelly Cream Mini",
+          category: "creams",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/pinkjelly.png",
+          images: ["images/pinkjelly.png"],
+          country: "South Korea",
+          volume: "50 ml",
+          description:
+            "A collagen-infused jelly cream designed to hydrate the skin and support its elasticity.",
+          details:
+            "Medicube Collagen Jelly Cream Mini is a lightweight, jelly-textured moisturizer that helps maintain skin hydration, softness, and elasticity. It leaves the skin looking smooth, refreshed, and well cared for.",
+          skinType:
+            "Suitable for various skin types. Patch testing is recommended for sensitive skin.",
+          benefits:
+            "Hydration, skin softness, elasticity support, and a smoother, healthier-looking complexion.",
+          ingredients:
+            "Collagen and hydrolyzed collagen. Please refer to the product packaging for the complete INCI ingredient list.",
+          usage:
+            "Apply to clean skin as the final step of your skincare routine. Gently spread over the face and neck. Use morning or evening.",
+          available: false,
+          stock: 0,
+        },
+        {
+          id: 19,
+          brand: "Medicube",
+          name: "Hyaluronic Ceramide Jelly Cream",
+          category: "cream",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/bluejelly.png",
+          images: ["images/bluejelly.png"],
+          country: "South Korea",
+          volume: "50 ml",
+          description:
+            "A hydrating jelly cream with hyaluronic acid and ceramides, designed to support moisture retention and the skin barrier.",
+          details:
+            "Medicube Hyaluronic Ceramide Jelly Cream is a jelly-textured moisturizer formulated with hyaluronic acid, ceramides, and niacinamide. It helps maintain skin hydration, reduce the feeling of dryness, and support the skin's natural moisture barrier.",
+          skinType:
+            "Especially suitable for skin in need of hydration. Patch testing is recommended for sensitive skin.",
+          benefits:
+            "Intense hydration, moisture retention, skin barrier support, reduced dryness, and improved skin softness.",
+          ingredients:
+            "Hyaluronic acid, ceramides, and niacinamide. Please refer to the product packaging for the complete INCI ingredient list.",
+          usage:
+            "Apply to clean skin after your serum as the final step of your skincare routine. Gently spread over the face and neck. Use morning or evening.",
+          available: false,
+          stock: 0,
+        },
+
+        {
+          id: 21,
+          brand: "Medicube",
+          name: "Zero Foam Cleanser",
+          category: "cleanser",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/zerofoamcleanser.png",
+          images: ["images/zerofoamcleanser.png"],
+          country: "South Korea",
+          volume: "120 ml",
+          description:
+            "A foaming facial cleanser designed to remove dirt, excess oil, and daily impurities from the skin.",
+          details:
+            "Medicube Zero Foam Cleanser is a daily facial cleanser that creates a rich foam when mixed with water. It helps remove excess sebum, dirt, and accumulated impurities, leaving the skin feeling clean and refreshed. Suitable for everyday skincare routines.",
+          skinType:
+            "Suitable for various skin types. Patch testing is recommended for sensitive or dry skin.",
+          benefits:
+            "Gentle facial cleansing, excess oil removal, daily impurity removal, and a clean, refreshed skin feeling.",
+          ingredients:
+            "Glycerin, Myristic Acid, Sorbitol, Palmitic Acid, and Stearic Acid. Please refer to the product packaging for the complete INCI ingredient list.",
+          usage:
+            "Apply a small amount to wet hands and lather with water. Gently massage onto the face, avoiding direct contact with the eyes. Rinse thoroughly with lukewarm water.",
+          available: false,
+          stock: 0,
+        },
+        {
+          id: 22,
+          brand: "Medicube",
+          name: "Azelaic Acid Niacinamide Deep Clean Foam Cleanser",
+          category: "cleanser",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/azelaicfoam.png",
+          images: ["images/azelaicfoam.png"],
+          country: "South Korea",
+          volume: "120 g",
+
+          description:
+            "A foaming facial cleanser formulated with azelaic acid and niacinamide to help remove excess oil and everyday impurities from the skin.",
+
+          details:
+            "Medicube Azelaic Acid Niacinamide Deep Clean Foam Cleanser is a foaming facial cleanser formulated with azelaic acid, niacinamide, hyaluronic acid, and ceramides. Designed for daily cleansing, it helps leave the skin feeling clean, fresh, and comfortable.",
+
+          skinType:
+            "Particularly suitable for oily and combination skin types. A patch test is recommended for sensitive skin.",
+
+          benefits:
+            "Facial cleansing • Excess oil removal • Removal of daily impurities • Clean and refreshed skin feeling",
+
+          ingredients:
+            "Azelaic Acid, Niacinamide, Glycerin, Hyaluronic Acid, Sodium Hyaluronate, Ceramide NP, Ceramide NS, Ceramide AS, Ceramide AP, Ceramide EOP, Centella Asiatica Extract, Madecassoside, Asiaticoside. Please refer to the product packaging for the complete INCI ingredient list.",
+
+          usage:
+            "Lather a small amount between wet hands. Gently massage onto the face using circular motions, avoiding the eye area. Rinse thoroughly with water and continue with your skincare routine.",
+
+          available: false,
+          stock: 0,
+        },
+
+        {
+          id: 23,
+          brand: "Anua",
+          name: "Barrier Intensive Cream KPop Demon Hunters Collaboration",
+          category: "cream",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/anuaintensive.png",
+          images: ["images/anuaintensive.png"],
+          country: "South Korea",
+          volume: "50 ml",
+
+          description:
+            "An intensive moisturizing face cream that helps hydrate and soften the skin while supporting its natural moisture barrier. Presented in special KPop Demon Hunters collaboration packaging.",
+
+          details:
+            "Anua Barrier Intensive Cream KPop Demon Hunters Collaboration is an intensive moisturizing face cream designed for the daily care of dry and moisture-depleted skin. Its formula contains squalane, panthenol, glycerin, trehalose, and allantoin, which help maintain hydration, support moisture retention, and promote skin comfort. The cream helps reduce feelings of dryness, leaving the skin feeling soft, smooth, and well cared for. Presented in exclusive KPop Demon Hunters collaboration packaging.",
+
+          skinType:
+            "Especially suitable for dry, normal, and dehydrated skin. It may also be incorporated into combination skin routines depending on individual skin needs.",
+
+          benefits:
+            "Intensive hydration • Moisture barrier support • Helps reduce feelings of dryness • Moisture retention • Softer, more comfortable skin",
+
+          ingredients:
+            "Hydrogenated Polydecene, Butylene Glycol, Glycerin, Caprylyl Methicone, Dimethicone, Propanediol, Squalane, Panthenol, Sorbitol, Cetyl PEG/PPG-10/1 Dimethicone, 1,2-Hexanediol, Tapioca Starch, Sodium Chloride, Olea Europaea (Olive) Fruit Oil, Trehalose, Ethylhexylglycerin, Allantoin, Dipropylene Glycol, Trisodium Ethylenediamine Disuccinate, Hydrogenated Lecithin. For the complete INCI ingredient list, please refer to the product packaging.",
+
+          usage:
+            "After cleansing and applying serum, gently spread a small amount evenly over the face and neck. Massage until absorbed. Use morning and evening according to your skin's needs. Finish your morning skincare routine with sunscreen.",
+
+          available: false,
+          stock: 0,
+        },
+
+        {
+          id: 24,
+          brand: "Anua",
+          name: "Barrier Reboot Water Gel Cream KPop Demon Hunters Collaboration",
+          category: "cream",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/anuawatergel.png",
+          images: ["images/anuawatergel.png"],
+          country: "South Korea",
+          volume: "50 ml",
+
+          description:
+            "A lightweight moisturizing water gel cream that helps hydrate the skin, maintain moisture, and support its natural protective barrier. Presented in special KPop Demon Hunters collaboration packaging.",
+
+          details:
+            "Anua Barrier Reboot Water Gel Cream KPop Demon Hunters Collaboration is a lightweight, water-based moisturizing face cream designed for daily skincare. Its formula contains glycerin, sodium hyaluronate, ceramide NP, and panthenol, which help hydrate the skin, retain moisture, and support the skin's protective barrier. The refreshing gel texture spreads comfortably over the skin, leaving it feeling soft, smooth, and refreshed. Presented in exclusive KPop Demon Hunters collaboration packaging.",
+
+          skinType:
+            "Suitable for normal, combination, and oily skin, especially for those who prefer lightweight moisturizers. It may also be used on other skin types depending on individual skincare needs.",
+
+          benefits:
+            "Skin hydration • Moisture retention • Skin barrier support • Lightweight gel texture • Softer, more comfortable skin",
+
+          ingredients:
+            "Water, Dimethicone, Glycerin, Butylene Glycol, Polyglycerin-3, 1,2-Hexanediol, Pentylene Glycol, Polyacrylate Crosspolymer-6, Cetearyl Olivate, Silica, Sorbitan Olivate, Hydrogenated Lecithin, Glyceryl Caprylate, Sodium Hyaluronate, Caprylic/Capric Triglyceride, Dipropylene Glycol, Ceramide NP, Cholesterol, Pectin, Calcium Pantothenate, Panthenol, Beta-Glucan, Cynanchum Atratum Extract. For the complete INCI ingredient list, please refer to the product packaging.",
+
+          usage:
+            "After cleansing and applying serum, gently spread a small amount evenly over the face and neck. Massage until fully absorbed. Use morning and evening according to your skin's needs. Finish your morning skincare routine with sunscreen.",
+
+          available: false,
+          stock: 0,
+        },
+        {
+          id: 25,
+          brand: "Medicube",
+          name: "Zero Pore Blackhead Mud Mask",
+          category: "mask",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/medicube-zero-pore-mask.png",
+          images: ["images/zeroporemask.png", "images/zeroporemask1.png"],
+          country: "South Korea",
+          volume: "100 g",
+          description:
+            "A wash-off clay mask designed to help remove excess oil and impurities.",
+          details:
+            "Medicube Zero Pore Blackhead Mud Mask is a wash-off facial mask that helps cleanse the skin's surface and remove excess sebum and impurities.",
+          skinType:
+            "Especially suitable for oily and combination skin; use cautiously on sensitive skin.",
+          benefits:
+            "Pore cleansing • Excess oil removal • Fresh, clean skin feel",
+          ingredients: "See product packaging for the full ingredient list.",
+          usage:
+            "Follow the directions on the product packaging. Avoid the eye area.",
+          available: false,
+          stock: 0,
+        },
+        {
+          id: 26,
+          brand: "Medicube",
+          name: "Collagen Firming Sun Cream",
+          category: "sunscreen",
+          price: 0,
+          oldPrice: null,
+          badge: "",
+          image: "images/medicubecollagensuncream.png",
+          images: ["images/medicubecollagensuncream.png", "images/sun1.png"],
+          country: "South Korea",
+          volume: "50 ml",
+          description:
+            "SPF 50+ PA++++ sunscreen that helps protect the skin from UV rays while providing hydration.",
+          details:
+            "Medicube Collagen Firming Sun Cream is a daily sunscreen formulated with collagen that provides high-level UVA and UVB protection. It helps maintain skin hydration, elasticity, and a comfortable feel.",
+          skinType:
+            "Suitable for all skin types, including normal, dry, and combination skin.",
+          benefits:
+            "SPF 50+ PA++++ protection • Hydration • Supports skin elasticity • Suitable for daily use",
+          ingredients:
+            "Collagen and UV filters. Please refer to the product packaging for the full ingredient list.",
+          usage:
+            "Apply in the morning as the final step of your skincare routine, approximately 15 minutes before sun exposure. Spread evenly over the face and neck. Reapply every 2 hours while exposed to the sun, especially after sweating or washing.",
+          available: false,
+          stock: 0,
         },
       ];
 
       /* =========================================
-                         STATE
-                      ========================================= */
+                                     STATE
+                                  ========================================= */
 
       let cart = [];
       let wishlist = [];
@@ -3262,8 +4470,8 @@
       let currentFilter = "all";
 
       /* =========================================
-                         DOM
-                      ========================================= */
+                                     DOM
+                                  ========================================= */
 
       const productGrid = document.getElementById("productGrid");
 
@@ -3284,20 +4492,114 @@
       const toast = document.getElementById("toast");
 
       /* =========================================
-                         STORAGE
-                      ========================================= */
+                                     STORAGE
+                                  ========================================= */
 
       function saveCart() {
         localStorage.setItem("skinsea_cart", JSON.stringify(cart));
       }
 
+      // Guest favorites remain local; signed-in favorites sync to Supabase Auth metadata.
+      let wishlistUserId = null;
+      let wishlistSyncQueue = Promise.resolve();
+      const wishlistGuestKey = "skinsea_wishlist";
+      function wishlistSnapshot() {
+        return wishlist.map((id) => {
+          const p = products.find((item) => Number(item.id) === Number(id));
+          return {
+            id: Number(id),
+            name: p?.name || `Product #${id}`,
+            image: p?.image || "",
+          };
+        });
+      }
       function saveWishlist() {
-        localStorage.setItem("skinsea_wishlist", JSON.stringify(wishlist));
+        const ids = [...new Set(wishlist.map(Number).filter(Number.isFinite))];
+        wishlist = ids;
+        if (!wishlistUserId) {
+          localStorage.setItem(wishlistGuestKey, JSON.stringify(ids));
+          return;
+        }
+        localStorage.setItem(
+          `skinsea_wishlist_${wishlistUserId}`,
+          JSON.stringify(ids),
+        );
+        const snapshot = wishlistSnapshot();
+        wishlistSyncQueue = wishlistSyncQueue
+          .then(async () => {
+            const {
+              data: { user },
+              error: authError,
+            } = await supabaseClient.auth.getUser();
+            if (authError || !user || user.id !== wishlistUserId) return;
+            const { error } = await supabaseClient.auth.updateUser({
+              data: { wishlist_ids: ids, wishlist_items: snapshot },
+            });
+            if (error) throw error;
+          })
+          .catch((error) => console.error("Wishlist sync failed:", error));
+      }
+      async function initializeWishlist() {
+        try {
+          const {
+            data: { user },
+            error,
+          } = await supabaseClient.auth.getUser();
+          if (error || !user) {
+            renderProducts();
+            return;
+          }
+          wishlistUserId = user.id;
+          const remote = Array.isArray(user.user_metadata?.wishlist_ids)
+            ? user.user_metadata.wishlist_ids
+                .map(Number)
+                .filter(Number.isFinite)
+            : [];
+          const guest = Array.isArray(wishlist)
+            ? wishlist.map(Number).filter(Number.isFinite)
+            : [];
+          wishlist = [...new Set([...remote, ...guest])];
+          localStorage.removeItem(wishlistGuestKey);
+          localStorage.setItem(
+            `skinsea_wishlist_${user.id}`,
+            JSON.stringify(wishlist),
+          );
+          renderProducts();
+          if (guest.some((id) => !remote.includes(id))) saveWishlist();
+        } catch (error) {
+          console.error("Wishlist loading failed:", error);
+        }
       }
 
       /* =========================================
-                         PRODUCT RENDER
-                      ========================================= */
+                                     PRODUCT RENDER
+                                  ========================================= */
+
+      // Discount is shown only when a valid former price is configured.
+      function hasDiscount(product) {
+        return (
+          Number.isFinite(product.oldPrice) &&
+          product.oldPrice > product.price &&
+          product.price > 0
+        );
+      }
+
+      function discountPercent(product) {
+        return Math.round((1 - product.price / product.oldPrice) * 100);
+      }
+
+      function productPriceHtml(product) {
+        if (
+          !product.available ||
+          !Number.isFinite(product.price) ||
+          product.price <= 0
+        )
+          return "";
+        return hasDiscount(product)
+          ? `<span class="sale-current-price">${product.price.toFixed(2)} ₾</span>
+             <del class="sale-old-price">${product.oldPrice.toFixed(2)} ₾</del>`
+          : `${product.price.toFixed(2)} ₾`;
+      }
 
       function renderProducts() {
         const searchTerm =
@@ -3318,26 +4620,26 @@
 
         if (!filtered.length) {
           productGrid.innerHTML = `
-                        <div
-                          style="
-                            grid-column:1/-1;
-                            text-align:center;
-                            padding:60px 20px;
-                            color:var(--muted);
-                          "
-                        >
-                          <div
-                            style="
-                              font-size:40px;
-                              margin-bottom:10px;
-                            "
-                          >
-                            ⌕
-                          </div>
+                                    <div
+                                      style="
+                                        grid-column:1/-1;
+                                        text-align:center;
+                                        padding:60px 20px;
+                                        color:var(--muted);
+                                      "
+                                    >
+                                      <div
+                                        style="
+                                          font-size:40px;
+                                          margin-bottom:10px;
+                                        "
+                                      >
+                                        ⌕
+                                      </div>
 
-                          No products found.
-                        </div>
-                      `;
+                                      No products found.
+                                    </div>
+                                  `;
 
           return;
         }
@@ -3353,136 +4655,140 @@
 
             const hasSlider = productImages.length > 1;
 
-            const stockHtml = product.available
-              ? `<div class="stock">✓ In stock</div>`
-              : `<div class="stock unavailable">× Out of stock</div>`;
+            const stockHtml =
+              product.available && product.stock > 0 && product.price > 0
+                ? `<div class="stock">✓ In Stock</div>`
+                : `<div class="stock unavailable">${product.comingSoon ? "Coming Soon" : "Out of Stock"}</div>`;
 
-            const addButtonHtml = product.available
-              ? `<button
-                              class="add-btn"
-                              onclick="addToCart(${product.id})"
-                            >
-                              + Add to cart
-                            </button>`
-              : `<button
-                              class="add-btn"
-                              disabled
-                              aria-disabled="true"
-                            >
-                              Out of stock
-                            </button>`;
+            const addButtonHtml =
+              product.available && product.stock > 0 && product.price > 0
+                ? `<button
+                                          class="add-btn"
+                                          onclick="addToCart(${product.id})"
+                                        >
+                                          + Add to Cart
+                                        </button>`
+                : `<button
+                                          class="add-btn"
+                                          disabled
+                                          aria-disabled="true"
+                                        >
+                                          ${product.comingSoon ? "Coming Soon" : "Out of Stock"}
+                                        </button>`;
 
             return `
-                          <article class="product-card">
+                                      <article class="product-card">
 
-                            <div
-                              class="product-image-wrap"
-                              onclick="openProduct(${product.id})"
-                              style="cursor:pointer"
-                            >
+                                        <div
+                                          class="product-image-wrap"
+                                          onclick="openProduct(${product.id})"
+                                          style="cursor:pointer"
+                                        >
 
-                              ${
-                                product.badge
-                                  ? `<div class="badge">
-                                       ${product.badge}
-                                     </div>`
-                                  : ""
-                              }
+                                          ${hasDiscount(product) ? `<div class="discount-badge">-${discountPercent(product)}%</div>` : ""}
 
-                              <button
-                                class="wishlist-btn ${isFavorite ? "active" : ""}"
-                                onclick="
-                                  event.stopPropagation();
-                                  toggleWishlist(${product.id})
-                                "
-                              >
-                                ${isFavorite ? "♥" : "♡"}
-                              </button>
+                                          ${
+                                            product.badge
+                                              ? `<div class="badge">
+                                                   ${product.badge}
+                                                 </div>`
+                                              : ""
+                                          }
 
-                              <div
-                                class="product-slider"
-                                data-product-id="${product.id}"
-                              >
-                                <img
-                                  class="product-image slider-image"
-                                  src="${productImages[0]}"
-                                  alt="${product.name}"
-                                  data-index="0"
-                                />
+                                          <button
+                                            class="wishlist-btn ${isFavorite ? "active" : ""}"
+                                            onclick="
+                                              event.stopPropagation();
+                                              toggleWishlist(${product.id})
+                                            "
+                                          >
+                                            ${isFavorite ? "♥" : "♡"}
+                                          </button>
 
-                                ${
-                                  hasSlider
-                                    ? `
-                                      <button
-                                        class="slider-arrow slider-prev"
-                                        onclick="
-                                          event.stopPropagation();
-                                          changeProductImage(${product.id}, -1);
-                                        "
-                                        aria-label="Previous image"
-                                      >
-                                        ‹
-                                      </button>
+                                          <div
+                                            class="product-slider"
+                                            data-product-id="${product.id}"
+                                          >
+                                            <img
+                                              class="product-image slider-image"
+                                              src="${productImages[0]}"
+                                              alt="${product.name}"
+                                              data-index="0"
+                                            />
 
-                                      <button
-                                        class="slider-arrow slider-next"
-                                        onclick="
-                                          event.stopPropagation();
-                                          changeProductImage(${product.id}, 1);
-                                        "
-                                        aria-label="Next image"
-                                      >
-                                        ›
-                                      </button>
+                                            ${
+                                              hasSlider
+                                                ? `
+                                                  <button
+                                                    class="slider-arrow slider-prev"
+                                                    onclick="
+                                                      event.stopPropagation();
+                                                      changeProductImage(${product.id}, -1);
+                                                    "
+                                                    aria-label="Previous photo"
+                                                  >
+                                                    ‹
+                                                  </button>
 
-                                      <div class="slider-dots">
-                                        ${productImages
-                                          .map(
-                                            (_, index) => `
-                                              <span
-                                                class="slider-dot ${index === 0 ? "active" : ""}"
-                                              ></span>
-                                            `,
-                                          )
-                                          .join("")}
-                                      </div>
-                                    `
-                                    : ""
-                                }
-                              </div>
+                                                  <button
+                                                    class="slider-arrow slider-next"
+                                                    onclick="
+                                                      event.stopPropagation();
+                                                      changeProductImage(${product.id}, 1);
+                                                    "
+                                                    aria-label="Next photo"
+                                                  >
+                                                    ›
+                                                  </button>
 
-                            </div>
+                                                  <div class="slider-dots">
+                                                    ${productImages
+                                                      .map(
+                                                        (_, index) => `
+                                                          <span
+                                                            class="slider-dot ${index === 0 ? "active" : ""}"
+                                                          ></span>
+                                                        `,
+                                                      )
+                                                      .join("")}
+                                                  </div>
+                                                `
+                                                : ""
+                                            }
+                                          </div>
 
-                            <div class="product-info">
+                                        </div>
 
-                              <div class="product-brand">
-                                ${product.brand}
-                              </div>
+                                        <div class="product-info">
 
-                              <div class="product-name">
-                                ${product.name}
-                              </div>
+                                          <div class="product-brand">
+                                            ${product.brand}
+                                          </div>
 
-                              <div class="product-desc">
-                                ${product.description}
-                              </div>
+                                          <div class="product-name">
+                                            ${product.name}
+                                          </div>
 
-                              ${stockHtml}
+                                          <div class="product-desc">
+                                            ${product.description}
+                                          </div>
 
-                              <div class="product-bottom">
+                                          ${stockHtml}
 
-                                <div class="price">
-                                  ${product.price.toFixed(2)} ₾
-                                </div>
+                                          <div class="product-bottom">
 
-                                ${addButtonHtml}
+                                            <div class="price">
+                                              ${productPriceHtml(product)}
+                                            </div>
 
-                              </div>
+                                            ${addButtonHtml}
 
-                            </div>
+                                          </div>
 
-                          </article>
-                        `;
+                                        </div>
+
+                                      </article>
+                                    `;
           })
           .join("");
       }
@@ -3529,8 +4835,8 @@
       }
 
       /* =========================================
-                     LIGHTBOX
-                  ========================================= */
+                                 LIGHTBOX
+                              ========================================= */
 
       const lightbox = document.getElementById("lightbox");
       const lightboxImage = document.getElementById("lightboxImage");
@@ -3546,9 +4852,37 @@
       function closeLightbox() {
         lightbox.classList.remove("active");
         lightboxImage.src = "";
-        document.body.style.overflow = "";
+        document.body.style.overflow = document
+          .getElementById("productModal")
+          ?.classList.contains("active")
+          ? "hidden"
+          : "";
       }
 
+      let skinseaLightboxTouchX = null;
+      lightbox.addEventListener(
+        "touchstart",
+        (e) => {
+          skinseaLightboxTouchX = e.touches[0]?.clientX ?? null;
+        },
+        { passive: true },
+      );
+      lightbox.addEventListener(
+        "touchend",
+        (e) => {
+          if (skinseaLightboxTouchX === null) return;
+          const dx = e.changedTouches[0].clientX - skinseaLightboxTouchX;
+          skinseaLightboxTouchX = null;
+          if (Math.abs(dx) > 45 && typeof skinseaGalleryMove === "function") {
+            skinseaGalleryMove(dx < 0 ? 1 : -1);
+            const activeImage = document.querySelector(
+              "#productModal .skinsea-modal-gallery .product-modal-img",
+            );
+            if (activeImage) lightboxImage.src = activeImage.src;
+          }
+        },
+        { passive: true },
+      );
       lightboxClose.addEventListener("click", closeLightbox);
 
       lightbox.addEventListener("click", (event) => {
@@ -3564,8 +4898,8 @@
       });
 
       /* =========================================
-                         FILTER
-                      ========================================= */
+                                     FILTER
+                                  ========================================= */
 
       document.querySelectorAll(".filter-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -3596,8 +4930,8 @@
       }
 
       /* =========================================
-   SEARCH
-========================================= */
+               SEARCH
+            ========================================= */
 
       document.getElementById("searchBtn").addEventListener("click", () => {
         const panel = document.getElementById("searchPanel");
@@ -3643,16 +4977,21 @@
         }
       });
       /* =========================================
-                         CART
-                      ========================================= */
+                                     CART
+                                  ========================================= */
 
       function addToCart(id) {
         const product = products.find((p) => p.id === id);
 
         if (!product) return;
 
-        if (!product.available || product.stock <= 0) {
-          showToast("This product is currently out of stock");
+        if (
+          !stockPricesLoaded ||
+          !product.available ||
+          product.stock <= 0 ||
+          product.price <= 0
+        ) {
+          showToast("This product is currently unavailable");
           return;
         }
 
@@ -3660,7 +4999,7 @@
 
         if (existing) {
           if (existing.quantity >= product.stock) {
-            showToast(`Only ${product.stock} left in stock`);
+            showToast(`Only ${product.stock} items left in stock`);
             return;
           }
 
@@ -3691,8 +5030,14 @@
 
         if (!item || !product) return;
 
-        if (amount > 0 && item.quantity >= product.stock) {
-          showToast(`Only ${product.stock} left in stock`);
+        if (
+          amount > 0 &&
+          (!stockPricesLoaded ||
+            !product.available ||
+            product.price <= 0 ||
+            item.quantity >= product.stock)
+        ) {
+          showToast(`Only ${product.stock} items left in stock`);
           return;
         }
 
@@ -3705,13 +5050,13 @@
         saveCart();
         renderCart();
       }
-
       function removeFromCart(id) {
         cart = cart.filter((item) => item.id !== id);
 
         saveCart();
         renderCart();
       }
+
       function getCartSubtotal() {
         return cart.reduce((total, item) => {
           const product = products.find((p) => p.id === item.id);
@@ -3723,15 +5068,40 @@
       }
 
       function renderCart() {
-        const cleanedCart = cart.filter((item) => {
-          const product = products.find((p) => p.id === item.id);
-          return product && product.available;
+        // Keep saved cart intact until live Supabase data is available.
+        if (!stockPricesLoaded) {
+          checkoutBtn.disabled = true;
+          return;
+        }
+        let changed = false;
+        cart = cart.filter((item) => {
+          const product = products.find(
+            (p) => Number(p.id) === Number(item.id),
+          );
+          if (
+            !product ||
+            !product.available ||
+            product.price <= 0 ||
+            product.stock <= 0
+          ) {
+            changed = true;
+            return false;
+          }
+          const quantity = Math.floor(Number(item.quantity));
+          if (!Number.isFinite(quantity) || quantity < 1) {
+            changed = true;
+            return false;
+          }
+          const allowed = Math.min(quantity, product.stock);
+          if (allowed !== item.quantity) {
+            item.quantity = allowed;
+            changed = true;
+          }
+          return true;
         });
-
-        if (cleanedCart.length !== cart.length) {
-          cart = cleanedCart;
+        if (changed) {
           saveCart();
-          showToast("Some products are out of stock");
+          showToast("Cart updated to match current stock");
         }
 
         const count = cart.reduce((total, item) => total + item.quantity, 0);
@@ -3741,27 +5111,27 @@
         if (!cart.length) {
           cartItems.innerHTML = `
 
-                            <div class="empty-cart">
+                                        <div class="empty-cart">
 
-                              <div>
+                                          <div>
 
-                                <div class="empty-cart-icon">
-                                  🛍
-                                </div>
+                                            <div class="empty-cart-icon">
+                                              🛍
+                                            </div>
 
-                                <strong>
-                                  Your cart is empty
-                                </strong>
+                                            <strong>
+                                              Your cart is empty
+                                            </strong>
 
-                                <p style="margin-top:6px;">
-                                  Add a product you love.
-                                </p>
+                                            <p style="margin-top:6px;">
+                                              Add products you love.
+                                            </p>
 
-                              </div>
+                                          </div>
 
-                            </div>
+                                        </div>
 
-                          `;
+                                      `;
 
           cartSubtotal.textContent = "0.00 ₾";
 
@@ -3782,85 +5152,86 @@
 
             return `
 
-                                <div class="cart-item">
+                                            <div class="cart-item">
 
-                                  <img
-  class="cart-item-img"
-  src="${product.image}"
-  alt="${product.name}"
-  onclick="openLightbox('${product.image}', '${product.name}')"
-/>
-
-
-                                  <div class="cart-item-info">
-
-                                    <h4>
-                                      ${product.name}
-                                    </h4>
-
-                                    <p>
-                                      ${product.brand}
-                                    </p>
+                                              <img
+              class="cart-item-img"
+              src="${product.image}"
+              alt="${product.name}"
+              onclick="openLightbox('${product.image}', '${product.name}')"
+            />
 
 
-                                    <div class="quantity">
+                                              <div class="cart-item-info">
 
-                                      <button
-                                        onclick="
-                                          changeQuantity(
-                                            ${product.id},
-                                            -1
-                                          )
-                                        "
-                                      >
-                                        −
-                                      </button>
+                                                <h4>
+                                                  ${product.name}
+                                                </h4>
+
+                                                <p>
+                                                  ${product.brand}
+                                                </p>
 
 
-                                      <span>
-                                        ${item.quantity}
-                                      </span>
+                                                <div class="quantity">
+
+                                                  <button
+                                                    onclick="
+                                                      changeQuantity(
+                                                        ${product.id},
+                                                        -1
+                                                      )
+                                                    "
+                                                  >
+                                                    −
+                                                  </button>
 
 
-                                      <button
-                                        onclick="
-                                          changeQuantity(
-                                            ${product.id},
-                                            1
-                                          )
-                                        "
-                                      >
-                                        +
-                                      </button>
-
-                                    </div>
-
-                                  </div>
+                                                  <span>
+                                                    ${item.quantity}
+                                                  </span>
 
 
-                                  <div class="cart-item-right">
+                                                  <button
+                                                    ${item.quantity >= product.stock ? 'disabled title="Stock limit reached"' : ""}
+                                                    onclick="
+                                                      changeQuantity(
+                                                        ${product.id},
+                                                        1
+                                                      )
+                                                    "
+                                                  >
+                                                    +
+                                                  </button>
 
-                                    <div class="cart-item-price">
-                                      ${itemTotal.toFixed(2)} ₾
-                                    </div>
+                                                </div>
+
+                                              </div>
 
 
-                                    <button
-                                      class="remove-item"
-                                      onclick="
-                                        removeFromCart(
-                                          ${product.id}
-                                        )
-                                      "
-                                    >
-                                      Remove
-                                    </button>
+                                              <div class="cart-item-right">
 
-                                  </div>
+                                                <div class="cart-item-price">
+                                                  ${itemTotal.toFixed(2)} ₾
+                                                </div>
 
-                                </div>
 
-                              `;
+                                                <button
+                                                  class="remove-item"
+                                                  onclick="
+                                                    removeFromCart(
+                                                      ${product.id}
+                                                    )
+                                                  "
+                                                >
+                                                  Remove
+                                                </button>
+
+                                              </div>
+
+                                            </div>
+
+                                          `;
           })
           .join("");
 
@@ -3869,18 +5240,19 @@
         cartSubtotal.textContent = subtotal.toFixed(2) + " ₾";
 
         document.getElementById("cartDelivery").textContent =
-          subtotal >= 100 ? "Free" : "Based on zone";
+          subtotal >= 100 ? "Free" : "Based on delivery zone";
 
         cartTotal.textContent =
           subtotal >= 100
             ? subtotal.toFixed(2) + " ₾"
-            : subtotal.toFixed(2) + " ₾ + delivery";
+            : subtotal.toFixed(2) + " ₾ + Delivery";
 
-        checkoutBtn.disabled = false;
+        checkoutBtn.disabled = !stockPricesLoaded;
       }
+
       /* =========================================
-                         CART DRAWER
-                      ========================================= */
+                                     CART DRAWER
+                                  ========================================= */
 
       function openCart() {
         cartDrawer.classList.add("active");
@@ -3901,8 +5273,8 @@
       overlay.addEventListener("click", closeCart);
 
       /* =========================================
-                         WISHLIST
-                      ========================================= */
+                                     WISHLIST
+                                  ========================================= */
 
       function toggleWishlist(id) {
         if (wishlist.includes(id)) {
@@ -3936,8 +5308,50 @@
       });
 
       /* =========================================
-                         PRODUCT MODAL
-                      ========================================= */
+                                     PRODUCT MODAL
+                                  ========================================= */
+
+      function skinseaGalleryMove(step) {
+        const gallery = document.querySelector(
+          "#productModal .skinsea-modal-gallery",
+        );
+        if (!gallery) return;
+        const images = JSON.parse(gallery.dataset.images || "[]");
+        if (!images.length) return;
+        const next =
+          (((Number(gallery.dataset.index || 0) + step) % images.length) +
+            images.length) %
+          images.length;
+        skinseaGalleryGo(next);
+      }
+      function skinseaGalleryGo(index) {
+        const gallery = document.querySelector(
+          "#productModal .skinsea-modal-gallery",
+        );
+        if (!gallery) return;
+        const images = JSON.parse(gallery.dataset.images || "[]");
+        if (!images.length) return;
+        gallery.dataset.index = String(index);
+        const img = gallery.querySelector(".product-modal-img");
+        img.src = images[index];
+        gallery
+          .querySelectorAll(".skinsea-gallery-dots button")
+          .forEach((dot, i) => dot.classList.toggle("active", i === index));
+      }
+      function skinseaGalleryTouchStart(event) {
+        event.currentTarget.dataset.touchX = String(event.touches[0].clientX);
+      }
+      function skinseaGalleryTouchEnd(event) {
+        const start = Number(event.currentTarget.dataset.touchX);
+        const delta = event.changedTouches[0].clientX - start;
+        if (Math.abs(delta) > 45) skinseaGalleryMove(delta < 0 ? 1 : -1);
+      }
+      function skinseaGalleryZoom() {
+        const img = document.querySelector(
+          "#productModal .skinsea-modal-gallery .product-modal-img",
+        );
+        if (img) openLightbox(img.src, img.alt);
+      }
 
       function openProduct(id) {
         const product = products.find((p) => p.id === id);
@@ -3954,100 +5368,97 @@
 
         const modalImageSrc = currentCardImage?.src || modalImages[0];
 
-        const modalStockHtml = product.available
-          ? `<div class="stock">✓ In stock</div>`
-          : `<div class="stock unavailable">× Out of stock</div>`;
+        const modalStockHtml =
+          product.available && product.stock > 0 && product.price > 0
+            ? `<div class="stock">✓ In Stock</div>`
+            : `<div class="stock unavailable">${product.comingSoon ? "Coming Soon" : "Out of Stock"}</div>`;
 
-        const modalButtonHtml = product.available
-          ? `<button
-                                class="btn btn-primary"
-                                onclick="
-                                  addToCart(${product.id});
-                                  closeModal('productModal')
-                                "
-                              >
-                                Add to cart →
-                              </button>`
-          : `<button
-                                class="btn btn-primary"
-                                disabled
-                                aria-disabled="true"
-                              >
-                                Out of stock
-                              </button>`;
+        const modalButtonHtml =
+          product.available && product.stock > 0 && product.price > 0
+            ? `<button
+                                            class="btn btn-primary"
+                                            onclick="
+                                              addToCart(${product.id});
+                                              closeModal('productModal')
+                                            "
+                                          >
+                                            Add to Cart →
+                                          </button>`
+            : `<button
+                                            class="btn btn-primary"
+                                            disabled
+                                            aria-disabled="true"
+                                          >
+                                            ${product.comingSoon ? "Coming Soon" : "Out of Stock"}
+                                          </button>`;
 
         document.getElementById("productModalContent").innerHTML = `
 
-                            <div class="product-modal-grid">
+                                        <div class="product-modal-grid">
 
 
-                 <img
-        class="product-modal-img"
-        src="${modalImageSrc}"
-        alt="${product.name}"
-        onclick="openLightbox('${modalImageSrc}', '${product.name}')"
-      />
+                             <div class="skinsea-modal-gallery" data-images="${JSON.stringify(modalImages).replace(/&/g, "&amp;").replace(/'/g, "&#39;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;")}" data-index="${Math.max(0, modalImages.indexOf(modalImageSrc))}" ontouchstart="skinseaGalleryTouchStart(event)" ontouchend="skinseaGalleryTouchEnd(event)">
+                               <img class="product-modal-img" src="${modalImageSrc}" alt="${product.name}" onclick="skinseaGalleryZoom()" />
+                               ${modalImages.length > 1 ? `<button type="button" class="skinsea-gallery-arrow prev" aria-label="Previous image" onclick="skinseaGalleryMove(-1)">‹</button><button type="button" class="skinsea-gallery-arrow next" aria-label="Next image" onclick="skinseaGalleryMove(1)">›</button><div class="skinsea-gallery-dots">${modalImages.map((_, i) => `<button type="button" class="${i === Math.max(0, modalImages.indexOf(modalImageSrc)) ? "active" : ""}" aria-label="Image ${i + 1}" onclick="skinseaGalleryGo(${i})"></button>`).join("")}</div>` : ""}
+                             </div>
 
 
-                              <div>
+                                          <div>
 
-                                <div class="modal-brand">
-                                  ${product.brand}
-                                </div>
-
-
-                                <h2 class="modal-product-name">
-                                  ${product.name}
-                                </h2>
+                                            <div class="modal-brand">
+                                              ${product.brand}
+                                            </div>
 
 
-                                <div class="product-detail-item">
-          <strong>🧴 Best for</strong>
-          <p>${product.skinType || "Information coming soon"}</p>
-        </div>
-
-        <div class="product-detail-item">
-          <strong>💧 Benefits</strong>
-          <p>${product.benefits || "Information coming soon"}</p>
-        </div>
-
-        <div class="product-detail-item">
-          <strong>✨ Key ingredients</strong>
-          <p>${product.ingredients || "Information coming soon"}</p>
-        </div>
-
-        <div class="product-detail-item">
-          <strong>🌿 How to use</strong>
-          <p>${product.usage || "Information coming soon"}</p>
-        </div> 
-        <div class="product-detail-item">
-  <strong>${product.countryFlag || "🌍"} Country of origin </strong>
-  <p>${product.country || "Information coming soon"}</p>
-</div> 
-<div class="product-detail-item">
-  <strong>
-    Volume: ${product.volume || "Information coming soon"}
-  </strong>
-</div>
-
-      </div>
+                                            <h2 class="modal-product-name">
+                                              ${product.name}
+                                            </h2>
 
 
-                                ${modalStockHtml}
+                                            <div class="product-detail-item">
+                      <strong>🧴 Skin Type</strong>
+                      <p>${product.skinType || "Information coming soon"}</p>
+                    </div>
+
+                    <div class="product-detail-item">
+                      <strong>💧 Benefits</strong>
+                      <p>${product.benefits || "Information coming soon"}</p>
+                    </div>
+
+                    <div class="product-detail-item">
+                      <strong>✨ Key Ingredients</strong>
+                      <p>${product.ingredients || "Information coming soon"}</p>
+                    </div>
+
+                    <div class="product-detail-item">
+                      <strong>🌿 How to Use</strong>
+                      <p>${product.usage || "Information coming soon"}</p>
+                    </div>
+                    <div class="product-detail-item">
+              <strong>${product.countryFlag || "🌍"} Country of Origin </strong>
+              <p>${product.country || "Information coming soon"}</p>
+            </div>
+            <div class="product-detail-item">
+              <strong>
+                Size: ${product.volume || "Information coming soon"}
+              </strong>
+            </div>
+
+                                            ${modalStockHtml}
 
 
-                                <div class="modal-price">
-                                  ${product.price.toFixed(2)} ₾
-                                </div>
+                                            <div class="modal-price">
+                                              ${productPriceHtml(product)}
+                                            </div>
 
 
-                                ${modalButtonHtml}
+                                            ${modalButtonHtml}
 
-                              </div>
+                                          </div>
 
-                            </div>
+                                        </div>
 
-                          `;
+                                      `;
 
         document.getElementById("productModal").classList.add("active");
         const url = new URL(window.location.href);
@@ -4056,10 +5467,75 @@
       }
 
       /* =========================================
-                         CHECKOUT
-                      ========================================= */
+                                     CHECKOUT
+                                  ========================================= */
 
-      checkoutBtn.addEventListener("click", openCheckout);
+      checkoutBtn.addEventListener("click", () => {
+        if (!stockPricesLoaded) return;
+        openCheckout();
+      });
+
+      // Fill checkout from the signed-in customer's Supabase Auth metadata.
+      // Never use a shared localStorage address: customer details must stay account-specific.
+      async function fillCheckoutFromAccount() {
+        const form = document.getElementById("checkoutForm");
+        if (!form || !supabaseClient) return;
+        try {
+          const { data, error } = await supabaseClient.auth.getUser();
+          if (
+            error ||
+            !data?.user ||
+            !form.closest("#checkoutModal")?.classList.contains("active")
+          )
+            return;
+          const user = data.user;
+          const meta = user.user_metadata || {};
+          const saved = meta.delivery_address || {};
+          const name = [meta.first_name, meta.last_name]
+            .filter(Boolean)
+            .join(" ")
+            .trim();
+          const address = [saved.street, saved.details]
+            .filter(Boolean)
+            .join(", ")
+            .trim();
+          // Do not overwrite details the shopper has already entered manually.
+          const setIfBlank = (field, value) => {
+            const input = form.elements.namedItem(field);
+            if (input && !input.value.trim() && value)
+              input.value = String(value);
+          };
+          setIfBlank("name", name);
+          setIfBlank("email", user.email || "");
+          setIfBlank("phone", meta.phone || user.phone || "");
+          setIfBlank("address", address);
+          const city = String(saved.city || "")
+            .trim()
+            .toLowerCase();
+          const select = document.getElementById("deliverySelect");
+          if (select && !select.value) {
+            // Only choose a zone when the city maps unambiguously to one rate.
+            const zones = {
+              თბილისი: "tbilisi",
+              tbilisi: "tbilisi",
+              რუსთავი: "rustavi",
+              rustavi: "rustavi",
+              მცხეთა: "mtskheta",
+              mtskheta: "mtskheta",
+            };
+            const zone = zones[city];
+            if (
+              zone &&
+              [...select.options].some((option) => option.value === zone)
+            ) {
+              select.value = zone;
+              select.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+          }
+        } catch (error) {
+          console.warn("Checkout autofill unavailable:", error);
+        }
+      }
 
       function openCheckout() {
         if (!cart.length) return;
@@ -4069,6 +5545,7 @@
         renderCheckoutSummary();
 
         document.getElementById("checkoutModal").classList.add("active");
+        void fillCheckoutFromAccount();
       }
 
       function renderCheckoutSummary() {
@@ -4083,70 +5560,107 @@
           : 0;
 
         const delivery = subtotal >= 100 ? 0 : zonePrice;
+
         const total = subtotal + delivery;
 
         const summary = document.getElementById("checkoutSummary");
-
         summary.innerHTML = `
 
-    ${cart
-      .map((item) => {
-        const product = products.find((p) => p.id === item.id);
+                                      ${cart
+                                        .map((item) => {
+                                          const product = products.find(
+                                            (p) => p.id === item.id,
+                                          );
 
-        return `
-          <div class="checkout-summary-item">
-            <span>
-              ${product.name} × ${item.quantity}
-            </span>
+                                          return `
 
-            <strong>
-              ${(product.price * item.quantity).toFixed(2)} ₾
-            </strong>
-          </div>
-        `;
-      })
-      .join("")}
+                                            <div
+                                              class="checkout-summary-item"
+                                            >
 
-    <div
-      class="checkout-summary-item"
-      style="
-        border-top:1px solid var(--border);
-        margin-top:8px;
-        padding-top:12px;
-      "
-    >
-      <span>Delivery</span>
+                                              <span>
+                                                ${product.name}
+                                                × ${item.quantity}
+                                              </span>
 
-      <strong>
+                                              <strong>
+                                                ${(product.price * item.quantity).toFixed(2)} ₾
+                                              </strong>
+
+                                            </div>
+
+                                          `;
+                                        })
+                                        .join("")}
+
+
+                                      <div
+                                        class="checkout-summary-item"
+                                        style="
+                                          border-top:1px solid var(--border);
+                                          margin-top:8px;
+                                          padding-top:12px;
+                                        "
+                                      >
+
+                                        <span>
+                                          Delivery
+                                        </span>
+
+                                        <strong>
         ${
           !deliverySelect.value
-            ? "Based on zone"
+            ? "Based on delivery zone"
             : delivery === 0
               ? "Free"
               : delivery.toFixed(2) + " ₾"
         }
       </strong>
-    </div>
 
-    <div
-      class="checkout-summary-item"
-      style="
-        font-size:15px;
-        font-weight:700;
-      "
-    >
-      <span>Total</span>
+                                      </div>
 
-      <strong>
-        ${total.toFixed(2)} ₾
-      </strong>
-    </div>
-  `;
+
+                                      <div
+                                        class="checkout-summary-item"
+                                        style="
+                                          font-size:15px;
+                                          font-weight:700;
+                                        "
+                                      >
+
+                                        <span>
+                                          Total
+                                        </span>
+
+                                        <strong>
+                                          ${total.toFixed(2)} ₾
+                                        </strong>
+
+                                      </div>
+
+                                    `;
       }
+      document
+        .getElementById("deliverySelect")
+        .addEventListener("change", function () {
+          renderCheckoutSummary();
+
+          const regionField = document.getElementById("regionLocationField");
+          const regionInput = document.getElementById("regionLocation");
+
+          if (this.value === "region_city" || this.value === "region_village") {
+            regionField.style.display = "block";
+            regionInput.required = true;
+          } else {
+            regionField.style.display = "none";
+            regionInput.required = false;
+            regionInput.value = "";
+          }
+        });
 
       /* =========================================
-                         SUBMIT ORDER
-                      ========================================= */
+                                     SUBMIT ORDER
+                                  ========================================= */
 
       document
         .getElementById("checkoutForm")
@@ -4158,6 +5672,7 @@
           const subtotal = getCartSubtotal();
 
           const deliverySelect = document.getElementById("deliverySelect");
+
           const selectedOption =
             deliverySelect.options[deliverySelect.selectedIndex];
 
@@ -4211,17 +5726,15 @@
 
           if (error) {
             console.error("SUPABASE ERROR:", error);
-            showToast("Could not save your order ❌");
+            showToast("Could not save the order ❌");
             return;
           }
 
           console.log("ORDER SAVED:", data);
-
           // SEND ORDER CONFIRMATION EMAIL
           const { data: emailData, error: emailError } =
             await supabaseClient.functions.invoke("send-order-email", {
               body: {
-                language: "en",
                 email: order.customer_email,
                 customer_name: order.customer_name,
                 items: JSON.parse(order.items),
@@ -4253,29 +5766,17 @@
 
           this.reset();
         });
-      document
-        .getElementById("deliverySelect")
-        .addEventListener("change", function () {
-          renderCheckoutSummary();
-
-          const regionField = document.getElementById("regionLocationField");
-          const regionInput = document.getElementById("regionLocation");
-
-          if (this.value === "region_city" || this.value === "region_village") {
-            regionField.style.display = "block";
-            regionInput.required = true;
-          } else {
-            regionField.style.display = "none";
-            regionInput.required = false;
-            regionInput.value = "";
-          }
-        });
       /* =========================================
-                         MODALS
-                      ========================================= */
+                                     MODALS
+                                  ========================================= */
 
       function closeModal(id) {
         document.getElementById(id).classList.remove("active");
+        if (
+          id === "productModal" &&
+          !document.getElementById("lightbox")?.classList.contains("active")
+        )
+          document.body.style.overflow = "";
 
         if (id === "productModal") {
           const url = new URL(window.location.href);
@@ -4293,8 +5794,8 @@
       });
 
       /* =========================================
-                         TOAST
-                      ========================================= */
+                                     TOAST
+                                  ========================================= */
 
       function showToast(message) {
         toast.textContent = message;
@@ -4307,8 +5808,8 @@
       }
 
       /* =========================================
-                         MOBILE MENU
-                      ========================================= */
+                                     MOBILE MENU
+                                  ========================================= */
 
       document.getElementById("mobileMenuBtn").addEventListener("click", () => {
         const nav = document.querySelector("nav");
@@ -4339,8 +5840,8 @@
       });
 
       /* =========================================
-                         META PIXEL READY
-                      ========================================= */
+                                     META PIXEL READY
+                                  ========================================= */
 
       function trackEvent(eventName, data = {}) {
         console.log("META EVENT:", eventName, data);
@@ -4351,51 +5852,79 @@
       }
 
       /* =========================================
-                         INIT
-                      ========================================= */
+                                     INIT
+                                  ========================================= */
 
       const SUPABASE_URL = "https://kjyqqpybrswcfbyztxcv.supabase.co";
 
       const SUPABASE_ANON_KEY =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqeXFxcHlicnN3Y2ZieXp0eGN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkwMzM5MjYsImV4cCI6MjEwNDYwOTkyNn0.wv71Gl7_91jCixob1DlscQow-nal11CMbU8gprViHco";
+        "sb_publishable_SlW6I1RqObjbd24gpW1WXg_mFY1laA-";
 
       const supabaseClient = window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_ANON_KEY,
       );
+      // Supabase is the single source of truth for live price and stock.
+      let stockPricesLoaded = false;
       async function loadStock() {
         const { data, error } = await supabaseClient
           .from("Products")
-          .select("id, stock");
+          .select("id, price, stock, available, old_price, coming_soon");
 
-        if (error) {
-          console.error("STOCK ERROR:", error);
-          return;
+        if (error || !Array.isArray(data)) {
+          console.error("PRODUCT PRICE/STOCK ERROR:", error);
+          showToast(
+            "Product availability could not be loaded. Please try again.",
+          );
+          return; // Do not allow purchases using outdated local prices.
         }
 
-        data.forEach((dbProduct) => {
-          const product = products.find((p) => p.id === dbProduct.id);
-
-          if (product) {
-            product.stock = dbProduct.stock;
-            product.available = dbProduct.stock > 0;
-          }
+        const byId = new Map(data.map((row) => [Number(row.id), row]));
+        products.forEach((product) => {
+          const row = byId.get(Number(product.id));
+          product.comingSoon = row?.coming_soon === true;
+          product.price =
+            row && Number.isFinite(Number(row.price)) ? Number(row.price) : 0;
+          product.stock =
+            row && Number.isFinite(Number(row.stock))
+              ? Math.max(0, Math.floor(Number(row.stock)))
+              : 0;
+          product.available = Boolean(
+            row &&
+            row.available !== false &&
+            product.stock > 0 &&
+            product.price > 0,
+          );
+          product.oldPrice =
+            row &&
+            row.old_price != null &&
+            Number.isFinite(Number(row.old_price)) &&
+            Number(row.old_price) > product.price &&
+            product.price > 0
+              ? Number(row.old_price)
+              : null;
         });
 
+        stockPricesLoaded = true;
         renderProducts();
         renderCart();
         const productIdFromUrl = new URLSearchParams(
           window.location.search,
         ).get("product");
-
-        if (productIdFromUrl) {
-          openProduct(Number(productIdFromUrl));
-        }
-
-        console.log("STOCK LOADED:", data);
+        if (productIdFromUrl) openProduct(Number(productIdFromUrl));
       }
 
+      // Display the catalog while loading, but prevent purchases until verified.
+      products.forEach((product) => {
+        product.price = 0;
+        product.stock = 0;
+        product.available = false;
+      });
+      renderProducts();
+      // Do not clean saved cart before current stock and prices have loaded.
+      checkoutBtn.disabled = true;
       loadStock();
+      initializeWishlist();
       let skinseaSlideIndex = 0;
 
       function showSkinseaSlide(index) {
@@ -4428,6 +5957,79 @@
       setInterval(() => {
         changeSkinseaSlide(1);
       }, 5000);
+    </script>
+
+    <script>
+      // Display the signed-in customer's own first name, never a fixed name.
+      (function () {
+        const greeting = document.getElementById("accountGreeting");
+        if (!greeting || !window.supabase) return;
+        const client = window.supabase.createClient(
+          "https://kjyqqpybrswcfbyztxcv.supabase.co",
+          "sb_publishable_SlW6I1RqObjbd24gpW1WXg_mFY1laA-",
+        );
+        function updateGreeting(user) {
+          const metadata = user?.user_metadata || {};
+          const firstName = String(
+            metadata.first_name || metadata.full_name || "",
+          )
+            .trim()
+            .split(/\s+/)[0];
+          if (!user || !firstName) {
+            greeting.hidden = true;
+            greeting.textContent = "";
+            return;
+          }
+          greeting.textContent = `Hello, ${firstName} 🩵`;
+          greeting.hidden = false;
+        }
+        const signInLink = document.getElementById("accountSignIn");
+        const signOutLink = document.getElementById("accountSignOut");
+        const accountMenu = document.getElementById("accountMenu");
+        function updateAccountLinks(user) {
+          if (signInLink) signInLink.hidden = !!user;
+          if (signOutLink) signOutLink.hidden = !user;
+        }
+        if (signOutLink) {
+          signOutLink.addEventListener("click", async (event) => {
+            event.preventDefault();
+            signOutLink.style.pointerEvents = "none";
+            try {
+              const { error } = await client.auth.signOut();
+              if (error) throw error;
+              updateGreeting(null);
+              updateAccountLinks(null);
+              if (accountMenu) accountMenu.open = false;
+              window.location.href = "index-en.html";
+            } catch (error) {
+              alert("Could not sign out. Please try again.");
+              console.error("Sign out failed:", error);
+            } finally {
+              signOutLink.style.pointerEvents = "";
+            }
+          });
+        }
+        client.auth
+          .getUser()
+          .then(({ data, error }) => {
+            if (!error) {
+              updateGreeting(data?.user);
+              updateAccountLinks(data?.user);
+            }
+          })
+          .catch(() => {
+            greeting.hidden = true;
+          });
+        client.auth.onAuthStateChange((_event, session) => {
+          updateGreeting(session?.user || null);
+          updateAccountLinks(session?.user || null);
+        });
+      })();
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (window.lucide) lucide.createIcons();
+      });
     </script>
   </body>
 </html>
