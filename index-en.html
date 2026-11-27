@@ -2830,6 +2830,27 @@
       }
 
     
+    
+      /* Desktop product gallery — same sizing as the Georgian storefront. */
+      @media (min-width: 601px) {
+        #productModal .skinsea-modal-gallery {
+          aspect-ratio: 1 / 1;
+          height: auto;
+          overflow: hidden;
+          border-radius: 18px;
+          background: #f3f7f6;
+        }
+        #productModal .skinsea-modal-gallery .product-modal-img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          max-height: none;
+          aspect-ratio: 1 / 1;
+          object-fit: contain;
+          object-position: center;
+          border-radius: 18px;
+        }
+      }
     </style>
     <script
       src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"
