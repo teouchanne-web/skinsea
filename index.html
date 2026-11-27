@@ -2776,6 +2776,21 @@
           border-radius: 18px;
         }
       }
+
+      /* SKINSEA 2026-11-27: Keep every product photo fully visible. */
+      .product-image-wrap .product-image,
+      .product-image-wrap .slider-image {
+        object-fit: contain !important;
+        object-position: center center !important;
+      }
+      .product-card:hover .product-image {
+        transform: none !important;
+      }
+      #productModal .skinsea-modal-gallery .product-modal-img,
+      #productModal .product-modal-img {
+        object-fit: contain !important;
+        object-position: center center !important;
+      }
     </style>
     <script
       src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"
